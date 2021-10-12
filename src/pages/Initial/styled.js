@@ -4,7 +4,7 @@ export const InitialContainer = styled.div`
   width: 100vw;
   height: 100vh;
   min-height: 700px;
-  background: #fff3ca;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,22 +17,24 @@ export const Logo = styled.img`
 `;
 
 export const JoinButton = styled.button`
-  width: 271px;
-  height: 68px;
-  background: ${props => props.admin ? '#c4c4c4' : '#ffd3c6'};
+  width: 228px;
+  height: 50px;
+  background: ${props => props.admin ? '#818181' : '#ffffff'};
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  color: ${props => props.admin ? '#ffffff' : '#000000'};
   border-color: transparent;
-  border-radius: 28px;
-  font-size: 2rem;
+  border-radius: 50px;
+  font-size: 1.5rem;
   margin: 10px;
   margin-top: ${props => props.admin ? '10px' : '150px'};
   cursor: pointer;
 
   &:hover {
-    background: ${props => props.admin ? '#a4a4a4' : '#ffa88f'}
+    background: ${props => props.admin ? '#555555' : '#fcfcfc'}
   }
 
   &:active {
-    box-shadow: 1px 5px 0px 1px rgba(0, 0, 0, 0.3);
+    background: ${props => props.admin ? '#555555' : '#fcfcfc'};
     transform: translateY(1px);
   }
 
