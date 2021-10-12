@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 import {
   InitialContainer,
   Logo,
@@ -7,10 +8,13 @@ import {
 import CheersLogo from '@/images/logos/Cheers_logo.svg'
 
 const Initial = () => {
+  const history = useHistory();
+  const join = () => history.push('/choosegame')
+
   return (
     <InitialContainer>
       <Logo src={CheersLogo} />
-      <JoinButton>
+      <JoinButton onClick={join}>
         join
       </JoinButton>
       <JoinButton admin >
