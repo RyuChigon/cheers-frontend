@@ -1,13 +1,21 @@
 import React from 'react'
 import {
-  InitialContainer
+  InitialContainer,
+  Logo,
+  JoinButton
 } from './styled'
-import { ReactComponent as Logo } from '@/images/logos/Cheers_logo.svg'
+import CheersLogo from '@/images/logos/Cheers_logo.svg'
 
 const Initial = () => {
   return (
     <InitialContainer>
-      <Logo />
+      <Logo src={CheersLogo} />
+      <JoinButton>
+        join
+      </JoinButton>
+      <JoinButton admin >
+        join as admin
+      </JoinButton>
     </InitialContainer>
   )
 }
