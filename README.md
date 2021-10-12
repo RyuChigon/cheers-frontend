@@ -33,3 +33,10 @@ Huikyeong An
     ├── index.js // helper for export default
     └── styled.js // 
 ```
+
+## Commit Message Convention
+`Add`: Add new components or functions.
+
+`Refactor`: Modify components or functions.
+
+`Fix`: Fix bugs and mistakes.
