@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import {
   Initial,
   ChooseGame,
+  ChooseCharacter,
 } from '@/pages';
 
 function App() {
@@ -11,8 +12,11 @@ function App() {
       <Route exact path="/">
         <Initial />
       </Route>
-      <Route exact path="/choosegame">
+      <Route exact path="/game">
         <ChooseGame />
+      </Route>
+      <Route exact path="/character">
+        <ChooseCharacter />
       </Route>
     </Router>
   );

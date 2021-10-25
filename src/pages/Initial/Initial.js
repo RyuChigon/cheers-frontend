@@ -9,7 +9,7 @@ import CheersLogo from '@/images/logos/Cheers_logo.svg'
 
 const Initial = () => {
   const history = useHistory();
-  const join = () => history.push('/choosegame')
+  const join = () => history.push('/game')
 
   return (
     <InitialContainer>

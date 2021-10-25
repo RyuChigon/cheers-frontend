@@ -20,4 +20,5 @@ export const Game = styled.img`
   width: 910px;
   height: 253px;
   margin-top: 10px;
+  cursor: pointer;
 `;
