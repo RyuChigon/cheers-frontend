@@ -26,12 +26,14 @@ import {
   arrow_right,
   enter,
 } from '@/images/etc'
+import { useHistory } from "react-router"
 
 const CharacterSelector = () => {
 
   const [character, setCharacter] = useState('a');
   const [team, setTeam] = useState('a');
   const [name, setName] = useState('');
+  const history = useHistory();
 
   const onClickRight = () => {
     switch (character) {
@@ -88,6 +90,7 @@ const CharacterSelector = () => {
   }
 
   const writeName = (e) => {setName(e.target.value); console.log(name)}
+  const join = () => history.push('./main')
 
   return(
     <CharacterContainer>
@@ -109,7 +112,7 @@ const CharacterSelector = () => {
       </TeamButtonContent>
       <InputContent>
         <InputNickname placeholder="write your nickname..." onChange={writeName}/>
-        <Enter src={enter} />
+        <Enter src={enter} onClick={join} />
       </InputContent>
     </CharacterContainer>
   )

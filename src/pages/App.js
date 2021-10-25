@@ -4,6 +4,7 @@ import {
   Initial,
   ChooseGame,
   ChooseCharacter,
+  Main
 } from '@/pages';
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
       </Route>
       <Route exact path="/character">
         <ChooseCharacter />
+      </Route>
+      <Route exact path="/main">
+        <Main />
       </Route>
     </Router>
   );
