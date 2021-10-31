@@ -1,1 +1,1 @@
-export { default } from './CharacterSelector'
+export { default } from './CharacterSelector';

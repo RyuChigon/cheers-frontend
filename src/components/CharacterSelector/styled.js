@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const CharacterContainer = styled.div`
   width: 970px;
@@ -42,13 +42,12 @@ export const Character = styled.img`
   justify-content: center;
 `;
 
-export const TeamButtonContent = styled.div`
-`;
+export const TeamButtonContent = styled.div``;
 
 export const TeamButton = styled.button`
   width: 150px;
   height: 44px;
-  background: ${props => props.team === 'Hanwha' ? '#fb5d23' : '#2196f3'};
+  background: ${props => (props.team === 'Hanwha' ? '#fb5d23' : '#2196f3')};
   margin: 0 30px;
   border-radius: 10px;
   border: transparent;
@@ -57,7 +56,7 @@ export const TeamButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: ${props => props.team === 'Hanwha' ? '#ef4304' : '#0c85e8'};
+    background: ${props => (props.team === 'Hanwha' ? '#ef4304' : '#0c85e8')};
   }
 `;
 
@@ -70,7 +69,6 @@ export const InputContent = styled.div`
   border: transparent;
   border-radius: 10px;
   margin: 40px 0;
-
 `;
 
 export const InputNickname = styled.input`
@@ -83,7 +81,6 @@ export const InputNickname = styled.input`
   font-size: 1.3rem;
   padding-left: 20px;
 
-  
   ::-webkit-input-placeholder {
     color: #b7b7b7;
   }
@@ -94,9 +91,7 @@ export const InputNickname = styled.input`
   }
 `;
 
-export const EnterFrame = styled.div`
-
-`;
+export const EnterFrame = styled.div``;
 
 export const Enter = styled.img`
   margin-top: 1px;
