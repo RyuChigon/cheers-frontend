@@ -89,7 +89,7 @@ const CharacterSelector = () => {
     }
   }
 
-  const writeName = (e) => {setName(e.target.value); console.log(name)}
+  const writeName = (e) => setName(e.target.value)
   const join = () => history.push('./main')
 
   return(

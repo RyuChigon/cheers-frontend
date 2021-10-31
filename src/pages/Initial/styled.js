@@ -39,3 +39,26 @@ export const JoinButton = styled.button`
   }
 
 `;
+
+export const InputPasscode = styled.input`
+  width: 196px;
+  height: 48px;
+  margin: 10px;
+  margin-top: 150px;
+  padding-left: 30px;
+  background: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  border: transparent;
+  border-radius: 50px;
+  font-size: 1rem;
+
+  ::-webkit-input-placeholder {
+    color: #b7b7b7;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+  }
+
+`;
