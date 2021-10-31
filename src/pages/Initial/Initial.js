@@ -22,7 +22,7 @@ const Initial = () => {
   };
   const access = () => {
     if (passcode === 'hello')
-      history.push('/game');
+      history.push('/admin/game');
     else {
       alert('Passcode is incorrect!');
       setAdminAccess(false);

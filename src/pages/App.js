@@ -7,6 +7,9 @@ import {
   Main
 } from '@/pages';
 
+import AdminChooseGame from './AdminChooseGame/AdminChooseGame';
+import AdminMain from './AdminMain/AdminMain';
+
 function App() {
   return (
     <Router>
@@ -21,6 +24,12 @@ function App() {
       </Route>
       <Route exact path="/main">
         <Main />
+      </Route>
+      <Route exact path="/admin/game">
+        <AdminChooseGame />
+      </Route>
+      <Route exact path="/admin/main">
+        <AdminMain />
       </Route>
     </Router>
   );
