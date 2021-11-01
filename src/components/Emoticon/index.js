@@ -1,1 +1,1 @@
-export { default } from './Emoticon'
+export { default } from './Emoticon';

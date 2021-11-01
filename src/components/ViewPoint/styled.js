@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const ViewPointButton = styled.button`
   width: 40px;

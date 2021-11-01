@@ -1,16 +1,13 @@
-import React from "react"
-import {
-  GameContainer,
-  Game
-} from './styled'
-import FirstGame from '@/images/games/firstGame.svg'
-import SecondGame from '@/images/games/secondGame.svg'
-import { useHistory } from "react-router"
+import React from 'react';
+import { useHistory } from 'react-router';
+import { GameContainer, Game } from './styled';
+import FirstGame from '@/images/games/firstGame.svg';
+import SecondGame from '@/images/games/secondGame.svg';
 
 const GameSelector = () => {
   const history = useHistory();
   const gameJoin = () => history.push('/character');
-  const preparingGame = () => alert("This is preparing Game");
+  const preparingGame = () => alert('This is preparing Game');
 
   return (
     <GameContainer>
@@ -18,7 +15,7 @@ const GameSelector = () => {
       <Game src={FirstGame} onClick={gameJoin} />
       <Game src={SecondGame} onClick={preparingGame} />
     </GameContainer>
-  )
-}
+  );
+};
 
-export default GameSelector
+export default GameSelector;

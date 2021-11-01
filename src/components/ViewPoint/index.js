@@ -1,1 +1,1 @@
-export { default } from './ViewPoint'
+export { default } from './ViewPoint';

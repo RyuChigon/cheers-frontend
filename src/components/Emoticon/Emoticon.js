@@ -1,29 +1,20 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
 import {
   EmoticonButton,
   EmoticonContainer,
   ExpandField,
   EmoticonIcon,
-} from './styled'
-import {
-  emoticon_btn
-} from '@/images/etc'
-import {
-  angry,
-  exclamation,
-  heart,
-  smile,
-} from '@/images/emoticons'
+} from './styled';
+import { emoticon_btn } from '@/images/etc';
+import { angry, exclamation, heart, smile } from '@/images/emoticons';
 
 const Emoticon = () => {
-
-  const [expand, setExpand] = useState(false)
-  const onClickExpand = () => setExpand(!expand)
+  const [expand, setExpand] = useState(false);
+  const onClickExpand = () => setExpand(!expand);
 
   return (
     <EmoticonContainer>
-      {expand ?
-      (
+      {expand ? (
         <ExpandField>
           <EmoticonIcon src={angry} />
           <EmoticonIcon src={exclamation} />
@@ -33,7 +24,7 @@ const Emoticon = () => {
       ) : null}
       <EmoticonButton src={emoticon_btn} onClick={onClickExpand} />
     </EmoticonContainer>
-  )
-}
+  );
+};
 
-export default Emoticon
+export default Emoticon;
