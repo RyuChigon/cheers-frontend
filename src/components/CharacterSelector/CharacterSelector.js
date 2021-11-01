@@ -27,6 +27,8 @@ import {
   enter,
 } from '@/images/etc'
 import { useHistory } from "react-router"
+import { useDispatch } from "react-redux";
+import { registerUser } from "@/actions/actions";
 
 const CharacterSelector = () => {
 
@@ -34,6 +36,7 @@ const CharacterSelector = () => {
   const [team, setTeam] = useState('a');
   const [name, setName] = useState('');
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onClickRight = () => {
     switch (character) {
@@ -90,7 +93,25 @@ const CharacterSelector = () => {
   }
 
   const writeName = (e) => setName(e.target.value)
-  const join = () => history.push('./main')
+  const join = () => {
+    let body = {
+      userName: name,
+      team: team,
+      character: character,
+      position_x: 0,
+      position_y: 0,
+      emogee : 0,
+      action: 0
+    }
+
+    dispatch(registerUser(body));
+    console.log("after dispatch");
+    // then((res) => {
+    //   console.log(res);
+    //   alert("가입이 정상적으로 완료되었습니다");
+    // });
+    // history.push('./main')
+  }
 
   return(
     <CharacterContainer>
