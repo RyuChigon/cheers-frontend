@@ -21,15 +21,10 @@ import {
   c_samsung,
   d_hanwha,
   d_samsung,
-} from '@/images/characters'
-import {
-  arrow_left,
-  arrow_right,
-  enter,
-} from '@/images/etc'
-import { useHistory } from "react-router"
-import { useDispatch } from "react-redux";
-import { registerUser } from "@/actions/actions";
+} from '@/images/characters';
+import { arrow_left, arrow_right, enter } from '@/images/etc';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '@/actions/actions';
 
 const CharacterSelector = () => {
   const [character, setCharacter] = useState('a');
@@ -102,7 +97,7 @@ const CharacterSelector = () => {
     }
   };
 
-  const writeName = (e) => setName(e.target.value)
+  const writeName = e => setName(e.target.value);
   const join = () => {
     let body = {
       userName: name,
@@ -110,13 +105,13 @@ const CharacterSelector = () => {
       character: character,
       position_x: 0,
       position_y: 0,
-      emogee : 0,
-      action: 0
-    }
+      emogee: 0,
+      action: 0,
+    };
 
     dispatch(registerUser(body));
-    history.push('./main')
-  }
+    history.push('./main');
+  };
 
   return (
     <CharacterContainer>
