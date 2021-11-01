@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import {
   CharacterContainer,
   CharacterContent,
@@ -9,8 +10,8 @@ import {
   TeamButton,
   InputContent,
   InputNickname,
-  Enter
-} from './styled'
+  Enter,
+} from './styled';
 import {
   a_hanwha,
   a_samsung,
@@ -31,7 +32,6 @@ import { useDispatch } from "react-redux";
 import { registerUser } from "@/actions/actions";
 
 const CharacterSelector = () => {
-
   const [character, setCharacter] = useState('a');
   const [team, setTeam] = useState('a');
   const [name, setName] = useState('');
@@ -40,57 +40,67 @@ const CharacterSelector = () => {
 
   const onClickRight = () => {
     switch (character) {
-      case 'a': setCharacter('b'); break;
-      case 'b': setCharacter('c'); break;
-      case 'c': setCharacter('d'); break;
-      case 'd': setCharacter('a'); break;
-      default: break;
+      case 'a':
+        setCharacter('b');
+        break;
+      case 'b':
+        setCharacter('c');
+        break;
+      case 'c':
+        setCharacter('d');
+        break;
+      case 'd':
+        setCharacter('a');
+        break;
+      default:
+        break;
     }
-  }
+  };
 
   const onClickLeft = () => {
     switch (character) {
-      case 'a': setCharacter('d'); break;
-      case 'b': setCharacter('a'); break;
-      case 'c': setCharacter('b'); break;
-      case 'd': setCharacter('c'); break;
-      default: break;
+      case 'a':
+        setCharacter('d');
+        break;
+      case 'b':
+        setCharacter('a');
+        break;
+      case 'c':
+        setCharacter('b');
+        break;
+      case 'd':
+        setCharacter('c');
+        break;
+      default:
+        break;
     }
-  }
+  };
 
-  const onClickLTeam = () => setTeam('a')
-  const onClickRTeam = () => setTeam('b')
+  const onClickLTeam = () => setTeam('a');
+  const onClickRTeam = () => setTeam('b');
 
   const viewCharacter = () => {
     switch (character) {
       case 'a': {
-        if (team === 'a')
-          return a_hanwha
-        else
-          return a_samsung
+        if (team === 'a') return a_hanwha;
+        return a_samsung;
       }
       case 'b': {
-        if (team === 'a')
-          return b_hanwha
-        else
-          return b_samsung
+        if (team === 'a') return b_hanwha;
+        return b_samsung;
       }
       case 'c': {
-        if (team === 'a')
-          return c_hanwha
-        else
-          return c_samsung
+        if (team === 'a') return c_hanwha;
+        return c_samsung;
       }
       case 'd': {
-        if (team === 'a')
-          return d_hanwha
-        else
-          return d_samsung
+        if (team === 'a') return d_hanwha;
+        return d_samsung;
       }
       default:
-          return a_hanwha
+        return a_hanwha;
     }
-  }
+  };
 
   const writeName = (e) => setName(e.target.value)
   const join = () => {
@@ -113,7 +123,7 @@ const CharacterSelector = () => {
     // history.push('./main')
   }
 
-  return(
+  return (
     <CharacterContainer>
       select your character
       <CharacterContent>
@@ -124,19 +134,22 @@ const CharacterSelector = () => {
         <Arrow src={arrow_right} onClick={onClickRight} />
       </CharacterContent>
       <TeamButtonContent>
-        <TeamButton team='Hanwha' onClick={onClickLTeam} >
+        <TeamButton team="Hanwha" onClick={onClickLTeam}>
           Hanwha
         </TeamButton>
-        <TeamButton tema='Samsung' onClick={onClickRTeam} >
+        <TeamButton team="Samsung" onClick={onClickRTeam}>
           Samsung
         </TeamButton>
       </TeamButtonContent>
       <InputContent>
-        <InputNickname placeholder="write your nickname..." onChange={writeName}/>
+        <InputNickname
+          placeholder="write your nickname..."
+          onChange={writeName}
+        />
         <Enter src={enter} onClick={join} />
       </InputContent>
     </CharacterContainer>
-  )
-}
+  );
+};
 
-export default CharacterSelector
+export default CharacterSelector;

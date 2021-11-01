@@ -1,11 +1,6 @@
-import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import {
-  Initial,
-  ChooseGame,
-  ChooseCharacter,
-  Main
-} from '@/pages';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Initial, ChooseGame, ChooseCharacter, Main } from '@/pages';
 
 function App() {
   return (

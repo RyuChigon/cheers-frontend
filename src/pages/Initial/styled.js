@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const InitialContainer = styled.div`
   width: 100vw;
@@ -19,25 +19,24 @@ export const Logo = styled.img`
 export const JoinButton = styled.button`
   width: 228px;
   height: 50px;
-  background: ${props => props.admin ? '#818181' : '#ffffff'};
+  background: ${props => (props.admin ? '#818181' : '#ffffff')};
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-  color: ${props => props.admin ? '#ffffff' : '#000000'};
+  color: ${props => (props.admin ? '#ffffff' : '#000000')};
   border-color: transparent;
   border-radius: 50px;
   font-size: 1.5rem;
   margin: 10px;
-  margin-top: ${props => props.admin ? '10px' : '150px'};
+  margin-top: ${props => (props.admin ? '10px' : '150px')};
   cursor: pointer;
 
   &:hover {
-    background: ${props => props.admin ? '#555555' : '#fcfcfc'}
+    background: ${props => (props.admin ? '#555555' : '#fcfcfc')};
   }
 
   &:active {
-    background: ${props => props.admin ? '#555555' : '#fcfcfc'};
+    background: ${props => (props.admin ? '#555555' : '#fcfcfc')};
     transform: translateY(1px);
   }
-
 `;
 
 export const InputPasscode = styled.input`
@@ -60,5 +59,4 @@ export const InputPasscode = styled.input`
     outline: none;
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
   }
-
 `;
