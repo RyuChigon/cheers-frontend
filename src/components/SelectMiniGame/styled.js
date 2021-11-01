@@ -1,11 +1,12 @@
 import styled from "styled-components"
 
 export const GameContainer = styled.div`
-  width: 400px;
-  height: 200px;
+  width: 450px;
+  height: 150px;
   background: #bad69a;
-  top: 200px;
-  left: 100px;
+  position: absolute;
+  top: 350px;
+  left: 300px;
   border-radius: 30px;
 //   margin: 50px;
 //   display: flex;
