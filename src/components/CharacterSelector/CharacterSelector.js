@@ -105,12 +105,7 @@ const CharacterSelector = () => {
     }
 
     dispatch(registerUser(body));
-    console.log("after dispatch");
-    // then((res) => {
-    //   console.log(res);
-    //   alert("가입이 정상적으로 완료되었습니다");
-    // });
-    // history.push('./main')
+    history.push('./main')
   }
 
   return(
