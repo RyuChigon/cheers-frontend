@@ -111,7 +111,7 @@ const CharacterSelector = () => {
         <TeamButton team="Hanwha" onClick={onClickLTeam}>
           Hanwha
         </TeamButton>
-        <TeamButton tema="Samsung" onClick={onClickRTeam}>
+        <TeamButton team="Samsung" onClick={onClickRTeam}>
           Samsung
         </TeamButton>
       </TeamButtonContent>
