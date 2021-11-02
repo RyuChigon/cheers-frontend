@@ -1,1 +1,1 @@
-export { default } from './AdminGameSelector'
+export { default } from './AdminGameSelector';

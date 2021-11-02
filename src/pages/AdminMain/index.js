@@ -1,1 +1,1 @@
-export {default} from './AdminMain';
+export { default } from './AdminMain';

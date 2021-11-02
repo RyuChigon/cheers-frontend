@@ -1,1 +1,1 @@
-export { default } from './AdminChooseGame'
+export { default } from './AdminChooseGame';

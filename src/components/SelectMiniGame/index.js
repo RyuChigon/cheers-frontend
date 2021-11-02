@@ -1,1 +1,1 @@
-export {default} from './SelectMiniGame';
+export { default } from './SelectMiniGame';
