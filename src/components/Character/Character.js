@@ -18,7 +18,7 @@ const Character = ({ character, team, cheer, emoticon, position }) => {
   const characterImage = () => {
     switch (character) {
       case 'a':
-        return team === 'hanwha'
+        return team === 'a'
           ? cheer
             ? a_hanwha_cheer
             : a_hanwha
@@ -26,11 +26,11 @@ const Character = ({ character, team, cheer, emoticon, position }) => {
           ? a_samsung_cheer
           : a_samsung;
       case 'b':
-        return team === 'hanwha' ? b_hanwha : b_samsung;
+        return team === 'a' ? b_hanwha : b_samsung;
       case 'c':
-        return team === 'hanwha' ? c_hanwha : c_samsung;
+        return team === 'a' ? c_hanwha : c_samsung;
       case 'd':
-        return team === 'hanwha' ? d_hanwha : d_samsung;
+        return team === 'a' ? d_hanwha : d_samsung;
       default:
         return a_hanwha;
     }
