@@ -21,111 +21,8 @@ const Main = () => {
   //   await dispatch(getAllUser());
   // });
 
-  const showOthers = async () => {
-    await dispatch(getAllUser());
-    // console.log(_userList);
-    const result = [];
-    for (let i = 0; i < _userList.length; i++) {
-      switch (_userList[i][3]) {
-        case 'a':
-          switch (_userList[i][7]) {
-            case 'a':
-              result.push(
-                <Character
-                  character="a"
-                  team="hanhwa"
-                  cheer={cheer}
-                  position={position}
-                />
-              );
-              break;
-            case 'b':
-              result.push(
-                <Character
-                  character="a"
-                  team="samsung"
-                  cheer={cheer}
-                  position={position}
-                />
-              );
-              break;
-          }
-          break;
-        case 'b':
-          switch (_userList[i][7]) {
-            case 'a':
-              result.push(
-                <Character
-                  character="b"
-                  team="hanhwa"
-                  cheer={cheer}
-                  position={position}
-                />
-              );
-              break;
-            case 'b':
-              result.push(
-                <Character
-                  character="b"
-                  team="samsung"
-                  cheer={cheer}
-                  position={position}
-                />
-              );
-              break;
-          }
-          break;
-        case 'c':
-          switch (_userList[i][7]) {
-            case 'a':
-              result.push(
-                <Character
-                  character="c"
-                  team="hanhwa"
-                  cheer={cheer}
-                  position={position}
-                />
-              );
-              break;
-            case 'b':
-              result.push(
-                <Character
-                  character="c"
-                  team="samsung"
-                  cheer={cheer}
-                  position={position}
-                />
-              );
-              break;
-          }
-          break;
-        case 'd':
-          switch (_userList[i][7]) {
-            case 'a':
-              result.push(
-                <Character
-                  character="d"
-                  team="hanhwa"
-                  cheer={cheer}
-                  position={position}
-                />
-              );
-              break;
-            case 'b':
-              result.push(
-                <Character
-                  character="d"
-                  team="samsung"
-                  cheer={cheer}
-                  position={position}
-                />
-              );
-              break;
-          }
-          break;
-      }
-    }
-    return result;
+  const showOthers = () => {
+    dispatch(getAllUser());
   };
 
   const moveCharacter = e => {
@@ -171,14 +68,18 @@ const Main = () => {
         cheer={cheer}
         position={position}
       />
-      {/* <div>
-      {_userList.map((char, index) => (
-        <span key={index}>
-          <Character character= char[0] team='samsung' cheer={cheer} position={position} />
-        </span>
-      ))}
-      </div> */}
-      {/* <div>{showOthers()}</div> */}
+      <div>
+        {_userList.map((char, index) => (
+          <span key={index}>
+            <Character
+              character={char[3]}
+              team={char[7]}
+              cheer={cheer}
+              position={[char[5], char[6]]}
+            />
+          </span>
+        ))}
+      </div>
       <CheerGuide src={cheer_guide} />
       <CommunicationContent>
         <Emoticon />
