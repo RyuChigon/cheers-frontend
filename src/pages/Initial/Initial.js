@@ -15,7 +15,7 @@ const Initial = () => {
     if (e.key === 'Enter') access();
   };
   const access = () => {
-    if (passcode === 'hello') history.push('/game');
+    if (passcode === 'hello') history.push('/admin/game');
     else {
       alert('Passcode is incorrect!');
       setAdminAccess(false);
