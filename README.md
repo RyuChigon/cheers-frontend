@@ -12,10 +12,16 @@ Subin Kim
 
 Huikyeong An
 
+<br />
+
 ## How to run
 `npm install`
 
+You don't have to install each modules. Just `npm install` ! Then, if there is no module you want, npm install that 
+
 `npm start`
+
+<br />
 
 ## Tips
 
@@ -23,7 +29,19 @@ Huikyeong An
 
   - '@' points "src"
 
-- Use 'styled-components'
+- Use 'styled-components' ('styled-components' is already installed)
+
+- Try to match EsLint and Prettier
+
+  - `npx eslint . --fix` : Formatting all files by EsLint and Prettier.
+
+  - If you don't follow formatting, don't worry. When you commit some files, they would be formatted automatically by husky.
+
+- Don't change version of existing modules.
+
+  - It is to prevent conflicts between different versions.
+
+<br />
 
 ## File Form
 ```
@@ -33,6 +51,8 @@ Huikyeong An
     ├── index.js // helper for export default
     └── styled.js // 
 ```
+
+<br />
 
 ## Commit Message Convention
 `Add`: Add new components or functions.

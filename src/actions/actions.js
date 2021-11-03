@@ -1,13 +1,13 @@
-import types from "./types";
-import { request } from "../utils/axios";
+import types from './types';
+import { request } from '../utils/axios';
 
-const USER_URL = "/api/user";
+const USER_URL = '/api/user';
 
 export async function getAllUser() {
-  const data = await request("get", USER_URL + "/users", null);
+  const data = await request('get', USER_URL + '/users', null);
   var uusers = [];
   var i;
-  for(i=0; i < data.length; i++){
+  for (i = 0; i < data.length; i++) {
     uusers.push(Object.values(data[i]));
   }
   return {
@@ -17,7 +17,7 @@ export async function getAllUser() {
 }
 
 export function registerUser(dataToSubmit) {
-  const data = request("post", USER_URL + "/register", dataToSubmit);
+  const data = request('post', USER_URL + '/register', dataToSubmit);
 
   return {
     type: types.REGISTER_USER,

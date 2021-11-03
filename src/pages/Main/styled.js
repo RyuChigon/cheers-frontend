@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
   width: 100vw;
@@ -14,8 +14,8 @@ export const MainContainer = styled.div`
 export const Character = styled.img`
   height: 100px;
   position: absolute;
-  top: ${props => (props.position[0] + 100) + "px"};
-  left: ${props => (props.position[1] + 80) + "px"};
+  top: ${props => `${props.position[0] + 100}px`};
+  left: ${props => `${props.position[1] + 80}px`};
 `;
 
 export const CheerGuide = styled.img`

@@ -13,20 +13,20 @@ import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
   key: 'root',
-  storage
-}
+  storage,
+};
 
 const persisted = persistReducer(persistConfig, reducer);
 
-const store = createStore(persisted, compose(
-  applyMiddleware(promiseMiddleware, ReduxThunk),
-));
-
+const store = createStore(
+  persisted,
+  compose(applyMiddleware(promiseMiddleware, ReduxThunk))
+);
 
 const persistor = persistStore(store);
 
 ReactDOM.render(
-  <Provider store={store} >
+  <Provider store={store}>
     <PersistGate persistor={persistor}>
       <App />
     </PersistGate>
