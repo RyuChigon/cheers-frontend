@@ -1,8 +1,8 @@
-import types from "@/actions/types";
+import types from '@/actions/types';
 
-const initialstate= {
-  userList: []
-}
+const initialstate = {
+  userList: [],
+};
 
 export default function (state = initialstate, action) {
   switch (action.type) {
