@@ -21,8 +21,8 @@ const Main = () => {
   //   await dispatch(getAllUser());
   // });
 
-  const showOthers = async () => {
-    await dispatch(getAllUser());
+  const showOthers = () => {
+    dispatch(getAllUser());
   };
 
   const moveCharacter = e => {
