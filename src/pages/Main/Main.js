@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 
 const Main = () => {
-  const _userList = useSelector(state => state.user);
+  const _userList = useSelector(state => state.user.userList);
   const [position, setPosition] = useState([0, 0]);
   const [cheer, setCheer] = useState(false);
   const [users, setUsers] = useState([]);
@@ -23,7 +23,7 @@ const Main = () => {
 
   const showOthers = async () => {
     await dispatch(getAllUser());
-    // console.log(_userList);
+    console.log(_userList);
     const result = [];
     for (let i = 0; i < _userList.length; i++) {
       switch (_userList[i][3]) {
@@ -35,7 +35,7 @@ const Main = () => {
                   character="a"
                   team="hanhwa"
                   cheer={cheer}
-                  position={position}
+                  position={[_userList[i][5], _userList[i][6]]}
                 />
               );
               break;
@@ -171,14 +171,18 @@ const Main = () => {
         cheer={cheer}
         position={position}
       />
-      {/* <div>
-      {_userList.map((char, index) => (
-        <span key={index}>
-          <Character character= char[0] team='samsung' cheer={cheer} position={position} />
-        </span>
-      ))}
-      </div> */}
-      {/* <div>{showOthers()}</div> */}
+      <div>
+        {_userList.map((char, index) => (
+          <span key={index}>
+            <Character
+              character={char[3]}
+              team={char[7]}
+              cheer={cheer}
+              position={[char[5], char[6]]}
+            />
+          </span>
+        ))}
+      </div>
       <CheerGuide src={cheer_guide} />
       <CommunicationContent>
         <Emoticon />
