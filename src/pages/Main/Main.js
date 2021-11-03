@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 
 const Main = () => {
-  const _userList = useSelector(state => state.user);
+  const _userList = useSelector(state => state.user.userList);
   const [position, setPosition] = useState([0, 0]);
   const [cheer, setCheer] = useState(false);
   const [users, setUsers] = useState([]);
