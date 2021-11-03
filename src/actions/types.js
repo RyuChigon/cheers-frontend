@@ -1,7 +1,6 @@
 const types = {
-    LOGIN_USER : "LOGIN_USER",
+    GET_ALL_USERS : "GET_ALL_USERS",
     REGISTER_USER : "REGISTER_USER",
-    AUTH_USER : "AUTH_USER"
 };
 
 export default types;

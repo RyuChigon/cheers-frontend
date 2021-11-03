@@ -3,12 +3,16 @@ import { request } from "../utils/axios";
 
 const USER_URL = "/api/user";
 
-export function loginUser(dataToSubmit) {
-  const data = request("post", USER_URL + "/login", dataToSubmit);
-
+export async function getAllUser() {
+  const data = await request("get", USER_URL + "/users", null);
+  var uusers = [];
+  var i;
+  for(i=0; i < data.length; i++){
+    uusers.push(Object.values(data[i]));
+  }
   return {
-    type: types.LOGIN_USER,
-    payload: data,
+    type: types.GET_ALL_USERS,
+    payload: uusers,
   };
 }
 
@@ -17,15 +21,6 @@ export function registerUser(dataToSubmit) {
 
   return {
     type: types.REGISTER_USER,
-    payload: data,
-  };
-}
-
-export function auth() {
-  const data = request("post", USER_URL + "/auth");
-
-  return {
-    type: types.AUTH_USER,
     payload: data,
   };
 }

@@ -4,7 +4,7 @@ import App from './pages/App';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import reducer from './reducers';
+import reducer from './reducers/index';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
