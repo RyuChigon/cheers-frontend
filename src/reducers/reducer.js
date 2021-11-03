@@ -1,6 +1,7 @@
 import types from '@/actions/types';
 
 const initialstate = {
+  loginUser: {},
   userList: [],
 };
 
@@ -9,7 +10,8 @@ export default function (state = initialstate, action) {
     case types.GET_ALL_USERS:
       return { ...state, userList: action.payload };
     case types.REGISTER_USER:
-      return { ...state, success: action.payload };
+      console.log(action.payload);
+      return { ...state, loginUser: action.payload };
     default:
       return state;
   }
