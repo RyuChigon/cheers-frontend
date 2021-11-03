@@ -70,7 +70,7 @@ export const Input = styled.input`
 `;
 
 export const Output = styled.input`
-  width: 230px;
+  width: 200px;
   height: 100px;
   margin-left: 20px;
   margin-right: 15px;
