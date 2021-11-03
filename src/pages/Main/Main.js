@@ -178,7 +178,7 @@ const Main = () => {
         </span>
       ))}
       </div> */}
-      <div>{showOthers()}</div>
+      {/* <div>{showOthers()}</div> */}
       <CheerGuide src={cheer_guide} />
       <CommunicationContent>
         <Emoticon />
