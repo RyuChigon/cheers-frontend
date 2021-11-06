@@ -40,11 +40,15 @@ const Chat = () => {
 
   const onClickSend = () => {
     console.log('onclick...');
-    socket.emit('msg-snd', {
-      name: 'huikyeong',
-      message: document.getElementById('input').value,
-    });
-    document.getElementById('input').value = '';
+    if (document.getElementById('input').value == null) {
+      console.log('empty message box');
+    } else {
+      socket.emit('msg-snd', {
+        name: 'huikyeong',
+        message: document.getElementById('input').value,
+      });
+      document.getElementById('input').value = '';
+    }
   };
 
   // const changeMessage = useCallback(
@@ -53,17 +57,23 @@ const Chat = () => {
   //   },
   //   [chat]
   // );
+  const onEnterSend = e => {
+    if (e.keyCode == 13) {
+      onClickSend();
+    }
+  };
+
   return (
-    <ChatContainer>
+    <ChatContainer onKeyDown={onEnterSend}>
       {expand ? (
         <ExpandField>
           {/* <Output type="text" id="output" value="" disabled="disabled" /> */}
-          {chatArr.map(ele => {
+          {chatArr.map(ele => (
             <>
               {ele.name + ': ' + ele.message}
               <br />
-            </>;
-          })}
+            </>
+          ))}
         </ExpandField>
       ) : null}
       <Expand src={expand_btn} onClick={onClickExpand} />
