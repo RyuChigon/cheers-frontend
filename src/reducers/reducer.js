@@ -13,6 +13,13 @@ export default function (state = initialstate, action) {
       return { ...state, loginUser: action.payload };
     case types.MODIFY_USER: //처음에 join 버튼 누를 때
       return { ...state, loginUser: action.payload };
+    case types.CHOOSE_EMOGEE: //emogee 버튼
+      console.log('choose emogee');
+      console.log(state['loginUser']);
+      return {
+        ...state,
+        loginUser: { ...state['loginUser'], emogee: action.payload },
+      };
     default:
       return state;
   }
