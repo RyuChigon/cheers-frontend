@@ -14,15 +14,9 @@ const Main = () => {
   const _userList = useSelector(state => state.user.userList);
   const _loginUser = useSelector(state => state.user.loginUser);
   const [position, setPosition] = useState([0, 0]);
-  const [cheer, setCheer] = useState(false);
-  const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
 
   dispatch(getAllUser());
-
-  // useEffect(async() => {
-  //   await dispatch(getAllUser());
-  // });
 
   const showOthers = () => {
     dispatch(getAllUser());
@@ -75,8 +69,8 @@ const Main = () => {
                 <Character
                   character={char[3]}
                   team={char[7]}
-                  cheer={cheer}
-                  position={[char[5], char[6]]}
+                  userName={char[1]}
+                  loggin={false}
                 />
               </span>
             )
@@ -88,8 +82,8 @@ const Main = () => {
                 <Character
                   character={char[3]}
                   team={char[7]}
-                  cheer={cheer}
-                  position={[char[5], char[6]]} //position
+                  userName={char[1]}
+                  loggin={true}
                 />
               </span>
             )

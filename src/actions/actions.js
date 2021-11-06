@@ -43,3 +43,10 @@ export function modifyUser(dataToSubmit) {
     payload: data,
   };
 }
+
+export function chooseEmogee(Emogee) {
+  return {
+    type: types.CHOOSE_EMOGEE,
+    payload: Emogee,
+  };
+}
