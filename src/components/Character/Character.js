@@ -18,7 +18,14 @@ import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:80/');
 
-const Character = ({ character, team, userName, loggin }) => {
+const Character = ({
+  character,
+  team,
+  userName,
+  loggin,
+  position,
+  emoticon,
+}) => {
   const [_position, setPosition] = useState([0, 0]);
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
@@ -26,6 +33,8 @@ const Character = ({ character, team, userName, loggin }) => {
 
   useEffect(() => {
     if (!loggin) {
+      setPosition(position);
+      setEmo(emoticon);
       socket.on('move-rcv', item => {
         if (item.name === userName) {
           setPosition(item.movement);
@@ -36,8 +45,17 @@ const Character = ({ character, team, userName, loggin }) => {
           setEmo(item.emogee);
         }
       });
+      socket.on('cheer-rcv', item => {
+        if (item.name === userName) {
+          if (item.cheer === '0') {
+            setCheer(false);
+          } else {
+            setCheer(true);
+          }
+        }
+      });
     }
-  });
+  }, []);
 
   const characterImage = () => {
     switch (character) {
@@ -96,6 +114,10 @@ const Character = ({ character, team, userName, loggin }) => {
       }
       case ' ': {
         setCheer(true);
+        socket.emit('cheer-snd', {
+          name: _loginUser['userName'],
+          cheer: '1',
+        });
         break;
       }
       case 'Enter': {
@@ -106,7 +128,13 @@ const Character = ({ character, team, userName, loggin }) => {
     }
   };
 
-  const keyUp = () => setCheer(false);
+  const keyUp = () => {
+    setCheer(false);
+    socket.emit('cheer-snd', {
+      name: _loginUser['userName'],
+      cheer: '0',
+    });
+  };
 
   const setEmoticon = local_emo => {
     switch (local_emo) {
