@@ -45,6 +45,15 @@ const Character = ({
           setEmo(item.emogee);
         }
       });
+      socket.on('cheer-rcv', item => {
+        if (item.name === userName) {
+          if (item.cheer === '0') {
+            setCheer(false);
+          } else {
+            setCheer(true);
+          }
+        }
+      });
     }
   }, []);
 
@@ -105,6 +114,10 @@ const Character = ({
       }
       case ' ': {
         setCheer(true);
+        socket.emit('cheer-snd', {
+          name: _loginUser['userName'],
+          cheer: '1',
+        });
         break;
       }
       case 'Enter': {
@@ -115,7 +128,13 @@ const Character = ({
     }
   };
 
-  const keyUp = () => setCheer(false);
+  const keyUp = () => {
+    setCheer(false);
+    socket.emit('cheer-snd', {
+      name: _loginUser['userName'],
+      cheer: '0',
+    });
+  };
 
   const setEmoticon = local_emo => {
     switch (local_emo) {
