@@ -13,7 +13,7 @@ import { enter_btn, expand_btn } from '@/images/etc';
 import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:80/');
-socket.emit('init', { name: 'huikyeong' });
+socket.emit('init', { name: 'dain' });
 
 const Chat = () => {
   const [expand, setExpand] = useState(false);

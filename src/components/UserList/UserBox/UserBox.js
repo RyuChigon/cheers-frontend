@@ -13,10 +13,15 @@ import {
 
 const Checkbox = props => <input type="checkbox" {...props} />;
 
-const UserBox = ({ userName, character, team }) => {
+const UserBox = ({ userName, character, team, add, del }) => {
   const [checked, setChecked] = useState(false);
   const handleChange = () => {
     setChecked(!checked);
+    if (checked) {
+      del(userName);
+    } else {
+      add(userName);
+    }
   };
 
   const characterImage = () => {

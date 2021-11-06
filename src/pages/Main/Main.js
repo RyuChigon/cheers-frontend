@@ -9,6 +9,10 @@ import { MainContainer, CheerGuide, CommunicationContent } from './styled';
 import { cheer_guide } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
+import { useHistory } from 'react-router';
+
+import io from 'socket.io-client';
+const socket = io.connect('http://localhost:80/');
 
 const Main = () => {
   const _userList = useSelector(state => state.user.userList);
@@ -17,12 +21,19 @@ const Main = () => {
   const [cheer, setCheer] = useState(false);
   const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   dispatch(getAllUser());
 
   // useEffect(async() => {
   //   await dispatch(getAllUser());
   // });
+
+  useEffect(() => {
+    socket.on('kickout-rcv', item => {
+      history.push('/');
+    });
+  }, []);
 
   const showOthers = () => {
     dispatch(getAllUser());
