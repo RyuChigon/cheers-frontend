@@ -71,16 +71,19 @@ const Main = () => {
         position={position}
       />
       <div>
-        {_userList.map((char, index) => (
-          <span key={index}>
-            <Character
-              character={char[3]}
-              team={char[7]}
-              cheer={cheer}
-              position={[char[5], char[6]]}
-            />
-          </span>
-        ))}
+        {_userList.map(
+          (char, index) =>
+            char[3] != _loginUser['userName'] && (
+              <span key={index}>
+                <Character
+                  character={char[3]}
+                  team={char[7]}
+                  cheer={cheer}
+                  position={[char[5], char[6]]}
+                />
+              </span>
+            )
+        )}
       </div>
       <CheerGuide src={cheer_guide} />
       <CommunicationContent>

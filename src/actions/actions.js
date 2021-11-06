@@ -24,9 +24,22 @@ export function registerUser(dataToSubmit) {
     };
   }
   const data = request('post', USER_URL + '/register', dataToSubmit);
-
   return {
     type: types.REGISTER_USER,
+    payload: data,
+  };
+}
+
+export function modifyUser(dataToSubmit) {
+  if (dataToSubmit['userName'] == '') {
+    return {
+      type: types.REGISTER_USER,
+      payload: '',
+    };
+  }
+  const data = request('post', USER_URL + '/modifyuser', dataToSubmit);
+  return {
+    type: types.MODIFY_USER,
     payload: data,
   };
 }
