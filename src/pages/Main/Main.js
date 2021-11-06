@@ -14,8 +14,6 @@ const Main = () => {
   const _userList = useSelector(state => state.user.userList);
   const _loginUser = useSelector(state => state.user.loginUser);
   const [position, setPosition] = useState([0, 0]);
-  const [cheer, setCheer] = useState(false);
-  const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
 
   dispatch(getAllUser());
@@ -72,12 +70,7 @@ const Main = () => {
           (char, index) =>
             char[1] != _loginUser['userName'] && (
               <span key={index}>
-                <Character
-                  character={char[3]}
-                  team={char[7]}
-                  cheer={cheer}
-                  position={[char[5], char[6]]}
-                />
+                <Character character={char[3]} team={char[7]} loggin={false} />
               </span>
             )
         )}
@@ -85,12 +78,7 @@ const Main = () => {
           (char, index) =>
             char[1] === _loginUser['userName'] && (
               <span key={index}>
-                <Character
-                  character={char[3]}
-                  team={char[7]}
-                  cheer={cheer}
-                  position={[char[5], char[6]]} //position
-                />
+                <Character character={char[3]} team={char[7]} loggin={true} />
               </span>
             )
         )}
