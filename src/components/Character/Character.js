@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CharacterContainer, CharacterImage, Emoticon } from './styled';
 import {
   a_hanwha,
@@ -14,7 +14,14 @@ import {
 } from '@/images/characters';
 import { angry, exclamation, smile, heart, none } from '@/images/emoticons';
 
+// import io from 'socket.io-client';
+
+// const socket = io.connect('http://192.249.28.102:80/');
+
 const Character = ({ character, team, cheer, emoticon, position }) => {
+  const [_position, setPosition] = useState([0, 0]);
+  const [_cheer, setCheer] = useState(false);
+
   const characterImage = () => {
     switch (character) {
       case 'a':
@@ -36,6 +43,39 @@ const Character = ({ character, team, cheer, emoticon, position }) => {
     }
   };
 
+  const moveCharacter = e => {
+    switch (e.key) {
+      case 'ArrowLeft': {
+        setPosition([_position[0], _position[1] - 5]);
+        // console.log(_loginUser);
+        break;
+      }
+      case 'ArrowRight': {
+        setPosition([_position[0], _position[1] + 5]);
+        break;
+      }
+      case 'ArrowUp': {
+        setPosition([_position[0] - 5, _position[1]]);
+        break;
+      }
+      case 'ArrowDown': {
+        setPosition([_position[0] + 5, _position[1]]);
+        break;
+      }
+      case ' ': {
+        setCheer(true);
+        break;
+      }
+      case 'Enter': {
+        // showOthers();
+      }
+      default:
+        break;
+    }
+  };
+
+  const keyUp = () => setCheer(false);
+
   const setEmoticon = () => {
     switch (emoticon) {
       case 'angry':
@@ -52,7 +92,12 @@ const Character = ({ character, team, cheer, emoticon, position }) => {
   };
 
   return (
-    <CharacterContainer position={position}>
+    <CharacterContainer
+      // onKeyDown={moveCharacter}
+      // onKeyUp={keyUp}
+      position={position}
+      // tabIndex="0"
+    >
       <Emoticon src={setEmoticon()} />
       <CharacterImage src={characterImage()} />
     </CharacterContainer>

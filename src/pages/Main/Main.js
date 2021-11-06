@@ -63,15 +63,10 @@ const Main = () => {
 
   return (
     <MainContainer onKeyDown={moveCharacter} onKeyUp={keyUp} tabIndex="0">
+      {/* <MainContainer tableIndex="0"> */}
       <Header />
       <ViewPoint />
       <Video />
-      {/* <Character
-        character="a"
-        team="samsung"
-        cheer={cheer}
-        position={position}
-      /> */}
       <div>
         {_userList.map(
           (char, index) =>
@@ -94,7 +89,7 @@ const Main = () => {
                   character={char[3]}
                   team={char[7]}
                   cheer={cheer}
-                  position={position}
+                  position={position} //position
                 />
               </span>
             )
