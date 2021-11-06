@@ -23,15 +23,18 @@ import {
   d_samsung,
 } from '@/images/characters';
 import { arrow_left, arrow_right, enter } from '@/images/etc';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '@/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser, getAllUser, modifyUser } from '@/actions/actions';
 
 const CharacterSelector = () => {
+  const _userList = useSelector(state => state.user.userList);
   const [character, setCharacter] = useState('a');
   const [team, setTeam] = useState('a');
   const [name, setName] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
+
+  dispatch(getAllUser());
 
   const onClickRight = () => {
     switch (character) {
@@ -108,9 +111,20 @@ const CharacterSelector = () => {
       emogee: 0,
       action: 0,
     };
+    var isinlist = false;
+    _userList.forEach(user => {
+      if (user[1] === name) {
+        dispatch(modifyUser(body));
+        history.push('./main');
+        isinlist = true;
+        return;
+      }
+    });
 
-    dispatch(registerUser(body));
-    history.push('./main');
+    if (!isinlist) {
+      dispatch(registerUser(body));
+      history.push('./main');
+    }
   };
 
   return (

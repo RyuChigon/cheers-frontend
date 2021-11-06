@@ -18,6 +18,8 @@ const Main = () => {
   const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
 
+  dispatch(getAllUser());
+
   // useEffect(async() => {
   //   await dispatch(getAllUser());
   // });
@@ -64,23 +66,39 @@ const Main = () => {
       <Header />
       <ViewPoint />
       <Video />
-      <Character
+      {/* <Character
         character="a"
         team="samsung"
         cheer={cheer}
         position={position}
-      />
+      /> */}
       <div>
-        {_userList.map((char, index) => (
-          <span key={index}>
-            <Character
-              character={char[3]}
-              team={char[7]}
-              cheer={cheer}
-              position={[char[5], char[6]]}
-            />
-          </span>
-        ))}
+        {_userList.map(
+          (char, index) =>
+            char[1] != _loginUser['userName'] && (
+              <span key={index}>
+                <Character
+                  character={char[3]}
+                  team={char[7]}
+                  cheer={cheer}
+                  position={[char[5], char[6]]}
+                />
+              </span>
+            )
+        )}
+        {_userList.map(
+          (char, index) =>
+            char[1] === _loginUser['userName'] && (
+              <span key={index}>
+                <Character
+                  character={char[3]}
+                  team={char[7]}
+                  cheer={cheer}
+                  position={position}
+                />
+              </span>
+            )
+        )}
       </div>
       <CheerGuide src={cheer_guide} />
       <CommunicationContent>
