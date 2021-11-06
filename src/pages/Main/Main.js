@@ -18,10 +18,6 @@ const Main = () => {
 
   dispatch(getAllUser());
 
-  // useEffect(async() => {
-  //   await dispatch(getAllUser());
-  // });
-
   const showOthers = () => {
     dispatch(getAllUser());
   };
@@ -70,7 +66,12 @@ const Main = () => {
           (char, index) =>
             char[1] != _loginUser['userName'] && (
               <span key={index}>
-                <Character character={char[3]} team={char[7]} loggin={false} />
+                <Character
+                  character={char[3]}
+                  team={char[7]}
+                  userName={char[1]}
+                  loggin={false}
+                />
               </span>
             )
         )}
@@ -78,7 +79,12 @@ const Main = () => {
           (char, index) =>
             char[1] === _loginUser['userName'] && (
               <span key={index}>
-                <Character character={char[3]} team={char[7]} loggin={true} />
+                <Character
+                  character={char[3]}
+                  team={char[7]}
+                  userName={char[1]}
+                  loggin={true}
+                />
               </span>
             )
         )}
