@@ -23,10 +23,6 @@ const Main = () => {
 
   dispatch(getAllUser());
 
-  // useEffect(async() => {
-  //   await dispatch(getAllUser());
-  // });
-
   useEffect(() => {
     socket.on('kickout-rcv', item => {
       history.push('/');
@@ -86,6 +82,8 @@ const Main = () => {
                   team={char[7]}
                   userName={char[1]}
                   loggin={false}
+                  position={[char[5], char[6]]}
+                  emoticon={char[4]}
                 />
               </span>
             )

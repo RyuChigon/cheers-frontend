@@ -18,7 +18,14 @@ import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:80/');
 
-const Character = ({ character, team, userName, loggin }) => {
+const Character = ({
+  character,
+  team,
+  userName,
+  loggin,
+  position,
+  emoticon,
+}) => {
   const [_position, setPosition] = useState([0, 0]);
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
@@ -26,6 +33,8 @@ const Character = ({ character, team, userName, loggin }) => {
 
   useEffect(() => {
     if (!loggin) {
+      setPosition(position);
+      setEmo(emoticon);
       socket.on('move-rcv', item => {
         if (item.name === userName) {
           setPosition(item.movement);
@@ -37,7 +46,7 @@ const Character = ({ character, team, userName, loggin }) => {
         }
       });
     }
-  });
+  }, []);
 
   const characterImage = () => {
     switch (character) {
