@@ -1,18 +1,28 @@
 import React from 'react';
-import video from './video.mp4';
-import { ShowVideo } from './styled';
-import { Player, ControlBar } from 'video-react';
+import { VideoContainer } from './styled';
+import { ReactFlvPlayer } from 'react-flv-player';
 
 const Video = () => {
   return (
-    <ShowVideo src={video} muted autoPlay controls>
-      Sorry, your browser does not suppport embedded videos, Try by using
-      Chrome.
-    </ShowVideo>
-
-    // <Player autoPlay src={video}>
-    // <ControlBar autoHide={false} className="my-class" />
-    // </Player>
+    <VideoContainer>
+      <ReactFlvPlayer
+        url="http://localhost:8000/live/cheers.flv"
+        width="800px"
+        height="500px"
+        handleError={err => {
+          switch (err) {
+            case 'NetworkError':
+              console.log('network error');
+              break;
+            case 'MediaError':
+              console.log('media error');
+              break;
+            default:
+              console.log('other error');
+          }
+        }}
+      />
+    </VideoContainer>
   );
 };
 

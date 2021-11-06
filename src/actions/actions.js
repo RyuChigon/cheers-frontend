@@ -17,6 +17,12 @@ export async function getAllUser() {
 }
 
 export function registerUser(dataToSubmit) {
+  if (dataToSubmit['userName'] == '') {
+    return {
+      type: types.REGISTER_USER,
+      payload: '',
+    };
+  }
   const data = request('post', USER_URL + '/register', dataToSubmit);
 
   return {

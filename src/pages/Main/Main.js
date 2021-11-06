@@ -12,6 +12,7 @@ import { getAllUser } from '@/actions/actions';
 
 const Main = () => {
   const _userList = useSelector(state => state.user.userList);
+  const _loginUser = useSelector(state => state.user.loginUser);
   const [position, setPosition] = useState([0, 0]);
   const [cheer, setCheer] = useState(false);
   const [users, setUsers] = useState([]);
@@ -29,6 +30,7 @@ const Main = () => {
     switch (e.key) {
       case 'ArrowLeft': {
         setPosition([position[0], position[1] - 5]);
+        console.log(_loginUser);
         break;
       }
       case 'ArrowRight': {
