@@ -62,8 +62,8 @@ const Main = () => {
   const keyUp = () => setCheer(false);
 
   return (
-    <MainContainer onKeyDown={moveCharacter} onKeyUp={keyUp} tabIndex="0">
-      {/* <MainContainer tableIndex="0"> */}
+    // <MainContainer onKeyDown={moveCharacter} onKeyUp={keyUp} tabIndex="0">
+    <MainContainer tableIndex="0">
       <Header />
       <ViewPoint />
       <Video />
@@ -89,7 +89,7 @@ const Main = () => {
                   character={char[3]}
                   team={char[7]}
                   cheer={cheer}
-                  position={position} //position
+                  position={[char[5], char[6]]} //position
                 />
               </span>
             )

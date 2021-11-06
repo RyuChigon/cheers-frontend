@@ -6,7 +6,8 @@ const Video = () => {
   return (
     <VideoContainer>
       <ReactFlvPlayer
-        url="http://192.249.28.102:8000/live/cheers.flv"
+        // url="http://192.249.28.102:8000/live/cheers.flv"
+        url="http://localhost:8000/live/cheers.flv"
         width="800px"
         height="500px"
         handleError={err => {

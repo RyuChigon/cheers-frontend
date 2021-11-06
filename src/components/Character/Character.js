@@ -93,10 +93,10 @@ const Character = ({ character, team, cheer, emoticon, position }) => {
 
   return (
     <CharacterContainer
-      // onKeyDown={moveCharacter}
-      // onKeyUp={keyUp}
-      position={position}
-      // tabIndex="0"
+      onKeyDown={moveCharacter}
+      onKeyUp={keyUp}
+      position={_position}
+      tabIndex="0"
     >
       <Emoticon src={setEmoticon()} />
       <CharacterImage src={characterImage()} />

@@ -14,7 +14,8 @@ import { getAllUser } from '@/actions/actions';
 
 import io from 'socket.io-client';
 
-const socket = io.connect('http://192.249.28.102:80/');
+// const socket = io.connect('http://192.249.28.102:80/');
+const socket = io.connect('http://localhost:80/');
 socket.emit('init_chat', { name: 'chat' });
 
 const Chat = () => {
