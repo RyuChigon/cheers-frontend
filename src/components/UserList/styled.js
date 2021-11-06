@@ -11,6 +11,15 @@ export const UserListContainer = styled.div`
   flex-direction: column;
 `;
 
+export const UserListHeader = styled.div`
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
 export const Text = styled.div`
   display: flex;
   font-family: 'Noto Sans';
@@ -28,4 +37,11 @@ export const List = styled.div`
   display: flex;
   align-items: center;
   justify-items: center;
+  flex-direction: column;
+`;
+
+export const TrashCan = styled.img`
+  height: 40%;
+  display: flex;
+  justify-content: center;
 `;
