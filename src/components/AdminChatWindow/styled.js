@@ -26,6 +26,8 @@ export const ChatList = styled.div`
   width: 100%;
   height: 80%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  overflow: auto;
+  overflow-x: hidden;
 `;

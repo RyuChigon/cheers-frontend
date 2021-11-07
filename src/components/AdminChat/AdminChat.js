@@ -9,18 +9,10 @@ const socket = io.connect('http://localhost:80/');
 socket.emit('init_chat', { name: 'chat' });
 
 const AdminChat = () => {
-  const [chatArr, setChatArr] = useState([]);
   // const _userList = useSelector(state => state.user.userList);
   // const _loginUser = useSelector(state => state.user.loginUser);
   // const dispatch = useDispatch();
-
   // dispatch(getAllUser());
-
-  useEffect(() => {
-    socket.on('msg-rcv', item => {
-      setChatArr(chatArr => chatArr.concat(item));
-    }); //receive message이벤트에 대한 콜백을 등록해줌
-  }, []);
 
   const onClickSend = () => {
     if (document.getElementById('input').value == null) {
