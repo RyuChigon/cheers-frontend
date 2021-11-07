@@ -7,6 +7,12 @@ export async function getAllUser() {
   const data = await request('get', USER_URL + '/users', null);
   var uusers = [];
   var i;
+  if (data === undefined) {
+    return {
+      type: types.GET_ALL_USERS,
+      payload: null,
+    };
+  }
   for (i = 0; i < data.length; i++) {
     uusers.push(Object.values(data[i]));
   }

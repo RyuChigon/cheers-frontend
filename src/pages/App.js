@@ -1,6 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Initial, ChooseGame, ChooseCharacter, Main } from '@/pages';
+import {
+  Initial,
+  ChooseGame,
+  ChooseCharacter,
+  Main,
+  MinigameOne,
+} from '@/pages';
 
 import AdminChooseGame from './AdminChooseGame/AdminChooseGame';
 import AdminMain from './AdminMain/AdminMain';
@@ -19,6 +25,9 @@ function App() {
       </Route>
       <Route exact path="/main">
         <Main />
+      </Route>
+      <Route exact path="/minigameone">
+        <MinigameOne />
       </Route>
       <Route exact path="/admin/game">
         <AdminChooseGame />

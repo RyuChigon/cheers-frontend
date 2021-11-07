@@ -17,9 +17,6 @@ socket.emit('init', { name: 'huikyeong' });
 
 const UserList = () => {
   const _userList = useSelector(state => state.user.userList);
-  const user1 = _userList[0];
-  const user2 = _userList[1];
-  const user3 = _userList[2];
   const dispatch = useDispatch();
   const [badUserList, setBadUserList] = useState([]);
   const addBadUser = badUserName => {
