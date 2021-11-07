@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import {
   ChatContainer,
+  NoticeBox,
   Expand,
   ExpandField,
   ChatContent,

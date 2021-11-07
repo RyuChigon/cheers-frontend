@@ -5,7 +5,12 @@ import Emoticon from '@/components/Emoticon';
 import Chat from '@/components/Chat';
 import ViewPoint from '@/components/ViewPoint';
 import Character from '@/components/Character';
-import { MainContainer, CheerGuide, CommunicationContent } from './styled';
+import {
+  MainContainer,
+  CheerGuide,
+  CommunicationContent,
+  NoticeBox,
+} from './styled';
 import { cheer_guide } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
@@ -20,12 +25,25 @@ const Main = () => {
   const [position, setPosition] = useState([0, 0]);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [adminchatArr, setAdminChatArr] = useState([]);
+  const [notice, setNotice] = useState(false);
 
   dispatch(getAllUser());
 
   useEffect(() => {
     socket.on('kickout-rcv', item => {
       history.push('/');
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.on('admin-msg-rcv', item => {
+      setAdminChatArr(item.message);
+      setNotice(true);
+      // setTimeout(function () {
+      //   // alert(item.message);
+      //   setNotice(!notice);
+      // }, 3000);
     });
   }, []);
 
@@ -63,6 +81,8 @@ const Main = () => {
         break;
     }
   };
+
+  const noticeRemove = () => setNotice(false);
 
   const keyUp = () => setCheer(false);
 
@@ -103,6 +123,16 @@ const Main = () => {
         )}
       </div>
       <CheerGuide src={cheer_guide} />
+      {notice ? (
+        <NoticeBox onClick={noticeRemove}>
+          {
+            <>
+              <br />
+              {adminchatArr}
+            </>
+          }
+        </NoticeBox>
+      ) : null}
       <CommunicationContent>
         <Emoticon />
         <Chat />
