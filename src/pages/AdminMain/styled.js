@@ -36,34 +36,22 @@ export const SubContainerRight = styled.div`
   align-items: center;
 `;
 
-export const ViewContainer = styled.div`
+export const UserListContainer = styled.div`
   width: 100%;
-  height: 45%;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const FuncContainer = styled.div`
+export const GameContainer = styled.div`
   width: 100%;
-  height: 55%;
+  height: 20%;
   display: flex;
-  align-items: center;
-`;
-
-export const FuncContainerLeft = styled.div`
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
+  // flex-direction: column;
+  flex-direction: row;
+  // align-items: center;
+  align-items: top;
   justify-content: center;
-`;
-
-export const FuncContainerRight = styled.div`
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding-bottom: 10px;
 `;
