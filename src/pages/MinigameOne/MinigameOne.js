@@ -1,24 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Video from '@/components/Video';
+import { samsung_logo, hanwha_logo } from '@/images/logos';
 import Emoticon from '@/components/Emoticon';
 import Chat from '@/components/Chat';
-import ViewPoint from '@/components/ViewPoint';
-import CharacterUpper from '@/components/CharacterUpper';
-import { MainContainer, CheerGuide, CommunicationContent } from './styled';
+import MinigameCharacter from '@/components/MinigameCharacter';
+import {
+  MainContainer,
+  CommunicationContent,
+  ScoreFont_left,
+  ScoreFont_right,
+  Logo_left,
+  Logo_right,
+} from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import { useHistory } from 'react-router';
-
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  TableColumn,
+} from '@material-ui/core';
+import { setCheerScore } from '@/actions/actions';
 import io from 'socket.io-client';
 const socket = io.connect('http://localhost:80/');
 
 const MinigameOne = () => {
-  const _userList = useSelector(state => state.user.userList);
-  const _loginUser = useSelector(state => state.user.loginUser);
-  const [position, setPosition] = useState([0, 0]);
   const dispatch = useDispatch();
   const history = useHistory();
+  const a_team = useSelector(state => state.user.a_team);
+  const b_team = useSelector(state => state.user.b_team);
 
   dispatch(getAllUser());
 
@@ -26,81 +40,49 @@ const MinigameOne = () => {
     socket.on('kickout-rcv', item => {
       history.push('/');
     });
+    socket.on('minigame-cheer-rcv', item => {
+      if (item.cheer === '1') {
+        dispatch(setCheerScore(item.a_score, item.b_score));
+      }
+    });
   }, []);
 
-  const showOthers = () => {
-    dispatch(getAllUser());
-  };
-
-  const moveCharacter = e => {
-    switch (e.key) {
-      case 'ArrowLeft': {
-        setPosition([position[0], position[1] - 5]);
-        console.log(_loginUser);
-        break;
-      }
-      case 'ArrowRight': {
-        setPosition([position[0], position[1] + 5]);
-        break;
-      }
-      case 'ArrowUp': {
-        setPosition([position[0] - 5, position[1]]);
-        break;
-      }
-      case 'ArrowDown': {
-        setPosition([position[0] + 5, position[1]]);
-        break;
-      }
-      case ' ': {
-        setCheer(true);
-        break;
-      }
-      case 'Enter': {
-        showOthers();
-      }
-      default:
-        break;
-    }
-  };
-
-  const keyUp = () => setCheer(false);
-
   return (
-    // <MainContainer onKeyDown={moveCharacter} onKeyUp={keyUp} tabIndex="0">
     <MainContainer tableIndex="0">
       <Header />
-      <ViewPoint />
-      <Video />
-      <div>
-        {_userList.map(
-          (char, index) =>
-            char[1] != _loginUser['userName'] && (
-              <span key={index}>
-                <CharacterUpper
-                  character={char[3]}
-                  team={char[7]}
-                  userName={char[1]}
-                  loggin={false}
-                  position={[char[5], char[6]]}
-                  emoticon={char[4]}
-                />
-              </span>
-            )
-        )}
-        {_userList.map(
-          (char, index) =>
-            char[1] === _loginUser['userName'] && (
-              <span key={index}>
-                <CharacterUpper
-                  character={char[3]}
-                  team={char[7]}
-                  userName={char[1]}
-                  loggin={true}
-                />
-              </span>
-            )
-        )}
-      </div>
+      <TableContainer style={{ outline: 'none', borderBottom: 'none' }}>
+        <Table
+          sx={{ minWidth: 650, outline: 'none', borderBottom: 'none' }}
+          aria-label="user table"
+        >
+          <TableRow
+            key={'--'}
+            style={{ outline: 'none', borderBottom: 'none' }}
+          >
+            <TableCell
+              align="center"
+              style={{ outline: 'none', borderBottom: 'none' }}
+            >
+              <Logo_left src={hanwha_logo} />
+              <ScoreFont_left>{a_team}</ScoreFont_left>
+            </TableCell>
+            <TableCell
+              align="center"
+              style={{ outline: 'none', borderBottom: 'none' }}
+            >
+              <Video />
+            </TableCell>
+            <TableCell
+              align="center"
+              style={{ outline: 'none', borderBottom: 'none' }}
+            >
+              <Logo_right src={samsung_logo} />
+              <ScoreFont_right>{b_team}</ScoreFont_right>
+            </TableCell>
+          </TableRow>
+        </Table>
+      </TableContainer>
+      <MinigameCharacter />
       <CommunicationContent>
         <Emoticon />
         <Chat />

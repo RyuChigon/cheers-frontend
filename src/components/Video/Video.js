@@ -8,8 +8,10 @@ const Video = () => {
       <ReactFlvPlayer
         url="http://192.249.28.102:8000/live/cheers.flv"
         // url="http://localhost:8000/live/cheers.flv"
-        width="800px"
-        height="500px"
+        // width="800px"
+        // height="500px"
+        width="460px"
+        height="310px"
         handleError={err => {
           switch (err) {
             case 'NetworkError':

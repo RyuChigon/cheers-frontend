@@ -10,41 +10,32 @@ import {
   c_hanwha_upper,
   c_samsung_upper,
   d_hanwha_upper,
+  d_samsung,
 } from '@/images/characters';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCheerScore } from '@/actions/actions';
 import { angry, exclamation, smile, heart, none } from '@/images/emoticons';
 import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:80/');
 
-const Character = ({
-  character,
-  team,
-  userName,
-  loggin,
-  position,
-  emoticon,
-}) => {
-  const [_position, setPosition] = useState([0, 0]);
+const Character = ({ character, team, userName, loggin, emoticon }) => {
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
+  const _a_team = useSelector(state => state.user.a_team);
+  const _b_team = useSelector(state => state.user.b_team);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!loggin) {
-      setPosition(position);
       setEmo(emoticon);
-      socket.on('move-rcv', item => {
-        if (item.name === userName) {
-          setPosition(item.movement);
-        }
-      });
       socket.on('emogee-rcv', item => {
         if (item.name === userName) {
           setEmo(item.emogee);
         }
       });
-      socket.on('cheer-rcv', item => {
+      socket.on('minigame-cheer-rcv', item => {
         if (item.name === userName) {
           if (item.cheer === '0') {
             setCheer(false);
@@ -61,17 +52,17 @@ const Character = ({
       case 'a':
         return team === 'a'
           ? _cheer
-            ? a_hanwha_cheer
+            ? a_hanwha_upper_cheer
             : a_hanwha_upper
           : _cheer
-          ? a_samsung_cheer
-          : a_samsung;
+          ? a_samsung_upper_cheer
+          : a_samsung_upper;
       case 'b':
-        return team === 'a' ? b_hanwha : b_samsung;
+        return team === 'a' ? b_hanwha_upper : b_samsung_upper;
       case 'c':
-        return team === 'a' ? c_hanwha : c_samsung;
+        return team === 'a' ? c_hanwha_upper : c_samsung_upper;
       case 'd':
-        return team === 'a' ? d_hanwha : d_samsung;
+        return team === 'a' ? d_hanwha_upper : d_samsung;
       default:
         return a_hanwha;
     }
@@ -79,49 +70,51 @@ const Character = ({
 
   const moveCharacter = e => {
     switch (e.key) {
-      case 'ArrowLeft': {
-        setPosition([_position[0], _position[1] - 5]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
-        break;
-      }
-      case 'ArrowRight': {
-        setPosition([_position[0], _position[1] + 5]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
-        break;
-      }
-      case 'ArrowUp': {
-        setPosition([_position[0] - 5, _position[1]]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
-        break;
-      }
-      case 'ArrowDown': {
-        setPosition([_position[0] + 5, _position[1]]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
-        break;
-      }
       case ' ': {
         setCheer(true);
-        socket.emit('cheer-snd', {
-          name: _loginUser['userName'],
-          cheer: '1',
-        });
+        if (_loginUser['team'] == 'a') {
+          socket.emit('minigame-cheer-snd', {
+            name: _loginUser['userName'],
+            cheer: '1',
+            team: _loginUser['team'],
+            a_score: _a_team + 1,
+            b_score: _b_team,
+          });
+          dispatch(setCheerScore(_a_team + 1, _b_team));
+        } else {
+          socket.emit('minigame-cheer-snd', {
+            name: _loginUser['userName'],
+            cheer: '1',
+            team: _loginUser['team'],
+            a_score: _a_team,
+            b_score: _b_team + 1,
+          });
+          dispatch(setCheerScore(_a_team, _b_team + 1));
+        }
         break;
       }
-      case 'Enter': {
-        // showOthers();
-      }
+      case 'Enter':
+        setCheer(true);
+        if (_loginUser['team'] == 'a') {
+          socket.emit('minigame-cheer-snd', {
+            name: _loginUser['userName'],
+            cheer: '1',
+            team: _loginUser['team'],
+            a_score: _a_team - 1,
+            b_score: _b_team,
+          });
+          dispatch(setCheerScore(_a_team - 1, _b_team));
+        } else {
+          socket.emit('minigame-cheer-snd', {
+            name: _loginUser['userName'],
+            cheer: '1',
+            team: _loginUser['team'],
+            a_score: _a_team,
+            b_score: _b_team - 1,
+          });
+          dispatch(setCheerScore(_a_team, _b_team - 1));
+        }
+        break;
       default:
         break;
     }
@@ -129,9 +122,10 @@ const Character = ({
 
   const keyUp = () => {
     setCheer(false);
-    socket.emit('cheer-snd', {
+    socket.emit('minigame-cheer-snd', {
       name: _loginUser['userName'],
       cheer: '0',
+      team: 'none',
     });
   };
 
@@ -155,18 +149,19 @@ const Character = ({
       <CharacterContainer
         onKeyDown={moveCharacter}
         onKeyUp={keyUp}
-        position={_position}
         tabIndex="0"
       >
         <Emoticon src={setEmoticon(_loginUser['emogee'])} />
         <CharacterImage src={characterImage()} />
+        <p>{userName}</p>
       </CharacterContainer>
     );
   } else {
     return (
-      <CharacterContainer position={_position}>
+      <CharacterContainer>
         <Emoticon src={setEmoticon(_emoticon)} />
         <CharacterImage src={characterImage()} />
+        <p>{userName}</p>
       </CharacterContainer>
     );
   }
