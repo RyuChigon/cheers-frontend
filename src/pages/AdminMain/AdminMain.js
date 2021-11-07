@@ -4,16 +4,13 @@ import AdminChat from '@/components/AdminChat';
 import SelectMiniGame from '@/components/SelectMiniGame';
 import UserList from '@/components/UserList';
 import GameProgress from '@/components/GameProgress';
-import AdminView from '@/components/AdminView';
 import {
   MainContainer,
   SubContainer,
   SubContainerLeft,
   SubContainerRight,
-  ViewContainer,
-  FuncContainer,
-  FuncContainerLeft,
-  FuncContainerRight,
+  UserListContainer,
+  GameContainer,
 } from './styled';
 
 const Main = () => {
@@ -22,18 +19,13 @@ const Main = () => {
       <Header />
       <SubContainer>
         <SubContainerLeft>
-          <ViewContainer>
-            <AdminView />
-          </ViewContainer>
-          <FuncContainer>
-            <FuncContainerLeft>
-              <UserList />
-            </FuncContainerLeft>
-            <FuncContainerRight>
-              <SelectMiniGame />
-              <GameProgress />
-            </FuncContainerRight>
-          </FuncContainer>
+          <UserListContainer>
+            <UserList />
+          </UserListContainer>
+          <GameContainer>
+            <SelectMiniGame />
+            <GameProgress />
+          </GameContainer>
         </SubContainerLeft>
         <SubContainerRight>
           <AdminChat />
