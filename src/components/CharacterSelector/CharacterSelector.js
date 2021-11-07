@@ -84,7 +84,7 @@ const CharacterSelector = () => {
         return a_samsung;
       }
       case 'b': {
-        if (team === 'a') return b_hanwha;
+        if (team === 'a') return b_;
         return b_samsung;
       }
       case 'c': {
