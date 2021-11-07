@@ -72,6 +72,7 @@ const Main = () => {
       <Header />
       <ViewPoint />
       <Video />
+      {/* <Video width={'800px'} height={'500px'} /> */}
       <div>
         {_userList.map(
           (char, index) =>
