@@ -3,6 +3,7 @@ const types = {
   REGISTER_USER: 'REGISTER_USER',
   MODIFY_USER: 'MODIFY_USER',
   CHOOSE_EMOGEE: 'CHOOSE_EMOGEE',
+  CHEER_SCORE: 'CHEER_SCORE',
 };
 
 export default types;

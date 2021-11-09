@@ -13,6 +13,8 @@ export { default as a_hanwha_upper_cheer } from './a/a_hanwha_upper_cheer.png';
 export { default as a_samsung_upper } from './a/a_samsung_upper.png';
 export { default as a_samsung_upper_cheer } from './a/a_samsung_upper_cheer.png';
 export { default as b_hanwha_upper } from './b/b_hanwha_upper.png';
+export { default as b_hanwha_upper_cheer } from './b/b_hanwha_upper_cheer.png';
 export { default as b_samsung_upper } from './b/b_samsung_upper.png';
 export { default as c_hanwha_upper } from './c/c_hanwha_upper.png';
+export { default as c_samsung_upper } from './c/c_samsung_upper.png';
 export { default as d_hanwha_upper } from './d/d_hanwha_upper.png';

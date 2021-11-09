@@ -3,6 +3,8 @@ import types from '@/actions/types';
 const initialstate = {
   loginUser: {},
   userList: [],
+  a_team: 0,
+  b_team: 0,
 };
 
 export default function (state = initialstate, action) {
@@ -20,6 +22,26 @@ export default function (state = initialstate, action) {
       return {
         ...state,
         loginUser: { ...state['loginUser'], emogee: action.payload },
+      };
+    case types.CHEER_SCORE:
+      if (action.payload[0] == null) {
+        return {
+          ...state,
+          a_team: 0,
+          b_team: action.payload[1],
+        };
+      }
+      if (action.payload[1] == null) {
+        return {
+          ...state,
+          a_team: action.payload[0],
+          b_team: 0,
+        };
+      }
+      return {
+        ...state,
+        a_team: action.payload[0],
+        b_team: action.payload[1],
       };
     default:
       return state;

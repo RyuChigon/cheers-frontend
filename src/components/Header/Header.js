@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 import {
   HeaderContainer,
   Logo,
@@ -13,14 +14,16 @@ import { user_icon } from '@/images/etc';
 const Header = () => {
   const history = useHistory();
   const returnToHome = () => history.replace('/');
+  const minigameone = () => history.push('/minigameone');
+  const _loginUser = useSelector(state => state.user.loginUser);
 
   return (
     <HeaderContainer>
-      <Logo src={CheersLogo} onClick={returnToHome} />
+      <Logo src={CheersLogo} onClick={minigameone} />
       <ReturnButton onClick={returnToHome}>Return to home</ReturnButton>
       <UserInfo>
         <UserIcon src={user_icon} />
-        user1
+        {_loginUser['userName']}
       </UserInfo>
     </HeaderContainer>
   );

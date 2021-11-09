@@ -161,6 +161,7 @@ const Character = ({
       >
         <Emoticon src={setEmoticon(_loginUser['emogee'])} />
         <CharacterImage src={characterImage()} />
+        <p>{userName}</p>
       </CharacterContainer>
     );
   } else {
@@ -168,6 +169,7 @@ const Character = ({
       <CharacterContainer position={_position}>
         <Emoticon src={setEmoticon(_emoticon)} />
         <CharacterImage src={characterImage()} />
+        <p>{userName}</p>
       </CharacterContainer>
     );
   }

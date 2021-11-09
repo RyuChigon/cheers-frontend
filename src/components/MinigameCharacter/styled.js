@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const CharacterContainer = styled.div`
+  position: absolute;
+  top: ${props => `${props.position[0] + 100}px`};
+  left: ${props => `${props.position[1] + 80}px`};
+  width: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,9 +23,13 @@ export const Emoticon = styled.img`
 `;
 
 export const CharacterImage = styled.img`
-  width: 100;
-  height: 100;
+  height: 100px;
   outline: 0;
   border: 0;
-  object-fit: contain;
+`;
+
+export const SpaceBar = styled.img`
+  position: center;
+  bottom: 0px;
+  left: 0px;
 `;
