@@ -31,3 +31,35 @@ export const CommunicationContent = styled.div`
   bottom: 20px;
   right: 20px;
 `;
+
+export const SpaceBar = styled.img`
+  padding-top: 5px;
+  align-items: bottom;
+  padding-top: 100px;
+`;
+
+export const ScoreFont_left = styled.div`
+  font-size: 100px;
+  position: center;
+  padding-left: 100px;
+`;
+
+export const ScoreFont_right = styled.div`
+  font-size: 100px;
+  position: center;
+  padding-right: 100px;
+`;
+
+export const Logo_left = styled.img`
+  position: center;
+  padding-left: 100px;
+  bottom: 0px;
+  left: 0px;
+`;
+
+export const Logo_right = styled.img`
+  position: center;
+  padding-right: 100px;
+  bottom: 0px;
+  left: 0px;
+`;
