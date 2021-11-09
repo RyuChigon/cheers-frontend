@@ -7,17 +7,23 @@ import {
   Logo1,
   Logo2,
 } from './styled';
-import Samsung_logo from 'images/logos/Samsung_logo.png';
-import Hanwha_logo from 'images/logos/Hanwha_logo.png';
+import { useSelector } from 'react-redux';
+import { ScoreFont_left, ScoreFont_right } from '@/pages/MinigameOne/styled';
+import Samsung_logo from 'images/logos/samsung_logo.png';
+import Hanwha_logo from 'images/logos/hanwha_logo.png';
 
 const UpperContainer = () => {
+  const a_team = useSelector(state => state.user.a_team);
+  const b_team = useSelector(state => state.user.b_team);
   return (
     <HalfContainer>
       <U1Container>
         <Logo1 src={Samsung_logo} />
+        <ScoreFont_left>{a_team}</ScoreFont_left>
       </U1Container>
       <MiniGame2Video />
       <U3Container>
+        <ScoreFont_right>{b_team}</ScoreFont_right>
         <Logo2 src={Hanwha_logo} />
       </U3Container>
     </HalfContainer>

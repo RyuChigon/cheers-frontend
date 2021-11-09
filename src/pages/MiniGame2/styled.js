@@ -20,17 +20,6 @@ export const HalfContainer = styled.div`
   align-items: center;
 `;
 
-export const UserZone = styled.div`
-  width: 45%;
-  height: 80%;
-  background: #a8c9d1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center:
-  align-items: center;
-  padding: 10px 50px 30px 0;
-`;
-
 export const U1Container = styled.div`
   width: 34%;
   height: 100%;

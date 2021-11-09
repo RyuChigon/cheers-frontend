@@ -12,7 +12,6 @@ export const HalfContainer = styled.div`
 export const U1Container = styled.div`
   width: 34%;
   height: 100%;
-  background: #123123;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -21,7 +20,6 @@ export const U1Container = styled.div`
 export const U3Container = styled.div`
   width: 34%;
   height: 100%;
-  background: #123123;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
