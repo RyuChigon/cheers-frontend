@@ -11,58 +11,29 @@ export const MainContainer = styled.div`
   align-items: center;
 `;
 
-export const HalfContainer = styled.div`
+export const LowerContainer = styled.div`
   width: 100%;
   height: 50%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-`;
-
-export const U1Container = styled.div`
-  width: 34%;
-  height: 100%;
-  background: #123123;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-`;
-
-export const U3Container = styled.div`
-  width: 34%;
-  height: 100%;
-  background: #123123;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
-
-export const Logo1 = styled.img`
-  width: 110px;
-  height: 100px;
-  top: 0px;
-  left: 0px;
-`;
-
-export const Logo2 = styled.img`
-  width: 150px;
-  height: 100px;
-  top: 0px;
-  left: 0px;
-`;
-
-export const Character = styled.img`
-  height: 100px;
-  position: absolute;
-  top: ${props => `${props.position[0] + 100}px`};
-  left: ${props => `${props.position[1] + 80}px`};
-`;
-
-export const CheerGuide = styled.img`
   position: absolute;
   bottom: 0px;
   left: 0px;
+  align-items: center;
+  z-index: 0;
+`;
+
+export const C1 = styled.div`
+  display: flex;
+  width: 9.6%;
+  height: 70%;
+  flex-grow: 1;
+  align-items: center;
+  position: absolute;
+  left: ${props => `${props.position}%`};
+  background: #aa1234;
+  z-index: -1;
 `;
 
 export const CommunicationContent = styled.div`
