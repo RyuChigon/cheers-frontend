@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Table,
@@ -24,10 +24,20 @@ const MinigameCharacter = ({
   loggin,
   position,
   emoticon,
+  game,
 }) => {
   const _userList = useSelector(state => state.user.userList);
   const _loginUser = useSelector(state => state.user.loginUser);
   const dispatch = useDispatch();
+  const [GameNumber, setGameNumber] = useState(1);
+
+  useEffect(() => {
+    if (game === 1) {
+      setGameNumber(1);
+    } else if (game === 2) {
+      setGameNumber(2);
+    }
+  }, []);
 
   dispatch(getAllUser());
 
@@ -62,6 +72,7 @@ const MinigameCharacter = ({
                           loggin={false}
                           position={[char[5], char[6]]}
                           emoticon={char[4]}
+                          gamenumber={GameNumber}
                         />
                       </ImageListItem>
                     )
@@ -79,6 +90,7 @@ const MinigameCharacter = ({
                           loggin={true}
                           position={[char[5], char[6]]}
                           emoticon={char[4]}
+                          gamenumber={GameNumber}
                         />
                       </ImageListItem>
                     )
@@ -110,6 +122,7 @@ const MinigameCharacter = ({
                           userName={char[1]}
                           loggin={false}
                           emoticon={char[4]}
+                          gamenumber={GameNumber}
                         />
                       </ImageListItem>
                     )
@@ -126,6 +139,7 @@ const MinigameCharacter = ({
                           userName={char[1]}
                           loggin={true}
                           emoticon={char[4]}
+                          gamenumber={GameNumber}
                         />
                       </ImageListItem>
                     )

@@ -10,6 +10,7 @@ import {
 
 import AdminChooseGame from './AdminChooseGame/AdminChooseGame';
 import AdminMain from './AdminMain/AdminMain';
+import MiniGame2 from './MiniGame2/MiniGame2';
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
       </Route>
       <Route exact path="/admin/main">
         <AdminMain />
+      </Route>
+      <Route exact path="/minigame2">
+        <MiniGame2 />
       </Route>
     </Router>
   );
