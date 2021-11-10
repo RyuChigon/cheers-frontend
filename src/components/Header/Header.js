@@ -15,11 +15,13 @@ const Header = () => {
   const history = useHistory();
   const returnToHome = () => history.replace('/');
   const minigameone = () => history.push('/minigameone');
+  const minigametwo = () => history.push('/minigame2');
   const _loginUser = useSelector(state => state.user.loginUser);
 
   return (
     <HeaderContainer>
       <Logo src={CheersLogo} onClick={minigameone} />
+      <ReturnButton onClick={minigametwo}>minigame2</ReturnButton>
       <ReturnButton onClick={returnToHome}>Return to home</ReturnButton>
       <UserInfo>
         <UserIcon src={user_icon} />
