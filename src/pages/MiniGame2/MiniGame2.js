@@ -9,7 +9,7 @@ import {
   C1,
 } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser } from '@/actions/actions';
+import { getAllUser, setCheerScore } from '@/actions/actions';
 import { useHistory } from 'react-router';
 import io from 'socket.io-client';
 

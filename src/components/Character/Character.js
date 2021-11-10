@@ -14,7 +14,14 @@ import {
 } from '@/images/characters';
 import { useSelector, useDispatch } from 'react-redux';
 import { cheering } from '@/actions/actions';
-import { angry, exclamation, smile, heart, none } from '@/images/emoticons';
+import {
+  angry,
+  exclamation,
+  smile,
+  heart,
+  none,
+  balloon,
+} from '@/images/emoticons';
 import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:80/');
@@ -56,7 +63,19 @@ const Character = ({
           }
         }
       });
+    } else {
+      setEmo(_loginUser['emogee']);
+      socket.on('emogee-rcv', item => {
+        if (item.name === userName) {
+          setEmo(item.emogee);
+        }
+      });
     }
+    socket.on('msg-rcv', item => {
+      if (item.name == userName) {
+        setEmo('balloon');
+      }
+    });
   }, []);
 
   const characterImage = () => {
@@ -149,6 +168,8 @@ const Character = ({
         return smile;
       case 'heart':
         return heart;
+      case 'balloon':
+        return balloon;
       default:
         return none;
     }
@@ -162,7 +183,7 @@ const Character = ({
         position={_position}
         tabIndex="0"
       >
-        <Emoticon src={setEmoticon(_loginUser['emogee'])} />
+        <Emoticon src={setEmoticon(_emoticon)} />
         <CharacterImage src={characterImage()} />
         <p>{userName}</p>
       </CharacterContainer>
