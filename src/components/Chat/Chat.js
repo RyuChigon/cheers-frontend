@@ -1,16 +1,21 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import {
   ChatContainer,
+  NoticeBox,
   Expand,
   ExpandField,
   ChatContent,
   Input,
   Enter,
   Output,
+  Balloon_me,
+  Balloon_a,
+  Balloon_b,
 } from './styled';
 import { enter_btn, expand_btn } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
+import ChatBalloon from '@/components/ChatBalloon';
 
 import io from 'socket.io-client';
 
@@ -42,6 +47,7 @@ const Chat = () => {
       socket.emit('msg-snd', {
         name: _loginUser['userName'],
         message: document.getElementById('input').value,
+        team: _loginUser['team'],
       });
       document.getElementById('input').value = '';
     }
@@ -57,11 +63,35 @@ const Chat = () => {
     <ChatContainer onKeyDown={onEnterSend}>
       {expand ? (
         <ExpandField>
+          {/* {chatArr.map(ele => {
+            if (ele.name == _loginUser['userName']) {
+              console.log('me!!!!!');
+                <Balloon_me key={ele.name}>
+                  <div>{ele.name + ': ' + ele.message}</div>
+                </Balloon_me>;
+            } else if (ele.team == 'a') {
+              console.log('a!!!!');
+              <Balloon_a key={ele.name}>
+                <div>{ele.name + ': ' + ele.message}</div>
+              </Balloon_a>;
+            } else {
+              console.log('b!!!!');
+              <Balloon_b key={ele.name}>
+                <div>{ele.name + ': ' + ele.message}</div>
+              </Balloon_b>;
+            }
+          })} */}
           {chatArr.map(ele => (
-            <>
-              {ele.name + ': ' + ele.message}
-              <br />
-            </>
+            <ChatBalloon
+              key={ele.name}
+              team={ele.team}
+              userName={ele.name}
+              message={ele.message}
+            />
+            // <Balloon_me key={ele.name}>
+            //   <div>{ele.name + ': ' + ele.message}</div>
+            // </Balloon_me>
+            // ChatBalloon(ele.team, ele.name, ele.message);
           ))}
         </ExpandField>
       ) : null}

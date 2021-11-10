@@ -23,6 +23,7 @@ export const ExpandField = styled.div`
   height: 250px;
   // margin: 0;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   background: #ffffff;
   opacity: 0.5;
@@ -97,6 +98,53 @@ export const Enter = styled.img`
   height: 26px;
   cursor: pointer;
   z-index: 6;
+`;
+
+export const Balloon_me = styled.div`
+  position: relative;
+  margin: 5px 10px 5px 10px;
+  width: 280px;
+  // height: 50px;
+  background: #333333;
+  border-radius: 10px;
+  color: #ffffff;
+
+  z-index: 20;
+`;
+
+export const Balloon_a = styled.div`
+  position: relative;
+  margin: 5px 10px 5px 10px;
+  width: 280px;
+  // height: 50px;
+  background: orange;
+  border-radius: 10px;
+  color: #ffffff;
+
+  z-index: 20;
+`;
+
+export const Balloon_b = styled.div`
+  position: relative;
+  margin: 5px 10px 5px 10px;
+  width: 280px;
+  // height: 50px;
+  background: navy;
+  border-radius: 10px;
+  color: #ffffff;
+
+  z-index: 20;
+`;
+
+export const Balloon2 = styled.div`
+  border-top: 15px solid #333333;
+  border-left: 15px solid transparent;
+  border-right: 0px solid transparent;
+  border-bottom: 0px solid transparent;
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -15px;
 `;
 
 // .chat_wrap { border:1px solid #999; width:300px; padding:5px; font-size:13px; color:#333}
