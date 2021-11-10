@@ -52,7 +52,7 @@ const MinigameCharacter = ({
               >
                 {_userList.map(
                   char =>
-                    char[1] !== _loginUser['userName'] &&
+                    // char[1] !== _loginUser['userName'] &&
                     char[7] === 'a' && (
                       <ImageListItem key={char[1]}>
                         <CharacterUpper
@@ -67,7 +67,7 @@ const MinigameCharacter = ({
                     )
                 )}
                 ;
-                {_userList.map(
+                {/* {_userList.map(
                   char =>
                     char[1] === _loginUser['userName'] &&
                     char[7] === 'a' && (
@@ -82,7 +82,7 @@ const MinigameCharacter = ({
                         />
                       </ImageListItem>
                     )
-                )}
+                )} */}
               </ImageList>
             </TableCell>
             <TableCell
@@ -100,8 +100,8 @@ const MinigameCharacter = ({
                 className={'imagelist'}
               >
                 {_userList.map(
-                  char =>
-                    char[1] !== _loginUser['userName'] &&
+                  (char, index) =>
+                    // char[1] !== _loginUser['userName'] &&
                     char[7] === 'b' && (
                       <ImageListItem key={char[1]}>
                         <CharacterUpper
@@ -115,7 +115,7 @@ const MinigameCharacter = ({
                     )
                 )}
                 ;
-                {_userList.map(
+                {/* {_userList.map(
                   char =>
                     char[1] === _loginUser['userName'] &&
                     char[7] === 'b' && (
@@ -129,7 +129,7 @@ const MinigameCharacter = ({
                         />
                       </ImageListItem>
                     )
-                )}
+                )} */}
               </ImageList>
             </TableCell>
           </TableRow>
