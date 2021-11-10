@@ -43,6 +43,8 @@ export default function (state = initialstate, action) {
         a_team: action.payload[0],
         b_team: action.payload[1],
       };
+    case types.CHEERING:
+      return state;
     default:
       return state;
   }
