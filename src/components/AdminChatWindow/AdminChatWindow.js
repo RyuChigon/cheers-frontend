@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { WindowContainer, Text, ChatList } from './styled';
+import ChatBalloon from '../ChatBalloon';
 
 import io from 'socket.io-client';
 
@@ -20,10 +21,12 @@ const AdminChatWindow = () => {
       <Text>Chat</Text>
       <ChatList>
         {chatArr.map(ele => (
-          <>
-            {ele.name + ': ' + ele.message}
-            <br />
-          </>
+          <ChatBalloon
+            key={ele.name}
+            team={ele.team}
+            userName={ele.name}
+            message={ele.message}
+          />
         ))}
       </ChatList>
     </WindowContainer>
