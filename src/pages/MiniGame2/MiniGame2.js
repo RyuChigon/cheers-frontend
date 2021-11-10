@@ -25,20 +25,44 @@ const MiniGame2 = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [_position, setPosition] = useState(0);
+  const [minutes, setMinutes] = useState(2);
+  const [seconds, setSeconds] = useState(0);
   const [_flag, setFlag] = useState(false);
+  const [cnt, setCnt] = useState(0);
 
   dispatch(getAllUser());
 
-  socket.on('minigame2-start-rcv', item => {
+  /*useEffect(() => {
+    const countdown = setInterval(() => {
+      if (_flag) {
+        if (seconds > 0) {
+          setSeconds(seconds - 1);
+          // setPosition(seconds);
+          setPosition(_position + 1);
+        }
+        if (seconds === 0) {
+          if (minutes === 0) {
+            clearInterval(countdown);
+          } else {
+            setMinutes(minutes - 1);
+            setSeconds(59);
+          }
+        }
+      }
+    }, 50);
+    return () => clearInterval(countdown);
+  }, [minutes, seconds]);*/
+
+  //////////////////////////////////
+  /*socket.on('minigame2-start-rcv', item => {
     setFlag(true);
+    console.log(_flag);
   });
 
-  setInterval(() => {
-    if (_flag) {
-      setPosition(_position + 5);
-      console.log(_position);
-    }
-  }, 1000);
+  socket.on('minigame2-start-rcv', item => {
+    setPosition(_position => _position + 5);
+    console.log(_position);
+  });*/
 
   useEffect(() => {
     socket.on('kickout-rcv', item => {
@@ -49,7 +73,14 @@ const MiniGame2 = () => {
         dispatch(setCheerScore(item.a_score, item.b_score));
       }
     });
-  }, [_position]);
+    socket.on('minigame2-start-rcv', item => {
+      setCnt(cnt + 1);
+      console.log(cnt);
+      setInterval(() => {
+        setPosition(_position + 2);
+      }, 1000);
+    });
+  }, []);
 
   return (
     <MainContainer tableIndex="0">
