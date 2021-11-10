@@ -35,7 +35,8 @@ const Character = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!loggin) {
+    console.log(_loginUser['userName']);
+    if (userName != _loginUser['userName']) {
       setEmo(emoticon);
       socket.on('emogee-rcv', item => {
         if (item.name === userName) {
@@ -154,7 +155,7 @@ const Character = ({
     }
   };
 
-  if (loggin) {
+  if (userName == _loginUser['userName']) {
     return (
       <CharacterContainer
         onKeyDown={moveCharacter}
