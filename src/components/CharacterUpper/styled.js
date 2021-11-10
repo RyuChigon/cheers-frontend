@@ -5,6 +5,7 @@ export const CharacterContainer = styled.div`
   flex-direction: column;
   align-items: center;
   outline: none;
+  // object-fit: contain;
 `;
 
 export const Emoticon = styled.img`

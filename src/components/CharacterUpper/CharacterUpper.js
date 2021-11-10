@@ -19,7 +19,14 @@ import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:80/');
 
-const Character = ({ character, team, userName, loggin, emoticon }) => {
+const Character = ({
+  character,
+  team,
+  userName,
+  loggin,
+  emoticon,
+  gamenumber,
+}) => {
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
@@ -28,7 +35,8 @@ const Character = ({ character, team, userName, loggin, emoticon }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!loggin) {
+    console.log(_loginUser['userName']);
+    if (userName != _loginUser['userName']) {
       setEmo(emoticon);
       socket.on('emogee-rcv', item => {
         if (item.name === userName) {
@@ -69,54 +77,57 @@ const Character = ({ character, team, userName, loggin, emoticon }) => {
   };
 
   const moveCharacter = e => {
-    switch (e.key) {
-      case ' ': {
-        setCheer(true);
-        if (_loginUser['team'] == 'a') {
-          socket.emit('minigame-cheer-snd', {
-            name: _loginUser['userName'],
-            cheer: '1',
-            team: _loginUser['team'],
-            a_score: _a_team + 1,
-            b_score: _b_team,
-          });
-          dispatch(setCheerScore(_a_team + 1, _b_team));
-        } else {
-          socket.emit('minigame-cheer-snd', {
-            name: _loginUser['userName'],
-            cheer: '1',
-            team: _loginUser['team'],
-            a_score: _a_team,
-            b_score: _b_team + 1,
-          });
-          dispatch(setCheerScore(_a_team, _b_team + 1));
+    if (gamenumber === 1) {
+      switch (e.key) {
+        case ' ': {
+          setCheer(true);
+          if (_loginUser['team'] == 'a') {
+            socket.emit('minigame-cheer-snd', {
+              name: _loginUser['userName'],
+              cheer: '1',
+              team: _loginUser['team'],
+              a_score: _a_team + 1,
+              b_score: _b_team,
+            });
+            dispatch(setCheerScore(_a_team + 1, _b_team));
+          } else {
+            socket.emit('minigame-cheer-snd', {
+              name: _loginUser['userName'],
+              cheer: '1',
+              team: _loginUser['team'],
+              a_score: _a_team,
+              b_score: _b_team + 1,
+            });
+            dispatch(setCheerScore(_a_team, _b_team + 1));
+          }
+          break;
         }
-        break;
+        case 'Enter':
+          setCheer(true);
+          if (_loginUser['team'] == 'a') {
+            socket.emit('minigame-cheer-snd', {
+              name: _loginUser['userName'],
+              cheer: '1',
+              team: _loginUser['team'],
+              a_score: _a_team - 1,
+              b_score: _b_team,
+            });
+            dispatch(setCheerScore(_a_team - 1, _b_team));
+          } else {
+            socket.emit('minigame-cheer-snd', {
+              name: _loginUser['userName'],
+              cheer: '1',
+              team: _loginUser['team'],
+              a_score: _a_team,
+              b_score: _b_team - 1,
+            });
+            dispatch(setCheerScore(_a_team, _b_team - 1));
+          }
+          break;
+        default:
+          break;
       }
-      case 'Enter':
-        setCheer(true);
-        if (_loginUser['team'] == 'a') {
-          socket.emit('minigame-cheer-snd', {
-            name: _loginUser['userName'],
-            cheer: '1',
-            team: _loginUser['team'],
-            a_score: _a_team - 1,
-            b_score: _b_team,
-          });
-          dispatch(setCheerScore(_a_team - 1, _b_team));
-        } else {
-          socket.emit('minigame-cheer-snd', {
-            name: _loginUser['userName'],
-            cheer: '1',
-            team: _loginUser['team'],
-            a_score: _a_team,
-            b_score: _b_team - 1,
-          });
-          dispatch(setCheerScore(_a_team, _b_team - 1));
-        }
-        break;
-      default:
-        break;
+    } else if (gamenumber === 2) {
     }
   };
 
@@ -144,7 +155,7 @@ const Character = ({ character, team, userName, loggin, emoticon }) => {
     }
   };
 
-  if (loggin) {
+  if (userName == _loginUser['userName']) {
     return (
       <CharacterContainer
         onKeyDown={moveCharacter}

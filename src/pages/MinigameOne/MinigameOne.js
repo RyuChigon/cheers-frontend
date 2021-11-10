@@ -82,7 +82,7 @@ const MinigameOne = () => {
           </TableRow>
         </Table>
       </TableContainer>
-      <MinigameCharacter />
+      <MinigameCharacter game={1} />
       <CommunicationContent>
         <Emoticon />
         <Chat />
