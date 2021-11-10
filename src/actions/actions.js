@@ -56,3 +56,11 @@ export function chooseEmogee(Emogee) {
     payload: Emogee,
   };
 }
+
+export function setCheerScore(a_team, b_team) {
+  console.log('setcheerscore: ' + a_team + ' ' + b_team);
+  return {
+    type: types.CHEER_SCORE,
+    payload: [a_team, b_team],
+  };
+}
