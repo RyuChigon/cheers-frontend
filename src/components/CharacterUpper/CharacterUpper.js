@@ -26,6 +26,8 @@ const Character = ({
   loggin,
   emoticon,
   gamenumber,
+  index,
+  column,
 }) => {
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
@@ -33,9 +35,23 @@ const Character = ({
   const _a_team = useSelector(state => state.user.a_team);
   const _b_team = useSelector(state => state.user.b_team);
   const dispatch = useDispatch();
+  const xposition = index => {
+    if ((team = 'a')) {
+      return 100 * parseFloat(10 / (11 * 2 * column)) * (index % column);
+    } else {
+      return (
+        100 *
+        (parseFloat(10 / (11 * 2 * column)) * (index % column) +
+          parseFloat(6 / 11))
+      );
+    }
+  };
 
   useEffect(() => {
-    console.log(_loginUser['userName']);
+    // console.log(_loginUser['userName']);
+    console.log('index : ' + index);
+    console.log('userName : ' + userName);
+    console.log('xposition : ' + xposition(index));
     if (userName != _loginUser['userName']) {
       setEmo(emoticon);
       socket.on('emogee-rcv', item => {

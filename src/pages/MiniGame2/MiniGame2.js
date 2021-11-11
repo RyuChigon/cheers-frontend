@@ -28,7 +28,12 @@ const useCounter = (initialValue, ms) => {
     }
     intervalRef.current = setInterval(() => {
       setCount(c => c + 1);
-    }, 0.1);
+    }, ms);
+    console.log(count);
+    if (count === 10) {
+      console.log(count);
+      reset();
+    }
   }, []);
   const stop = useCallback(() => {
     if (intervalRef.current == null) {
@@ -39,7 +44,7 @@ const useCounter = (initialValue, ms) => {
   }, []);
   const reset = useCallback(() => {
     setCount(0);
-    stop();
+    // stop();
   }, []);
   return { count, start, stop, reset };
 };
@@ -58,7 +63,7 @@ const MiniGame2 = () => {
   const [currentHours, setCurrentHours] = useState(0);
   const [currentMinutes, setCurrentMinutes] = useState(0);
   const [currentSeconds, setCurrentSeconds] = useState(0);
-  const { count, start, stop, reset } = useCounter(0, 1000);
+  const { count, start, stop, reset } = useCounter(0, 50);
 
   socket.on('minigame2-start-rcv', item => {
     console.log('got message');
@@ -69,7 +74,11 @@ const MiniGame2 = () => {
     const checkMinutes = Math.floor(count / 60);
     const hours = Math.floor(count / 3600);
     const minutes = checkMinutes % 60;
-    const seconds = count / 2;
+    const seconds = count;
+    console.log(seconds);
+    if (seconds == 91) {
+      reset();
+    }
     setCurrentHours(hours);
     setCurrentSeconds(seconds);
     setPosition(seconds);
