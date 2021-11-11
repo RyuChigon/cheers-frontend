@@ -6,6 +6,7 @@ import {
   UserListHeader,
   TrashCan,
 } from './styled';
+import { ImageList, ImageListItem } from '@material-ui/core';
 import { trashcan } from '@/images/etc';
 import UserBox from './UserBox';
 import { useDispatch, useSelector } from 'react-redux';
@@ -43,17 +44,19 @@ const UserList = () => {
         <TrashCan src={trashcan} onClick={kickOut} />
       </UserListHeader>
       <List>
-        {_userList.map((char, index) => (
-          <span key={index}>
-            <UserBox
-              userName={char[1]}
-              character={char[3]}
-              team={char[7]}
-              add={addBadUser}
-              del={deleteBadUser}
-            />
-          </span>
-        ))}
+        <ImageList rowHeight={60} cols={6} className={'imagelist'}>
+          {_userList.map((char, index) => (
+            <ImageListItem key={char[1]}>
+              <UserBox
+                userName={char[1]}
+                character={char[3]}
+                team={char[7]}
+                add={addBadUser}
+                del={deleteBadUser}
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
       </List>
     </UserListContainer>
   );
