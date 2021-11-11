@@ -13,7 +13,7 @@ import {
   d_samsung,
 } from '@/images/characters';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCheerScore } from '@/actions/actions';
+import { setCheerScore, setCheerScore2 } from '@/actions/actions';
 import { angry, exclamation, smile, heart, none } from '@/images/emoticons';
 import io from 'socket.io-client';
 
@@ -96,6 +96,7 @@ const Character = ({
   };
 
   const moveCharacter = e => {
+    console.log('gamenumber : ' + gamenumber);
     if (gamenumber === 1) {
       switch (e.key) {
         case ' ': {
@@ -105,19 +106,23 @@ const Character = ({
               name: _loginUser['userName'],
               cheer: '1',
               team: _loginUser['team'],
-              a_score: _a_team + 1,
-              b_score: _b_team,
+              a_score1: _a_team + 1,
+              b_score1: _b_team,
+              a_score2: _a_team2,
+              b_score2: _b_team2,
             });
-            dispatch(setCheerScore(_a_team + 1, _b_team));
+            dispatch(setCheerScore(_a_team + 1, _b_team, _a_team2, _b_team2));
           } else {
             socket.emit('minigame-cheer-snd', {
               name: _loginUser['userName'],
               cheer: '1',
               team: _loginUser['team'],
-              a_score: _a_team,
-              b_score: _b_team + 1,
+              a_score1: _a_team,
+              b_score1: _b_team + 1,
+              a_score2: _a_team2,
+              b_score2: _b_team2,
             });
-            dispatch(setCheerScore(_a_team, _b_team + 1));
+            dispatch(setCheerScore(_a_team, _b_team + 1, _a_team2, _b_team2));
           }
           break;
         }
@@ -128,19 +133,23 @@ const Character = ({
               name: _loginUser['userName'],
               cheer: '1',
               team: _loginUser['team'],
-              a_score: _a_team - 1,
-              b_score: _b_team,
+              a_score1: _a_team - 1,
+              b_score1: _b_team,
+              a_score2: _a_team2,
+              b_score2: _b_team2,
             });
-            dispatch(setCheerScore(_a_team - 1, _b_team));
+            dispatch(setCheerScore(_a_team - 1, _b_team, _a_team2, _b_team2));
           } else {
             socket.emit('minigame-cheer-snd', {
               name: _loginUser['userName'],
               cheer: '1',
               team: _loginUser['team'],
-              a_score: _a_team,
-              b_score: _b_team - 1,
+              a_score1: _a_team,
+              b_score1: _b_team - 1,
+              a_score2: _a_team2,
+              b_score2: _b_team2,
             });
-            dispatch(setCheerScore(_a_team, _b_team - 1));
+            dispatch(setCheerScore(_a_team, _b_team - 1, _a_team2, _b_team2));
           }
           break;
         default:
@@ -149,26 +158,36 @@ const Character = ({
     } else if (gamenumber === 2) {
       switch (e.key) {
         case ' ': {
-          if (Math.abs(_barposition - xposition) < 5) {
-            setCheer(true);
+          console.log('cheer');
+          setCheer(true);
+          console.log(Math.abs(_barposition - xposition(index)));
+          if (Math.abs(_barposition - xposition(index)) < 20) {
             if (_loginUser['team'] == 'a') {
               socket.emit('minigame-cheer-snd', {
                 name: _loginUser['userName'],
                 cheer: '1',
                 team: _loginUser['team'],
-                a_score: _a_team + 1,
-                b_score: _b_team,
+                a_score1: _a_team,
+                b_score1: _b_team,
+                a_score2: _a_team2 + 1,
+                b_score2: _b_team2,
               });
-              dispatch(setCheerScore(_a_team + 1, _b_team));
+              dispatch(
+                setCheerScore2(_a_team, _b_team, _a_team2 + 1, _b_team2)
+              );
             } else {
               socket.emit('minigame-cheer-snd', {
                 name: _loginUser['userName'],
                 cheer: '1',
                 team: _loginUser['team'],
-                a_score: _a_team,
-                b_score: _b_team + 1,
+                a_score1: _a_team,
+                b_score1: _b_team,
+                a_score2: _a_team2,
+                b_score2: _b_team2 + 1,
               });
-              dispatch(setCheerScore(_a_team, _b_team + 1));
+              dispatch(
+                setCheerScore2(_a_team, _b_team, _a_team2, _b_team2 + 1)
+              );
             }
             break;
           }
