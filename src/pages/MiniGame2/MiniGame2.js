@@ -9,7 +9,7 @@ import {
   C1,
 } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser, setCheerScore } from '@/actions/actions';
+import { getAllUser, setCheerScore, setBarposition } from '@/actions/actions';
 import { useHistory } from 'react-router';
 import io from 'socket.io-client';
 
@@ -75,18 +75,19 @@ const MiniGame2 = () => {
     const hours = Math.floor(count / 3600);
     const minutes = checkMinutes % 60;
     const seconds = count;
-    console.log(seconds);
     if (seconds == 91) {
       reset();
     }
     setCurrentHours(hours);
     setCurrentSeconds(seconds);
     setPosition(seconds);
+    dispatch(setBarposition(seconds));
     setCurrentMinutes(minutes);
   };
 
   useEffect(timer, [count]);
   useEffect(() => {
+    dispatch(setBarposition(0));
     socket.on('kickout-rcv', item => {
       history.push('/');
     });

@@ -32,8 +32,11 @@ const Character = ({
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
+  const _barposition = useSelector(state => state.user.minigame2_barposition);
   const _a_team = useSelector(state => state.user.a_team);
   const _b_team = useSelector(state => state.user.b_team);
+  const _a_team2 = useSelector(state => state.user.a_team2);
+  const _b_team2 = useSelector(state => state.user.b_team2);
   const dispatch = useDispatch();
   const xposition = index => {
     if ((team = 'a')) {
@@ -48,7 +51,7 @@ const Character = ({
   };
 
   useEffect(() => {
-    // console.log(_loginUser['userName']);
+    console.log('_barposition : ' + _barposition);
     console.log('index : ' + index);
     console.log('userName : ' + userName);
     console.log('xposition : ' + xposition(index));
@@ -144,6 +147,57 @@ const Character = ({
           break;
       }
     } else if (gamenumber === 2) {
+      switch (e.key) {
+        case ' ': {
+          if (Math.abs(_barposition - xposition) < 5) {
+            setCheer(true);
+            if (_loginUser['team'] == 'a') {
+              socket.emit('minigame-cheer-snd', {
+                name: _loginUser['userName'],
+                cheer: '1',
+                team: _loginUser['team'],
+                a_score: _a_team + 1,
+                b_score: _b_team,
+              });
+              dispatch(setCheerScore(_a_team + 1, _b_team));
+            } else {
+              socket.emit('minigame-cheer-snd', {
+                name: _loginUser['userName'],
+                cheer: '1',
+                team: _loginUser['team'],
+                a_score: _a_team,
+                b_score: _b_team + 1,
+              });
+              dispatch(setCheerScore(_a_team, _b_team + 1));
+            }
+            break;
+          }
+        }
+        /*case 'Enter':
+          setCheer(true);
+          if (_loginUser['team'] == 'a') {
+            socket.emit('minigame-cheer-snd', {
+              name: _loginUser['userName'],
+              cheer: '1',
+              team: _loginUser['team'],
+              a_score: _a_team - 1,
+              b_score: _b_team,
+            });
+            dispatch(setCheerScore(_a_team - 1, _b_team));
+          } else {
+            socket.emit('minigame-cheer-snd', {
+              name: _loginUser['userName'],
+              cheer: '1',
+              team: _loginUser['team'],
+              a_score: _a_team,
+              b_score: _b_team - 1,
+            });
+            dispatch(setCheerScore(_a_team, _b_team - 1));
+          }
+          break;*/
+        default:
+          break;
+      }
     }
   };
 

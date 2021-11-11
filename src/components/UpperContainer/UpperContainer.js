@@ -13,17 +13,17 @@ import Samsung_logo from 'images/logos/samsung_logo.png';
 import Hanwha_logo from 'images/logos/hanwha_logo.png';
 
 const UpperContainer = () => {
-  const a_team = useSelector(state => state.user.a_team);
-  const b_team = useSelector(state => state.user.b_team);
+  const a_team2 = useSelector(state => state.user.a_team2);
+  const b_team2 = useSelector(state => state.user.b_team2);
   return (
     <HalfContainer>
       <U1Container>
         <Logo1 src={Samsung_logo} />
-        <ScoreFont_left>{a_team}</ScoreFont_left>
+        <ScoreFont_left>{a_team2}</ScoreFont_left>
       </U1Container>
       <MiniGame2Video />
       <U3Container>
-        <ScoreFont_right>{b_team}</ScoreFont_right>
+        <ScoreFont_right>{b_team2}</ScoreFont_right>
         <Logo2 src={Hanwha_logo} />
       </U3Container>
     </HalfContainer>
