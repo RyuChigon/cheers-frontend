@@ -4,7 +4,6 @@ const types = {
   MODIFY_USER: 'MODIFY_USER',
   CHOOSE_EMOGEE: 'CHOOSE_EMOGEE',
   CHEER_SCORE: 'CHEER_SCORE',
-  CHEERING: 'CHEERING',
 };
 
 export default types;

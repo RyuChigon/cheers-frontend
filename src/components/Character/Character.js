@@ -12,8 +12,7 @@ import {
   d_hanwha,
   d_samsung,
 } from '@/images/characters';
-import { useSelector, useDispatch } from 'react-redux';
-import { cheering } from '@/actions/actions';
+import { useSelector } from 'react-redux';
 import {
   angry,
   exclamation,
@@ -38,7 +37,6 @@ const Character = ({
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!loggin) {
@@ -134,16 +132,13 @@ const Character = ({
         break;
       }
       case ' ': {
-        dispatch(cheering);
+        request('get', USER_URL + '/cheering', null);
         setCheer(true);
         socket.emit('cheer-snd', {
           name: _loginUser['userName'],
           cheer: '1',
         });
         break;
-      }
-      case 'Enter': {
-        // showOthers();
       }
       default:
         break;

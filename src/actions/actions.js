@@ -64,11 +64,3 @@ export function setCheerScore(a_team, b_team) {
     payload: [a_team, b_team],
   };
 }
-
-export function cheering() {
-  request('get', USER_URL + '/cheering', null);
-  return {
-    type: types.CHEERING,
-    payload: null,
-  };
-}
