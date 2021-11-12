@@ -64,3 +64,18 @@ export function setCheerScore(a_team, b_team) {
     payload: [a_team, b_team],
   };
 }
+
+export function setCheerScore2(a_team2, b_team2) {
+  console.log('setcheerscore2: ' + a_team2 + ' ' + b_team2);
+  return {
+    type: types.CHEER_SCORE2,
+    payload: [a_team2, b_team2],
+  };
+}
+
+export function setBarposition(position) {
+  return {
+    type: types.SET_BAR_POSITION,
+    payload: position,
+  };
+}

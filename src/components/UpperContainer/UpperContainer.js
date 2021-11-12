@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MiniGame2Video from '@/components/MiniGame2Video';
 import {
   HalfContainer,
@@ -7,23 +7,28 @@ import {
   Logo1,
   Logo2,
 } from './styled';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ScoreFont_left, ScoreFont_right } from '@/pages/MinigameOne/styled';
 import Samsung_logo from 'images/logos/samsung_logo.png';
 import Hanwha_logo from 'images/logos/hanwha_logo.png';
+import { setCheerScore2 } from '@/actions/actions';
 
 const UpperContainer = () => {
-  const a_team = useSelector(state => state.user.a_team);
-  const b_team = useSelector(state => state.user.b_team);
+  const _a_team2 = useSelector(state => state.user.a_team2);
+  const _b_team2 = useSelector(state => state.user.b_team2);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(setCheerScore2(0, 0));
+  // });
   return (
     <HalfContainer>
       <U1Container>
         <Logo1 src={Samsung_logo} />
-        <ScoreFont_left>{a_team}</ScoreFont_left>
+        <ScoreFont_left>{_a_team2}</ScoreFont_left>
       </U1Container>
       <MiniGame2Video />
       <U3Container>
-        <ScoreFont_right>{b_team}</ScoreFont_right>
+        <ScoreFont_right>{_b_team2}</ScoreFont_right>
         <Logo2 src={Hanwha_logo} />
       </U3Container>
     </HalfContainer>
