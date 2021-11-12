@@ -12,8 +12,7 @@ import {
   d_hanwha,
   d_samsung,
 } from '@/images/characters';
-import { useSelector, useDispatch } from 'react-redux';
-import { cheering } from '@/actions/actions';
+import { useSelector } from 'react-redux';
 import {
   angry,
   exclamation,
@@ -23,6 +22,9 @@ import {
   balloon,
 } from '@/images/emoticons';
 import io from 'socket.io-client';
+
+const chartHeight = window.innerHeight;
+const chartWidth = window.innerWidth;
 
 const socket = io.connect('http://localhost:80/');
 
@@ -38,7 +40,6 @@ const Character = ({
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!loggin) {
@@ -102,7 +103,7 @@ const Character = ({
   const moveCharacter = e => {
     switch (e.key) {
       case 'ArrowLeft': {
-        setPosition([_position[0], _position[1] - 5]);
+        setPosition([_position[0], _position[1] - chartWidth * 0.005]);
         socket.emit('move-snd', {
           name: _loginUser['userName'],
           movement: _position,
@@ -110,7 +111,7 @@ const Character = ({
         break;
       }
       case 'ArrowRight': {
-        setPosition([_position[0], _position[1] + 5]);
+        setPosition([_position[0], _position[1] + chartWidth * 0.005]);
         socket.emit('move-snd', {
           name: _loginUser['userName'],
           movement: _position,
@@ -118,7 +119,7 @@ const Character = ({
         break;
       }
       case 'ArrowUp': {
-        setPosition([_position[0] - 5, _position[1]]);
+        setPosition([_position[0] - chartHeight * 0.01, _position[1]]);
         socket.emit('move-snd', {
           name: _loginUser['userName'],
           movement: _position,
@@ -126,7 +127,7 @@ const Character = ({
         break;
       }
       case 'ArrowDown': {
-        setPosition([_position[0] + 5, _position[1]]);
+        setPosition([_position[0] + chartHeight * 0.01, _position[1]]);
         socket.emit('move-snd', {
           name: _loginUser['userName'],
           movement: _position,
@@ -134,16 +135,13 @@ const Character = ({
         break;
       }
       case ' ': {
-        dispatch(cheering);
+        request('get', USER_URL + '/cheering', null);
         setCheer(true);
         socket.emit('cheer-snd', {
           name: _loginUser['userName'],
           cheer: '1',
         });
         break;
-      }
-      case 'Enter': {
-        // showOthers();
       }
       default:
         break;

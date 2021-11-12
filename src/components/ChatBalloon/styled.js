@@ -3,8 +3,7 @@ import styled from 'styled-components';
 export const Balloon_me = styled.div`
   position: relative;
   margin: 5px 10px 5px 10px;
-  width: 280px;
-  // height: 50px;
+  padding: 5px;
   background: #333333;
   border-radius: 10px;
   color: #ffffff;
@@ -15,8 +14,7 @@ export const Balloon_me = styled.div`
 export const Balloon_a = styled.div`
   position: relative;
   margin: 5px 10px 5px 10px;
-  width: 280px;
-  // height: 50px;
+  padding: 5px;
   background: orangered;
   border-radius: 10px;
   color: #ffffff;
@@ -27,8 +25,7 @@ export const Balloon_a = styled.div`
 export const Balloon_b = styled.div`
   position: relative;
   margin: 5px 10px 5px 10px;
-  width: 280px;
-  // height: 50px;
+  padding: 5px;
   background: blue;
   border-radius: 10px;
   color: #ffffff;

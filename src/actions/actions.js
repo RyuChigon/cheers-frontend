@@ -73,14 +73,6 @@ export function setCheerScore2(a_team2, b_team2) {
   };
 }
 
-export function cheering() {
-  request('get', USER_URL + '/cheering', null);
-  return {
-    type: types.CHEERING,
-    payload: null,
-  };
-}
-
 export function setBarposition(position) {
   return {
     type: types.SET_BAR_POSITION,
