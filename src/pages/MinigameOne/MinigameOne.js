@@ -42,6 +42,16 @@ const MinigameOne = () => {
     });
     socket.on('minigame-cheer-rcv', item => {
       if (item.cheer === '1') {
+        console.log(
+          'minigameone cheer rcv, item.a_score1 : ' +
+            item.a_score1 +
+            ', item.b_score1 : ' +
+            item.b_score1 +
+            ', item.a_score2 : ' +
+            item.a_score2 +
+            ', item.b_score2 : ' +
+            item.b_score2
+        );
         dispatch(setCheerScore(item.a_score1, item.b_score1));
       }
     });

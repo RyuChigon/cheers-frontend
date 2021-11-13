@@ -69,7 +69,7 @@ const Character = ({
         }
       });
       socket.on('minigame-cheer-rcv', item => {
-        console.log('minigame-cheer-rcv');
+        // console.log('minigame-cheer-rcv');
         // console.log(item);
         if (item.name === userName) {
           if (item.cheer === '0') {
@@ -191,7 +191,7 @@ const Character = ({
         case ' ': {
           console.log('cheer');
           setCheer(true);
-          console.log(Math.abs(_barposition - xposition(index)));
+          // console.log(Math.abs(_barposition - xposition(index)));
           if (Math.abs(_barposition - xposition(index)) < 20) {
             if (_loginUser['team'] == 'a') {
               socket.emit('minigame-cheer-snd', {
@@ -254,6 +254,10 @@ const Character = ({
       name: _loginUser['userName'],
       cheer: '0',
       team: 'none',
+      a_score1: _a_team,
+      b_score1: _b_team,
+      a_score2: _a_team2,
+      b_score2: _b_team2,
     });
   };
 
