@@ -28,8 +28,6 @@ const Chat = () => {
   const [expand, setExpand] = useState(false);
   const onClickExpand = () => setExpand(!expand);
   const [chatArr, setChatArr] = useState([]);
-  const [chat, setChat] = useState({ name: 'huikyeong', message: '' });
-  // const _userList = useSelector(state => state.user.userList);
   const _loginUser = useSelector(state => state.user.loginUser);
   const dispatch = useDispatch();
 
@@ -87,7 +85,6 @@ const Chat = () => {
       ) : (
         <Expand src={expand_btn} onClick={onClickExpand} />
       )}
-      {/* <Expand src={expand_btn} onClick={onClickExpand} /> */}
       <ChatContent>
         <Input id="input" placeholder="send a message..." />
         <Enter src={enter_btn} onClick={onClickSend} />

@@ -73,9 +73,31 @@ export function setCheerScore2(a_team2, b_team2) {
   };
 }
 
+export function cheering() {
+  request('get', USER_URL + '/cheering', null);
+  return {
+    type: types.CHEERING,
+    payload: null,
+  };
+}
+
 export function setBarposition(position) {
   return {
     type: types.SET_BAR_POSITION,
     payload: position,
+  };
+}
+
+export async function getViewpoints() {
+  const data = await request('get', USER_URL + '/viewpoints', null);
+  if (data === undefined) {
+    return {
+      type: types.GET_VIEWPOINTS,
+      payload: null,
+    };
+  }
+  return {
+    type: types.GET_VIEWPOINTS,
+    payload: data.viewpoints,
   };
 }

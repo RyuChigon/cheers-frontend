@@ -8,6 +8,7 @@ const initialstate = {
   a_team2: 0,
   b_team2: 0,
   minigame2_barposition: 0,
+  viewpoints: [],
 };
 
 export default function (state = initialstate, action) {
@@ -66,10 +67,17 @@ export default function (state = initialstate, action) {
         a_team2: action.payload[0],
         b_team2: action.payload[1],
       };
+    case types.CHEERING:
+      return state;
     case types.SET_BAR_POSITION:
       return {
         ...state,
         minigame2_barposition: action.payload,
+      };
+    case types.GET_VIEWPOINTS:
+      return {
+        ...state,
+        viewpoints: action.payload,
       };
     default:
       console.log(state);

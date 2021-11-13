@@ -8,7 +8,6 @@ import {
   LowerContainer,
   C1,
 } from './styled';
-import MinigameTimer from '@/components/MinigameTimer';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser, setCheerScore, setBarposition } from '@/actions/actions';
 import { useHistory } from 'react-router';
@@ -99,50 +98,13 @@ const MiniGame2 = () => {
     });
   }, []);
 
-  useRef(() => {
-    // socket.on('minigame2-start-rcv', item => {
-    //   setFlag(true);
-    // });
-    if (_flag) {
-      const countdown = setInterval(() => {
-        if (parseInt(seconds) > 0) {
-          setSeconds(parseInt(seconds) - 1);
-          setPosition(seconds);
-        }
-        if (parseInt(seconds) === 0) {
-          if (parseInt(minutes) === 0) {
-            clearInterval(countdown);
-          } else {
-            setMinutes(parseInt(minutes) - 1);
-            setSeconds(59);
-          }
-        }
-      }, 1000);
-      return () => clearInterval(countdown);
-    }
-  }, [minutes, seconds]);
-
-  dispatch(getAllUser());
-
-  socket.on('minigame2-start-rcv', item => {
-    setFlag(true);
-  });
-
-  const handleStartGame = () => {
-    setFlag(true);
-  };
-
   return (
     <MainContainer tableIndex="0">
       <Header />
-      {/* <h2>
-        {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-      </h2> */}
-      {/* <UpperContainer /> */}
+      <UpperContainer />
       <LowerContainer>
-        <MinigameTimer />
-        {/* <MinigameCharacter game={2} />
-        <C1 position={_position} /> */}
+        <MinigameCharacter game={2} />
+        <C1 position={_position} />
       </LowerContainer>
       {/* <LowerBackContainer /> */}
       <CommunicationContent>
