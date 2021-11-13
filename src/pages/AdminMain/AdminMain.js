@@ -4,6 +4,7 @@ import AdminChat from '@/components/AdminChat';
 import SelectMiniGame from '@/components/SelectMiniGame';
 import UserList from '@/components/UserList';
 import GameProgress from '@/components/GameProgress';
+import Video from '@/components/Video';
 import {
   MainContainer,
   SubContainer,
@@ -19,6 +20,7 @@ const Main = () => {
       <Header />
       <SubContainer>
         <SubContainerLeft>
+          <Video />
           <UserListContainer>
             <UserList />
           </UserListContainer>

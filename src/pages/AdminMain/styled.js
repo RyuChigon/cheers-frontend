@@ -46,7 +46,7 @@ export const UserListContainer = styled.div`
 
 export const GameContainer = styled.div`
   width: 100%;
-  height: 20%;
+  height: 80%;
   display: flex;
   // flex-direction: column;
   flex-direction: row;
