@@ -16,10 +16,17 @@ const AdminChatWindow = () => {
     }); //receive message이벤트에 대한 콜백을 등록해줌
   }, []);
 
+  socket.on('msg-rcv', item => {
+    var el = document.getElementById('cl');
+    if (el != null && el.scrollHeight > 0) {
+      el.scrollTop = el.scrollHeight;
+    }
+  });
+
   return (
     <WindowContainer>
       <Text>Chat</Text>
-      <ChatList>
+      <ChatList id="cl">
         {chatArr.map(ele => (
           <ChatBalloon
             key={ele.name}

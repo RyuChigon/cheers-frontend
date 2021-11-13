@@ -11,8 +11,9 @@ import {
   Balloon_me,
   Balloon_a,
   Balloon_b,
+  NotExpand,
 } from './styled';
-import { enter_btn, expand_btn } from '@/images/etc';
+import { enter_btn, expand_btn, notexpand_btn } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import ChatBalloon from '@/components/ChatBalloon';
@@ -27,8 +28,6 @@ const Chat = () => {
   const [expand, setExpand] = useState(false);
   const onClickExpand = () => setExpand(!expand);
   const [chatArr, setChatArr] = useState([]);
-  const [chat, setChat] = useState({ name: 'huikyeong', message: '' });
-  // const _userList = useSelector(state => state.user.userList);
   const _loginUser = useSelector(state => state.user.loginUser);
   const dispatch = useDispatch();
 
@@ -39,6 +38,13 @@ const Chat = () => {
       setChatArr(chatArr => chatArr.concat(item));
     }); //receive message이벤트에 대한 콜백을 등록해줌
   }, []);
+
+  socket.on('msg-rcv', item => {
+    var el = document.getElementById('ef');
+    if (el != null && el.scrollHeight > 0) {
+      el.scrollTop = el.scrollHeight;
+    }
+  });
 
   const onClickSend = () => {
     if (document.getElementById('input').value == null) {
@@ -60,47 +66,32 @@ const Chat = () => {
   };
 
   return (
-    <ChatContainer onKeyDown={onEnterSend}>
-      {expand ? (
-        <ExpandField>
-          {/* {chatArr.map(ele => {
-            if (ele.name == _loginUser['userName']) {
-              console.log('me!!!!!');
-                <Balloon_me key={ele.name}>
-                  <div>{ele.name + ': ' + ele.message}</div>
-                </Balloon_me>;
-            } else if (ele.team == 'a') {
-              console.log('a!!!!');
-              <Balloon_a key={ele.name}>
-                <div>{ele.name + ': ' + ele.message}</div>
-              </Balloon_a>;
-            } else {
-              console.log('b!!!!');
-              <Balloon_b key={ele.name}>
-                <div>{ele.name + ': ' + ele.message}</div>
-              </Balloon_b>;
-            }
-          })} */}
-          {chatArr.map(ele => (
-            <ChatBalloon
-              key={ele.name}
-              team={ele.team}
-              userName={ele.name}
-              message={ele.message}
-            />
-            // <Balloon_me key={ele.name}>
-            //   <div>{ele.name + ': ' + ele.message}</div>
-            // </Balloon_me>
-            // ChatBalloon(ele.team, ele.name, ele.message);
-          ))}
-        </ExpandField>
-      ) : null}
-      <Expand src={expand_btn} onClick={onClickExpand} />
-      <ChatContent>
-        <Input id="input" placeholder="send a message..." />
-        <Enter src={enter_btn} onClick={onClickSend} />
-      </ChatContent>
-    </ChatContainer>
+    <div>
+      {/* <ReportAlert /> */}
+      <ChatContainer onKeyDown={onEnterSend}>
+        {expand ? (
+          <ExpandField id="ef">
+            {chatArr.map(ele => (
+              <ChatBalloon
+                key={ele.name}
+                team={ele.team}
+                userName={ele.name}
+                message={ele.message}
+              />
+            ))}
+          </ExpandField>
+        ) : null}
+        {expand ? (
+          <NotExpand src={notexpand_btn} onClick={onClickExpand} />
+        ) : (
+          <Expand src={expand_btn} onClick={onClickExpand} />
+        )}
+        <ChatContent>
+          <Input id="input" placeholder="send a message..." />
+          <Enter src={enter_btn} onClick={onClickSend} />
+        </ChatContent>
+      </ChatContainer>
+    </div>
   );
 };
 

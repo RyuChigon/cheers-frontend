@@ -26,7 +26,8 @@ export const ChatContent = styled.div`
   right: 5px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+  padding-right: 5px;
   background: #ffffff;
   border: transparent;
   border-radius: 30px;
@@ -35,14 +36,14 @@ export const ChatContent = styled.div`
 
 export const Input = styled.input`
   // width: 230px;
-  width: 50%;
-  height: 30px;
+  // width: 50%;
+  // height: 30px;
   margin-left: 20px;
   margin-right: 15px;
   background: #ffffff;
   border: transparent;
   font-size: 0.9rem;
-  justify-content: flex-start;
+  // justify-content: flex-start;
 
   ::-webkit-input-placeholder {
     color: #b7b7b7;
