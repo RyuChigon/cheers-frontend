@@ -11,8 +11,9 @@ import {
   Balloon_me,
   Balloon_a,
   Balloon_b,
+  NotExpand,
 } from './styled';
-import { enter_btn, expand_btn } from '@/images/etc';
+import { enter_btn, expand_btn, notexpand_btn } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import ChatBalloon from '@/components/ChatBalloon';
@@ -80,7 +81,12 @@ const Chat = () => {
           ))}
         </ExpandField>
       ) : null}
-      <Expand src={expand_btn} onClick={onClickExpand} />
+      {expand ? (
+        <NotExpand src={notexpand_btn} onClick={onClickExpand} />
+      ) : (
+        <Expand src={expand_btn} onClick={onClickExpand} />
+      )}
+      {/* <Expand src={expand_btn} onClick={onClickExpand} /> */}
       <ChatContent>
         <Input id="input" placeholder="send a message..." />
         <Enter src={enter_btn} onClick={onClickSend} />
