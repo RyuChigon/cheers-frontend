@@ -26,11 +26,9 @@ const Main = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [adminchatArr, setAdminChatArr] = useState([]);
-  const [notice, setNotice] = useState(false);
+  const [timer, settimer] = useState(0);
 
   dispatch(getAllUser());
-
-  const current_timer = null;
 
   useEffect(() => {
     socket.on('kickout-rcv', item => {
@@ -41,20 +39,15 @@ const Main = () => {
   useEffect(() => {
     socket.on('admin-msg-rcv', item => {
       setAdminChatArr(item.message);
-      setNotice(true);
-      // setTimeout(function () {
-      //   // alert(item.message);
-      //   setNotice(!notice);
-      // }, 3000);
+      // setNotice(true);
+      settimer(timer => timer + 1);
+      console.log('timer increase to ' + timer);
+      setTimeout(() => {
+        settimer(timer => timer - 1);
+        console.log('timer decrease to ' + timer);
+      }, 4000);
     });
   }, []);
-
-  socket.on('admin-msg-rcv', item => {
-    // clearInterval(current_timer);
-    setTimeout(() => {
-      setNotice(false);
-    }, 3000);
-  });
 
   const showOthers = () => {
     dispatch(getAllUser());
@@ -133,7 +126,7 @@ const Main = () => {
         )}
       </div>
       <CheerGuide src={cheer_guide} />
-      {notice ? (
+      {timer > 0 ? (
         <NoticeBox onClick={noticeRemove}>
           {
             <>
