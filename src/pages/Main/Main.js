@@ -30,6 +30,8 @@ const Main = () => {
 
   dispatch(getAllUser());
 
+  const current_timer = null;
+
   useEffect(() => {
     socket.on('kickout-rcv', item => {
       history.push('/');
@@ -46,6 +48,13 @@ const Main = () => {
       // }, 3000);
     });
   }, []);
+
+  socket.on('admin-msg-rcv', item => {
+    // clearInterval(current_timer);
+    setTimeout(() => {
+      setNotice(false);
+    }, 3000);
+  });
 
   const showOthers = () => {
     dispatch(getAllUser());

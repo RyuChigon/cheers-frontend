@@ -33,6 +33,7 @@ const AdminChatWindow = () => {
             team={ele.team}
             userName={ele.name}
             message={ele.message}
+            isuser={false}
           />
         ))}
       </ChatList>

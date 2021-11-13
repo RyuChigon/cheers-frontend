@@ -77,6 +77,7 @@ const Chat = () => {
               team={ele.team}
               userName={ele.name}
               message={ele.message}
+              isuser={true}
             />
           ))}
         </ExpandField>

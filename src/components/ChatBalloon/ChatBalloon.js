@@ -2,10 +2,10 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Balloon_me, Balloon_a, Balloon_b } from './styled';
 
-const Chatballoon = ({ team, userName, message }) => {
+const Chatballoon = ({ team, userName, message, isuser }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
 
-  if (userName == _loginUser['userName']) {
+  if (userName == _loginUser['userName'] && isuser) {
     return (
       <Balloon_me>
         <div>{_loginUser['userName'] + ': ' + message}</div>
