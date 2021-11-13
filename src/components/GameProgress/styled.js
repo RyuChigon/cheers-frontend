@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const GameProgressContainer = styled.div`
   width: 90%;
-  height: 80%;
+  height: 40%;
   background: #bdd99c;
   border-radius: 30px;
   margin: 1%;

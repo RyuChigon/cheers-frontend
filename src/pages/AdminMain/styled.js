@@ -28,6 +28,15 @@ export const SubContainerLeft = styled.div`
   justify-content: center;
 `;
 
+export const SubUserListGameLeft = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const SubContainerRight = styled.div`
   width: 40%;
   height: 100%;
@@ -37,20 +46,18 @@ export const SubContainerRight = styled.div`
 `;
 
 export const UserListContainer = styled.div`
-  width: 100%;
-  height: 80%;
+  width: 60%;
+  height: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const GameContainer = styled.div`
-  width: 100%;
-  height: 80%;
+  width: 50%;
+  height: 100%;
   display: flex;
-  // flex-direction: column;
-  flex-direction: row;
-  // align-items: center;
+  flex-direction: column;
   align-items: top;
   justify-content: center;
   padding-bottom: 10px;

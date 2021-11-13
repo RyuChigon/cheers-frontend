@@ -12,6 +12,7 @@ import {
   SubContainerRight,
   UserListContainer,
   GameContainer,
+  SubUserListGameLeft,
 } from './styled';
 
 const Main = () => {
@@ -21,13 +22,15 @@ const Main = () => {
       <SubContainer>
         <SubContainerLeft>
           <Video />
-          <UserListContainer>
-            <UserList />
-          </UserListContainer>
-          <GameContainer>
-            <SelectMiniGame />
-            <GameProgress />
-          </GameContainer>
+          <SubUserListGameLeft>
+            <UserListContainer>
+              <UserList />
+            </UserListContainer>
+            <GameContainer>
+              <SelectMiniGame />
+              <GameProgress />
+            </GameContainer>
+          </SubUserListGameLeft>
         </SubContainerLeft>
         <SubContainerRight>
           <AdminChat />
