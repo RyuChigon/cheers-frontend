@@ -46,26 +46,6 @@ export default function (state = initialstate, action) {
         a_team: action.payload[0],
         b_team: action.payload[1],
       };
-    case types.CHEER_SCORE:
-      if (action.payload[0] == null) {
-        return {
-          ...state,
-          a_team: 0,
-          b_team: action.payload[1],
-        };
-      }
-      if (action.payload[1] == null) {
-        return {
-          ...state,
-          a_team: action.payload[0],
-          b_team: 0,
-        };
-      }
-      return {
-        ...state,
-        a_team: action.payload[0],
-        b_team: action.payload[1],
-      };
     case types.CHEER_SCORE2:
       if (action.payload[0] == null) {
         return {
@@ -92,6 +72,7 @@ export default function (state = initialstate, action) {
         minigame2_barposition: action.payload,
       };
     default:
+      console.log(state);
       return state;
   }
 }
