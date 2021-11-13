@@ -36,7 +36,7 @@ export const ChatContent = styled.div`
 
 export const Input = styled.input`
   // width: 230px;
-  // width: 50%;
+  width: 80%;
   // height: 30px;
   margin-left: 20px;
   margin-right: 15px;
