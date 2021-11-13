@@ -23,7 +23,7 @@ export const NotExpand = styled.img`
   height: 9;
   cursor: pointer;
   position: relative;
-  top: 10;
+  top: -220px;
   z-index: 3;
 `;
 
@@ -45,7 +45,7 @@ export const ExpandField = styled.div`
   padding-top: 30px;
 
   position: relative;
-  top: 59px;
+  top: 40px;
   // left: 20px;
   z-index: 2;
 `;
