@@ -30,6 +30,9 @@ const MinigameCharacter = ({
   const _loginUser = useSelector(state => state.user.loginUser);
   const dispatch = useDispatch();
   const [GameNumber, setGameNumber] = useState(1);
+  const [col, setCol] = useState(5);
+  const a_userList = _userList.filter(user => user[7] == 'a');
+  const b_userList = _userList.filter(user => user[7] == 'b');
 
   useEffect(() => {
     if (game === 1) {
@@ -55,13 +58,13 @@ const MinigameCharacter = ({
               style={{ width: 1000, borderBottom: 'none' }}
             >
               <ImageList
-                rowHeight={100}
-                cols={5}
+                rowHeight={160}
+                cols={col}
                 gap={1}
                 className={'imagelist'}
               >
-                {_userList.map(
-                  char =>
+                {a_userList.map(
+                  (char, index) =>
                     // char[1] !== _loginUser['userName'] &&
                     char[7] === 'a' && (
                       <ImageListItem key={char[1]}>
@@ -73,6 +76,8 @@ const MinigameCharacter = ({
                           position={[char[5], char[6]]}
                           emoticon={char[4]}
                           gamenumber={GameNumber}
+                          index={index}
+                          column={col}
                         />
                       </ImageListItem>
                     )
@@ -90,11 +95,11 @@ const MinigameCharacter = ({
             >
               <ImageList
                 rowHeight={100}
-                cols={5}
+                cols={col}
                 gap={1}
                 className={'imagelist'}
               >
-                {_userList.map(
+                {b_userList.map(
                   (char, index) =>
                     // char[1] !== _loginUser['userName'] &&
                     char[7] === 'b' && (
@@ -106,6 +111,8 @@ const MinigameCharacter = ({
                           loggin={false}
                           emoticon={char[4]}
                           gamenumber={GameNumber}
+                          index={index}
+                          column={col}
                         />
                       </ImageListItem>
                     )

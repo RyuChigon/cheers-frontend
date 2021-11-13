@@ -26,7 +26,7 @@ export const LowerContainer = styled.div`
 
 export const C1 = styled.div`
   display: flex;
-  width: 9%;
+  width: 9.6%;
   height: 70%;
   flex-grow: 1;
   align-items: center;

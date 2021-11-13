@@ -5,6 +5,9 @@ const initialstate = {
   userList: [],
   a_team: 0,
   b_team: 0,
+  a_team2: 0,
+  b_team2: 0,
+  minigame2_barposition: 0,
 };
 
 export default function (state = initialstate, action) {
@@ -43,9 +46,33 @@ export default function (state = initialstate, action) {
         a_team: action.payload[0],
         b_team: action.payload[1],
       };
-    case types.CHEERING:
-      return state;
+    case types.CHEER_SCORE2:
+      if (action.payload[0] == null) {
+        return {
+          ...state,
+          a_team2: 0,
+          b_team2: action.payload[1],
+        };
+      }
+      if (action.payload[1] == null) {
+        return {
+          ...state,
+          a_team2: action.payload[0],
+          b_team2: 0,
+        };
+      }
+      return {
+        ...state,
+        a_team2: action.payload[0],
+        b_team2: action.payload[1],
+      };
+    case types.SET_BAR_POSITION:
+      return {
+        ...state,
+        minigame2_barposition: action.payload,
+      };
     default:
+      console.log(state);
       return state;
   }
 }

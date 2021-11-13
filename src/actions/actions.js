@@ -65,10 +65,17 @@ export function setCheerScore(a_team, b_team) {
   };
 }
 
-export function cheering() {
-  request('get', USER_URL + '/cheering', null);
+export function setCheerScore2(a_team2, b_team2) {
+  console.log('setcheerscore2: ' + a_team2 + ' ' + b_team2);
   return {
-    type: types.CHEERING,
-    payload: null,
+    type: types.CHEER_SCORE2,
+    payload: [a_team2, b_team2],
+  };
+}
+
+export function setBarposition(position) {
+  return {
+    type: types.SET_BAR_POSITION,
+    payload: position,
   };
 }
