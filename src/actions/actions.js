@@ -79,3 +79,17 @@ export function setBarposition(position) {
     payload: position,
   };
 }
+
+export async function getViewpoints() {
+  const data = await request('get', USER_URL + '/viewpoints', null);
+  if (data === undefined) {
+    return {
+      type: types.GET_VIEWPOINTS,
+      payload: null,
+    };
+  }
+  return {
+    type: types.GET_VIEWPOINTS,
+    payload: data.viewpoints,
+  };
+}

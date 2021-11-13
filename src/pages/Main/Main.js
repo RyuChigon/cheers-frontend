@@ -22,7 +22,6 @@ const socket = io.connect('http://localhost:80/');
 const Main = () => {
   const _userList = useSelector(state => state.user.userList);
   const _loginUser = useSelector(state => state.user.loginUser);
-  const [position, setPosition] = useState([0, 0]);
   const dispatch = useDispatch();
   const history = useHistory();
   const [adminchatArr, setAdminChatArr] = useState([]);
@@ -40,59 +39,15 @@ const Main = () => {
     socket.on('admin-msg-rcv', item => {
       setAdminChatArr(item.message);
       setNotice(true);
-      // setTimeout(function () {
-      //   // alert(item.message);
-      //   setNotice(!notice);
-      // }, 3000);
     });
   }, []);
 
-  const showOthers = () => {
-    dispatch(getAllUser());
-  };
-
-  const moveCharacter = e => {
-    switch (e.key) {
-      case 'ArrowLeft': {
-        setPosition([position[0], position[1] - 5]);
-        console.log(_loginUser);
-        break;
-      }
-      case 'ArrowRight': {
-        setPosition([position[0], position[1] + 5]);
-        break;
-      }
-      case 'ArrowUp': {
-        setPosition([position[0] - 5, position[1]]);
-        break;
-      }
-      case 'ArrowDown': {
-        setPosition([position[0] + 5, position[1]]);
-        break;
-      }
-      case ' ': {
-        setCheer(true);
-        break;
-      }
-      case 'Enter': {
-        showOthers();
-      }
-      default:
-        break;
-    }
-  };
-
   const noticeRemove = () => setNotice(false);
 
-  const keyUp = () => setCheer(false);
-
   return (
-    // <MainContainer onKeyDown={moveCharacter} onKeyUp={keyUp} tabIndex="0">
     <MainContainer tableIndex="0">
       <Header />
-      <ViewPoint />
       <Video />
-      {/* <Video width={'800px'} height={'500px'} /> */}
       <div>
         {_userList.map(
           (char, index) =>
@@ -123,6 +78,7 @@ const Main = () => {
             )
         )}
       </div>
+      <ViewPoint />
       <CheerGuide src={cheer_guide} />
       {notice ? (
         <NoticeBox onClick={noticeRemove}>

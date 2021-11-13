@@ -6,6 +6,7 @@ const types = {
   CHEER_SCORE: 'CHEER_SCORE',
   CHEER_SCORE2: 'CHEER_SCORE2',
   SET_BAR_POSITION: 'SET_BAR_POSITION',
+  GET_VIEWPOINTS: 'GET_VIEWPOINTS',
 };
 
 export default types;

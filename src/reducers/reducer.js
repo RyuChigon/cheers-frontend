@@ -8,6 +8,7 @@ const initialstate = {
   a_team2: 0,
   b_team2: 0,
   minigame2_barposition: 0,
+  viewpoints: [],
 };
 
 export default function (state = initialstate, action) {
@@ -90,6 +91,11 @@ export default function (state = initialstate, action) {
       return {
         ...state,
         minigame2_barposition: action.payload,
+      };
+    case types.GET_VIEWPOINTS:
+      return {
+        ...state,
+        viewpoints: action.payload,
       };
     default:
       return state;

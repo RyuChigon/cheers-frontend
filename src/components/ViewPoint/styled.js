@@ -34,6 +34,7 @@ export const ViewContainer = styled.div`
   background: rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   padding: 10px 0;
+  overflow: scroll;
 
   position: absolute;
   top: 80px;
@@ -50,10 +51,43 @@ export const ViewContent = styled.div`
   border-radius: 10px;
   padding: 5px 5px;
   font-size: 1rem;
+  cursor: pointer;
 `;
 
 export const ViewImage = styled.img`
   width: 168px;
   height: 89px;
   margin-bottom: 5px;
+`;
+
+export const ViewMode = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
+export const ViewWindow = styled.div`
+  width: 872px;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f8f8f8;
+  border-radius: 10px;
+  padding: 20px;
+`;
+
+export const ViewVideo = styled.video`
+  width: 827px;
+  height: 464px;
 `;
