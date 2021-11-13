@@ -43,12 +43,13 @@ export const ViewContainer = styled.div`
 
 export const ViewContent = styled.div`
   width: 166px;
-  height: 136px;
+  height: 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #f4f4f4;
   border-radius: 10px;
+  margin-bottom: 15px;
   padding: 5px 5px;
   font-size: 1rem;
   cursor: pointer;
