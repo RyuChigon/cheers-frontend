@@ -22,6 +22,7 @@ import {
   balloon,
 } from '@/images/emoticons';
 import io from 'socket.io-client';
+import { request } from '@/utils/axios';
 
 const chartHeight = window.innerHeight;
 const chartWidth = window.innerWidth;
@@ -135,7 +136,7 @@ const Character = ({
         break;
       }
       case ' ': {
-        request('get', USER_URL + '/cheering', null);
+        request('get', '/api/user/cheering', null);
         setCheer(true);
         socket.emit('cheer-snd', {
           name: _loginUser['userName'],
