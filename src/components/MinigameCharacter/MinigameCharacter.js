@@ -40,8 +40,6 @@ const MinigameCharacter = ({
     } else if (game === 2) {
       setGameNumber(2);
     }
-    console.log('a_userList : ' + a_userList);
-    console.log('b_userList : ' + b_userList);
   }, []);
 
   dispatch(getAllUser());

@@ -93,7 +93,7 @@ const MiniGame2 = () => {
     });
     socket.on('minigame-cheer-rcv', item => {
       if (item.cheer === '1') {
-        dispatch(setCheerScore(item.a_score, item.b_score));
+        dispatch(setCheerScore(item.a_score2, item.b_score2));
       }
     });
   }, []);
