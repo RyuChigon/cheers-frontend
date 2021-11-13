@@ -40,51 +40,10 @@ const Main = () => {
     socket.on('admin-msg-rcv', item => {
       setAdminChatArr(item.message);
       setNotice(true);
-      // setTimeout(function () {
-      //   // alert(item.message);
-      //   setNotice(!notice);
-      // }, 3000);
     });
   }, []);
 
-  const showOthers = () => {
-    dispatch(getAllUser());
-  };
-
-  const moveCharacter = e => {
-    switch (e.key) {
-      case 'ArrowLeft': {
-        setPosition([position[0], position[1] - 5]);
-        console.log(_loginUser);
-        break;
-      }
-      case 'ArrowRight': {
-        setPosition([position[0], position[1] + 5]);
-        break;
-      }
-      case 'ArrowUp': {
-        setPosition([position[0] - 5, position[1]]);
-        break;
-      }
-      case 'ArrowDown': {
-        setPosition([position[0] + 5, position[1]]);
-        break;
-      }
-      case ' ': {
-        setCheer(true);
-        break;
-      }
-      case 'Enter': {
-        showOthers();
-      }
-      default:
-        break;
-    }
-  };
-
   const noticeRemove = () => setNotice(false);
-
-  const keyUp = () => setCheer(false);
 
   return (
     // <MainContainer onKeyDown={moveCharacter} onKeyUp={keyUp} tabIndex="0">
