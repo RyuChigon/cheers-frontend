@@ -40,6 +40,13 @@ const Chat = () => {
     }); //receive message이벤트에 대한 콜백을 등록해줌
   }, []);
 
+  socket.on('msg-rcv', item => {
+    var el = document.getElementById('ef');
+    if (el != null && el.scrollHeight > 0) {
+      el.scrollTop = el.scrollHeight;
+    }
+  });
+
   const onClickSend = () => {
     if (document.getElementById('input').value == null) {
       console.log('empty message box');
@@ -62,25 +69,7 @@ const Chat = () => {
   return (
     <ChatContainer onKeyDown={onEnterSend}>
       {expand ? (
-        <ExpandField>
-          {/* {chatArr.map(ele => {
-            if (ele.name == _loginUser['userName']) {
-              console.log('me!!!!!');
-                <Balloon_me key={ele.name}>
-                  <div>{ele.name + ': ' + ele.message}</div>
-                </Balloon_me>;
-            } else if (ele.team == 'a') {
-              console.log('a!!!!');
-              <Balloon_a key={ele.name}>
-                <div>{ele.name + ': ' + ele.message}</div>
-              </Balloon_a>;
-            } else {
-              console.log('b!!!!');
-              <Balloon_b key={ele.name}>
-                <div>{ele.name + ': ' + ele.message}</div>
-              </Balloon_b>;
-            }
-          })} */}
+        <ExpandField id="ef">
           {chatArr.map(ele => (
             <ChatBalloon
               key={ele.name}
@@ -88,10 +77,6 @@ const Chat = () => {
               userName={ele.name}
               message={ele.message}
             />
-            // <Balloon_me key={ele.name}>
-            //   <div>{ele.name + ': ' + ele.message}</div>
-            // </Balloon_me>
-            // ChatBalloon(ele.team, ele.name, ele.message);
           ))}
         </ExpandField>
       ) : null}
