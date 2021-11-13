@@ -15,7 +15,7 @@ import {
 
 const Main = () => {
   return (
-    <MainContainer>
+    <MainContainer tableIndex="0">
       <Header />
       <SubContainer>
         <SubContainerLeft>
