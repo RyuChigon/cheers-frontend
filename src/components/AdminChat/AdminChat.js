@@ -15,7 +15,7 @@ const AdminChat = () => {
   // dispatch(getAllUser());
 
   const onClickSend = () => {
-    if (document.getElementById('input').value == null) {
+    if (document.getElementById('input').value == '') {
       console.log('empty message box');
     } else {
       socket.emit('admin-msg-snd', {

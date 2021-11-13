@@ -26,7 +26,8 @@ export const CheerGuide = styled.img`
 
 export const CommunicationContent = styled.div`
   display: flex;
-  align-items: center;
+  // align-items: center;
+  align-items: end;
   position: absolute;
   bottom: 20px;
   right: 20px;

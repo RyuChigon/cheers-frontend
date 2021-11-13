@@ -6,4 +6,6 @@ export { default as cheer_guide } from './cheer_guide.png';
 export { default as emoticon_btn } from './emoticon_btn.png';
 export { default as enter_btn } from './enter_btn.png';
 export { default as expand_btn } from './expand_btn.png';
+export { default as notexpand_btn } from './notexpand_btn.png';
 export { default as trashcan } from './trashcan.png';
+export { default as report } from './report.png';

@@ -11,8 +11,9 @@ import {
   Balloon_me,
   Balloon_a,
   Balloon_b,
+  NotExpand,
 } from './styled';
-import { enter_btn, expand_btn } from '@/images/etc';
+import { enter_btn, expand_btn, notexpand_btn } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import ChatBalloon from '@/components/ChatBalloon';
@@ -27,8 +28,6 @@ const Chat = () => {
   const [expand, setExpand] = useState(false);
   const onClickExpand = () => setExpand(!expand);
   const [chatArr, setChatArr] = useState([]);
-  const [chat, setChat] = useState({ name: 'huikyeong', message: '' });
-  // const _userList = useSelector(state => state.user.userList);
   const _loginUser = useSelector(state => state.user.loginUser);
   const dispatch = useDispatch();
 
@@ -67,25 +66,32 @@ const Chat = () => {
   };
 
   return (
-    <ChatContainer onKeyDown={onEnterSend}>
-      {expand ? (
-        <ExpandField id="ef">
-          {chatArr.map(ele => (
-            <ChatBalloon
-              key={ele.name}
-              team={ele.team}
-              userName={ele.name}
-              message={ele.message}
-            />
-          ))}
-        </ExpandField>
-      ) : null}
-      <Expand src={expand_btn} onClick={onClickExpand} />
-      <ChatContent>
-        <Input id="input" placeholder="send a message..." />
-        <Enter src={enter_btn} onClick={onClickSend} />
-      </ChatContent>
-    </ChatContainer>
+    <div>
+      {/* <ReportAlert /> */}
+      <ChatContainer onKeyDown={onEnterSend}>
+        {expand ? (
+          <ExpandField id="ef">
+            {chatArr.map(ele => (
+              <ChatBalloon
+                key={ele.name}
+                team={ele.team}
+                userName={ele.name}
+                message={ele.message}
+              />
+            ))}
+          </ExpandField>
+        ) : null}
+        {expand ? (
+          <NotExpand src={notexpand_btn} onClick={onClickExpand} />
+        ) : (
+          <Expand src={expand_btn} onClick={onClickExpand} />
+        )}
+        <ChatContent>
+          <Input id="input" placeholder="send a message..." />
+          <Enter src={enter_btn} onClick={onClickSend} />
+        </ChatContent>
+      </ChatContainer>
+    </div>
   );
 };
 
