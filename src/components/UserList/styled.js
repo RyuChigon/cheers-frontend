@@ -7,7 +7,7 @@ export const UserListContainer = styled.div`
   border-radius: 30px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   padding-bottom: 20px;
 `;
@@ -17,8 +17,7 @@ export const UserListHeader = styled.div`
   height: 10%;
   display: flex;
   align-items: center;
-  // justify-content: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-direction: row;
 `;
 
@@ -31,7 +30,7 @@ export const Text = styled.div`
   justify-content: center;
   font-weight: bold;
   text-shadow: 1px 1px 2px #444444;
-  padding-left: 340px;
+  padding-left: 20px;
 `;
 
 export const List = styled.div`
@@ -42,7 +41,7 @@ export const List = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   overflow-y: scroll;
-  // background: #bdd99c;
+  background: #ffffff;
   background-color: rgba(255, 255, 255, 0.15);
   border-radius: 10px;
   &::-webkit-scrollbar {
@@ -63,5 +62,5 @@ export const List = styled.div`
 export const TrashCan = styled.img`
   height: 40%;
   display: flex;
-  padding-left: 220px;
+  padding-left: 20px;
 `;

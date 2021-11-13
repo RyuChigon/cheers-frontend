@@ -4,6 +4,7 @@ import AdminChat from '@/components/AdminChat';
 import SelectMiniGame from '@/components/SelectMiniGame';
 import UserList from '@/components/UserList';
 import GameProgress from '@/components/GameProgress';
+import Video from '@/components/Video';
 import {
   MainContainer,
   SubContainer,
@@ -11,6 +12,7 @@ import {
   SubContainerRight,
   UserListContainer,
   GameContainer,
+  SubUserListGameLeft,
 } from './styled';
 
 const Main = () => {
@@ -19,13 +21,16 @@ const Main = () => {
       <Header />
       <SubContainer>
         <SubContainerLeft>
-          <UserListContainer>
-            <UserList />
-          </UserListContainer>
-          <GameContainer>
-            <SelectMiniGame />
-            <GameProgress />
-          </GameContainer>
+          <Video />
+          <SubUserListGameLeft>
+            <UserListContainer>
+              <UserList />
+            </UserListContainer>
+            <GameContainer>
+              <SelectMiniGame />
+              <GameProgress />
+            </GameContainer>
+          </SubUserListGameLeft>
         </SubContainerLeft>
         <SubContainerRight>
           <AdminChat />
