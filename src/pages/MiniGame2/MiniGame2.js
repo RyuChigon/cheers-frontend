@@ -106,7 +106,6 @@ const MiniGame2 = () => {
         <MinigameCharacter game={2} />
         <C1 position={_position} />
       </LowerContainer>
-      {/* <LowerBackContainer /> */}
       <CommunicationContent>
         <Emoticon />
         <Chat />

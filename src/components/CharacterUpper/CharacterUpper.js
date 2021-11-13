@@ -51,16 +51,6 @@ const Character = ({
   };
 
   useEffect(() => {
-    console.log(
-      '_a_team : ' +
-        _a_team +
-        ', _b_team : ' +
-        _b_team +
-        ', _a_team2 : ' +
-        _a_team2 +
-        ', _b_team2 : ' +
-        _b_team2
-    );
     if (userName != _loginUser['userName']) {
       setEmo(emoticon);
       socket.on('emogee-rcv', item => {
@@ -69,8 +59,6 @@ const Character = ({
         }
       });
       socket.on('minigame-cheer-rcv', item => {
-        // console.log('minigame-cheer-rcv');
-        // console.log(item);
         if (item.name === userName) {
           if (item.cheer === '0') {
             setCheer(false);
