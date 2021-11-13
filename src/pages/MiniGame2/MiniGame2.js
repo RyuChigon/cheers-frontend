@@ -50,19 +50,13 @@ const useCounter = (initialValue, ms) => {
 };
 
 const MiniGame2 = () => {
-  const a_team = useSelector(state => state.user.a_team);
-  const b_team = useSelector(state => state.user.b_team);
   const dispatch = useDispatch();
   const history = useHistory();
   const [_position, setPosition] = useState(0);
   const [_flag, setFlag] = useState(false);
-  const [cnt, setCnt] = useState(0);
 
   dispatch(getAllUser());
-
-  const [currentHours, setCurrentHours] = useState(0);
-  const [currentMinutes, setCurrentMinutes] = useState(0);
-  const [currentSeconds, setCurrentSeconds] = useState(0);
+  
   const { count, start, stop, reset } = useCounter(0, 50);
 
   socket.on('minigame2-start-rcv', item => {
