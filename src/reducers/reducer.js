@@ -80,7 +80,6 @@ export default function (state = initialstate, action) {
         viewpoints: action.payload,
       };
     default:
-      console.log(state);
       return state;
   }
 }
