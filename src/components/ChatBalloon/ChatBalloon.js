@@ -12,7 +12,7 @@ import io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:80/');
 
-const Chatballoon = ({ team, userName, message }) => {
+const Chatballoon = ({ team, userName, message, isuser }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
   const [pageOn, setPageOn] = useState(false);
 
@@ -42,7 +42,7 @@ const Chatballoon = ({ team, userName, message }) => {
     }
   };
 
-  if (userName == _loginUser['userName']) {
+  if (userName == _loginUser['userName'] && isuser) {
     return (
       <Balloon_general>
         <Balloon_me onClick={handleChatClick}>

@@ -66,32 +66,30 @@ const Chat = () => {
   };
 
   return (
-    <div>
-      {/* <ReportAlert /> */}
-      <ChatContainer onKeyDown={onEnterSend}>
-        {expand ? (
-          <ExpandField id="ef">
-            {chatArr.map(ele => (
-              <ChatBalloon
-                key={ele.name}
-                team={ele.team}
-                userName={ele.name}
-                message={ele.message}
-              />
-            ))}
-          </ExpandField>
-        ) : null}
-        {expand ? (
-          <NotExpand src={notexpand_btn} onClick={onClickExpand} />
-        ) : (
-          <Expand src={expand_btn} onClick={onClickExpand} />
-        )}
-        <ChatContent>
-          <Input id="input" placeholder="send a message..." />
-          <Enter src={enter_btn} onClick={onClickSend} />
-        </ChatContent>
-      </ChatContainer>
-    </div>
+    <ChatContainer onKeyDown={onEnterSend}>
+      {expand ? (
+        <ExpandField id="ef">
+          {chatArr.map(ele => (
+            <ChatBalloon
+              key={ele.name}
+              team={ele.team}
+              userName={ele.name}
+              message={ele.message}
+              isuser={true}
+            />
+          ))}
+        </ExpandField>
+      ) : null}
+      {expand ? (
+        <NotExpand src={notexpand_btn} onClick={onClickExpand} />
+      ) : (
+        <Expand src={expand_btn} onClick={onClickExpand} />
+      )}
+      <ChatContent>
+        <Input id="input" placeholder="send a message..." />
+        <Enter src={enter_btn} onClick={onClickSend} />
+      </ChatContent>
+    </ChatContainer>
   );
 };
 
