@@ -22,11 +22,10 @@ const socket = io.connect('http://localhost:80/');
 const Main = () => {
   const _userList = useSelector(state => state.user.userList);
   const _loginUser = useSelector(state => state.user.loginUser);
-  const [position, setPosition] = useState([0, 0]);
   const dispatch = useDispatch();
   const history = useHistory();
   const [adminchatArr, setAdminChatArr] = useState([]);
-  const [notice, setNotice] = useState(false);
+  const [timer, settimer] = useState(0);
 
   dispatch(getAllUser());
 
@@ -39,19 +38,21 @@ const Main = () => {
   useEffect(() => {
     socket.on('admin-msg-rcv', item => {
       setAdminChatArr(item.message);
-      setNotice(true);
+      settimer(timer => timer + 1);
+      console.log('timer increase to ' + timer);
+      setTimeout(() => {
+        settimer(timer => timer - 1);
+        console.log('timer decrease to ' + timer);
+      }, 4000);
     });
   }, []);
 
   const noticeRemove = () => setNotice(false);
 
   return (
-    // <MainContainer onKeyDown={moveCharacter} onKeyUp={keyUp} tabIndex="0">
     <MainContainer tableIndex="0">
       <Header />
-      <ViewPoint />
       <Video />
-      {/* <Video width={'800px'} height={'500px'} /> */}
       <div>
         {_userList.map(
           (char, index) =>
@@ -82,8 +83,9 @@ const Main = () => {
             )
         )}
       </div>
+      <ViewPoint />
       <CheerGuide src={cheer_guide} />
-      {notice ? (
+      {timer > 0 ? (
         <NoticeBox onClick={noticeRemove}>
           {
             <>
