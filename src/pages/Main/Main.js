@@ -16,8 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import { useHistory } from 'react-router';
 
-import io from 'socket.io-client';
-const socket = io.connect('http://localhost:80/');
+import socket from '@/utils/socket';
 
 const Main = () => {
   const _userList = useSelector(state => state.user.userList);

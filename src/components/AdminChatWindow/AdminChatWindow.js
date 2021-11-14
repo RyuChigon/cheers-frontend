@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { WindowContainer, Text, ChatList } from './styled';
 import ChatBalloon from '../ChatBalloon';
+import socket from '@/utils/socket';
 
-import io from 'socket.io-client';
-
-const socket = io.connect('http://localhost:80/');
 socket.emit('init_chat', { name: 'chat' });
 
 const AdminChatWindow = () => {

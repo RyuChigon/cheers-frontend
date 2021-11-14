@@ -14,8 +14,7 @@ import {
   TableColumn,
 } from '@material-ui/core';
 import MinigameCharacter from '@/components/MinigameCharacter';
-import io from 'socket.io-client';
-const socket = io.connect('http://localhost:80/');
+import socket from '@/utils/socket';
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);

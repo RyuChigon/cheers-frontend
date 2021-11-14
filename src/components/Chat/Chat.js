@@ -17,11 +17,8 @@ import { enter_btn, expand_btn, notexpand_btn } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import ChatBalloon from '@/components/ChatBalloon';
+import socket from '@/utils/socket';
 
-import io from 'socket.io-client';
-
-// const socket = io.connect('http://192.249.28.102:80/');
-const socket = io.connect('http://localhost:80/');
 socket.emit('init_chat', { name: 'chat' });
 
 const Chat = () => {

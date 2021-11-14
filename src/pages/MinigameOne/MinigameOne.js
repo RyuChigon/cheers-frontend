@@ -25,8 +25,7 @@ import {
   TableColumn,
 } from '@material-ui/core';
 import { setCheerScore } from '@/actions/actions';
-import io from 'socket.io-client';
-const socket = io.connect('http://localhost:80/');
+import socket from '@/utils/socket';
 
 const MinigameOne = () => {
   const dispatch = useDispatch();

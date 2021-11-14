@@ -11,13 +11,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser, setCheerScore, setBarposition } from '@/actions/actions';
 import { useHistory } from 'react-router';
-import io from 'socket.io-client';
+import socket from '@/utils/socket';
 
 import UpperContainer from '@/components/UpperContainer';
 
 import MinigameCharacter from '@/components/MinigameCharacter';
-
-const socket = io.connect('http://localhost:80/');
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);

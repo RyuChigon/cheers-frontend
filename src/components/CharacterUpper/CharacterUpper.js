@@ -15,9 +15,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { setCheerScore, setCheerScore2 } from '@/actions/actions';
 import { angry, exclamation, smile, heart, none } from '@/images/emoticons';
-import io from 'socket.io-client';
-
-const socket = io.connect('http://localhost:80/');
+import socket from '@/utils/socket';
 
 const Character = ({
   character,
