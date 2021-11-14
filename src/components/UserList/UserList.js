@@ -43,7 +43,7 @@ const UserList = () => {
         <TrashCan src={trashcan} onClick={kickOut} />
       </UserListHeader>
       <List>
-        <ImageList rowHeight={60} cols={6} className={'imagelist'}>
+        <ImageList rowHeight={60} cols={3} className={'imagelist'}>
           {_userList.map((char, index) => (
             <ImageListItem key={char[1]}>
               <UserBox
