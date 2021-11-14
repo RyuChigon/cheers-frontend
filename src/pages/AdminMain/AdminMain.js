@@ -14,8 +14,11 @@ import {
   GameContainer,
   SubUserListGameLeft,
 } from './styled';
+import { useSelector } from 'react-redux';
 
 const Main = () => {
+  const isadmin = useSelector(state => state.user.isadmin);
+  console.log('isadmin? : ' + isadmin);
   return (
     <MainContainer tableIndex="0">
       <Header />

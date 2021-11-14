@@ -5,10 +5,13 @@ import socket from '@/utils/socket';
 
 const SelectMiniGame = () => {
   const history = useHistory();
-  const game1Start = () => history.push('/admin/game1start/');
+  const game1Start = () => {
+    socket.emit('minigame1-start-snd', {});
+    history.push('/minigameone/');
+  };
   const game2Start = () => {
-    console.log('game2start');
     socket.emit('minigame2-start-snd', {});
+    history.push('/minigame2');
   };
   return (
     <GameContainer>

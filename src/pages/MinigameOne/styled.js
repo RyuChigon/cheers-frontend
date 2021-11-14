@@ -63,3 +63,17 @@ export const Logo_right = styled.img`
   bottom: 0px;
   left: 0px;
 `;
+
+export const NoticeBox = styled.div`
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #000000;
+  opacity: 0.7;
+  font-size: 2rem;
+  color: #9f9f9f;
+
+  z-index: 11;
+`;

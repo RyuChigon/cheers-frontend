@@ -101,3 +101,10 @@ export async function getViewpoints() {
     payload: data.viewpoints,
   };
 }
+
+export function setAdmin(tf) {
+  return {
+    type: types.IS_ADMIN,
+    payload: tf,
+  };
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Video from '@/components/Video';
 import { samsung_logo, hanwha_logo } from '@/images/logos';
@@ -12,6 +12,7 @@ import {
   ScoreFont_right,
   Logo_left,
   Logo_right,
+  NoticeBox,
 } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
@@ -32,10 +33,13 @@ const MinigameOne = () => {
   const history = useHistory();
   const a_team = useSelector(state => state.user.a_team);
   const b_team = useSelector(state => state.user.b_team);
+  const isadmin = useSelector(state => state.user.isadmin);
+  const [timer, settimer] = useState(0);
 
   dispatch(getAllUser());
 
   useEffect(() => {
+    console.log('isadmin : ' + isadmin);
     socket.on('kickout-rcv', item => {
       history.push('/');
     });
@@ -44,6 +48,14 @@ const MinigameOne = () => {
         dispatch(setCheerScore(item.a_score1, item.b_score1));
       }
     });
+    // socket.on('minigame1-start-rcv', item => {
+    settimer(timer => timer + 1);
+    console.log('timer increase to : ' + timer);
+    setTimeout(() => {
+      settimer(timer => timer - 1);
+      console.log('timer decrease to ' + timer);
+    }, 10000);
+    // });
   }, []);
 
   return (
@@ -82,6 +94,16 @@ const MinigameOne = () => {
         </Table>
       </TableContainer>
       <MinigameCharacter game={1} />
+      {timer > 0 ? (
+        <NoticeBox>
+          {
+            <>
+              <br />
+              When the game starts, PUSH SPACE BAR as fast as you can!
+            </>
+          }
+        </NoticeBox>
+      ) : null}
       <CommunicationContent>
         <Emoticon />
         <Chat />

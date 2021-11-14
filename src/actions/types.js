@@ -7,6 +7,7 @@ const types = {
   CHEER_SCORE2: 'CHEER_SCORE2',
   SET_BAR_POSITION: 'SET_BAR_POSITION',
   GET_VIEWPOINTS: 'GET_VIEWPOINTS',
+  IS_ADMIN: 'IS_ADMIN',
 };
 
 export default types;

@@ -44,6 +44,12 @@ const Main = () => {
         console.log('timer decrease to ' + timer);
       }, 4000);
     });
+    socket.on('minigame1-start-rcv', item => {
+      history.push('/minigameone');
+    });
+    socket.on('minigame2-start-rcv', item => {
+      history.push('/minigame2');
+    });
   }, []);
 
   const noticeRemove = () => setNotice(false);
