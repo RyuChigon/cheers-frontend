@@ -34,7 +34,7 @@ export const Text = styled.div`
 `;
 
 export const List = styled.div`
-  width: 95%;
+  width: 90%;
   height: 90%;
   display: flex;
   align-items: center;

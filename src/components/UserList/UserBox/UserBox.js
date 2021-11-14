@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { UserBoxContainer, Character } from './styled';
+import {
+  UserBoxContainer,
+  Character,
+  WithReport,
+  Exclamationstyle,
+  CharacterGrid,
+} from './styled';
 import {
   a_hanwha,
   a_samsung,
@@ -10,10 +16,13 @@ import {
   d_hanwha,
   d_samsung,
 } from '@/images/characters';
+import { exclamation } from '@/images/emoticons';
+import { useSelector } from 'react-redux';
 
 const Checkbox = props => <input type="checkbox" {...props} />;
 
-const UserBox = ({ userName, character, team, add, del }) => {
+const UserBox = ({ userName, character, team, add, del, report }) => {
+  const _userList = useSelector(state => state.user.userList);
   const [checked, setChecked] = useState(false);
   const handleChange = () => {
     setChecked(!checked);
@@ -44,6 +53,8 @@ const UserBox = ({ userName, character, team, add, del }) => {
       <Checkbox checked={checked} onClick={handleChange} />
       <Character src={characterImage()} />
       <div>{userName}</div>
+      <Exclamationstyle src={exclamation} />
+      <div>{report}</div>
     </UserBoxContainer>
   );
 };

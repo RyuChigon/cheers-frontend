@@ -54,7 +54,7 @@ export const UserListContainer = styled.div`
 `;
 
 export const GameContainer = styled.div`
-  width: 50%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column;
