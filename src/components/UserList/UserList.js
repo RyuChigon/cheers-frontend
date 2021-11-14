@@ -12,6 +12,7 @@ import UserBox from './UserBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import socket from '@/utils/socket';
+import { FormatAlignJustify } from '@material-ui/icons';
 
 socket.emit('init', { name: 'huikyeong' });
 
@@ -43,13 +44,14 @@ const UserList = () => {
         <TrashCan src={trashcan} onClick={kickOut} />
       </UserListHeader>
       <List>
-        <ImageList rowHeight={60} cols={3} className={'imagelist'}>
+        <ImageList rowHeight={60} cols={2} className={'imagelist'}>
           {_userList.map((char, index) => (
             <ImageListItem key={char[1]}>
               <UserBox
                 userName={char[1]}
                 character={char[3]}
                 team={char[7]}
+                report={char[8]}
                 add={addBadUser}
                 del={deleteBadUser}
               />
