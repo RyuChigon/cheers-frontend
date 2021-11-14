@@ -46,7 +46,7 @@ const Main = () => {
     });
   }, []);
 
-  const noticeRemove = () => setNotice(false);
+  // const noticeRemove = () => setNotice(false);
 
   return (
     <MainContainer tableIndex="0">
@@ -85,7 +85,8 @@ const Main = () => {
       <ViewPoint />
       <CheerGuide src={cheer_guide} />
       {timer > 0 ? (
-        <NoticeBox onClick={noticeRemove}>
+        // <NoticeBox onClick={noticeRemove}>
+        <NoticeBox>
           {
             <>
               <br />
