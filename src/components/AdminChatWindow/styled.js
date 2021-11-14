@@ -24,11 +24,11 @@ export const Text = styled.div`
 
 export const ChatList = styled.div`
   width: 100%;
-  height: 80%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  // justify-content: center;
   overflow: auto;
   overflow-x: hidden;
 `;
