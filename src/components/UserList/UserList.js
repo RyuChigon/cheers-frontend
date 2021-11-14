@@ -11,9 +11,8 @@ import { trashcan } from '@/images/etc';
 import UserBox from './UserBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
-import io from 'socket.io-client';
+import socket from '@/utils/socket';
 
-const socket = io.connect('http://localhost:80/');
 socket.emit('init', { name: 'huikyeong' });
 
 const UserList = () => {
@@ -44,7 +43,7 @@ const UserList = () => {
         <TrashCan src={trashcan} onClick={kickOut} />
       </UserListHeader>
       <List>
-        <ImageList rowHeight={60} cols={6} className={'imagelist'}>
+        <ImageList rowHeight={60} cols={3} className={'imagelist'}>
           {_userList.map((char, index) => (
             <ImageListItem key={char[1]}>
               <UserBox

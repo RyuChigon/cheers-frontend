@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
 import { GameContainer, Text, Game, Games, TextContainer } from './styled';
-import io from 'socket.io-client';
-
-const socket = io.connect('http://localhost:80/');
+import socket from '@/utils/socket';
 
 const SelectMiniGame = () => {
   const history = useHistory();

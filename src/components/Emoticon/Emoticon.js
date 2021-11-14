@@ -9,9 +9,7 @@ import { emoticon_btn } from '@/images/etc';
 import { angry, exclamation, heart, smile } from '@/images/emoticons';
 import { useDispatch, useSelector } from 'react-redux';
 import { chooseEmogee } from '@/actions/actions';
-import io from 'socket.io-client';
-
-const socket = io.connect('http://localhost:80/');
+import socket from '@/utils/socket';
 
 const Emoticon = () => {
   const [expand, setExpand] = useState(false);

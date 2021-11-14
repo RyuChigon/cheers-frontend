@@ -9,15 +9,13 @@ import {
   C1,
 } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser, setCheerScore, setBarposition } from '@/actions/actions';
+import { getAllUser, setCheerScore2, setBarposition } from '@/actions/actions';
 import { useHistory } from 'react-router';
-import io from 'socket.io-client';
+import socket from '@/utils/socket';
 
 import UpperContainer from '@/components/UpperContainer';
 
 import MinigameCharacter from '@/components/MinigameCharacter';
-
-const socket = io.connect('http://localhost:80/');
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
@@ -93,7 +91,7 @@ const MiniGame2 = () => {
     });
     socket.on('minigame-cheer-rcv', item => {
       if (item.cheer === '1') {
-        dispatch(setCheerScore(item.a_score2, item.b_score2));
+        dispatch(setCheerScore2(item.a_score2, item.b_score2));
       }
     });
   }, []);
@@ -106,7 +104,6 @@ const MiniGame2 = () => {
         <MinigameCharacter game={2} />
         <C1 position={_position} />
       </LowerContainer>
-      {/* <LowerBackContainer /> */}
       <CommunicationContent>
         <Emoticon />
         <Chat />

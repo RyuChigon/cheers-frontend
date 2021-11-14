@@ -8,9 +8,7 @@ import {
   Report_,
 } from './styled';
 import { report } from '@/images/etc';
-import io from 'socket.io-client';
-
-const socket = io.connect('http://localhost:80/');
+import socket from '@/utils/socket';
 
 const Chatballoon = ({ team, userName, message, isuser }) => {
   const _loginUser = useSelector(state => state.user.loginUser);

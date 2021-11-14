@@ -22,9 +22,7 @@ import {
   none,
   balloon,
 } from '@/images/emoticons';
-import io from 'socket.io-client';
-
-const socket = io.connect('http://localhost:80/');
+import socket from '@/utils/socket';
 
 const Character = ({
   character,
