@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import Header from '@/components/Header';
 import Video from '@/components/Video';
 import { samsung_logo, hanwha_logo } from '@/images/logos';
@@ -12,6 +12,7 @@ import {
   ScoreFont_right,
   Logo_left,
   Logo_right,
+  NoticeBox,
 } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
@@ -27,15 +28,104 @@ import {
 import { setCheerScore } from '@/actions/actions';
 import socket from '@/utils/socket';
 
+const useCounter = (initialValue, ms) => {
+  const [count, setCount] = useState(initialValue);
+  const intervalRef = useRef(null);
+  const start = useCallback(() => {
+    if (intervalRef.current != null) {
+      return;
+    }
+    intervalRef.current = setInterval(() => {
+      setCount(c => c + 1);
+    }, ms);
+    console.log(count);
+    if (count === 10) {
+      console.log(count);
+      reset();
+    }
+  }, []);
+  const stop = useCallback(() => {
+    if (intervalRef.current == null) {
+      return;
+    }
+    clearInterval(intervalRef.current);
+    intervalRef.current = null;
+  }, []);
+  const reset = useCallback(() => {
+    setCount(0);
+    // stop();
+  }, []);
+  return { count, start, stop, reset };
+};
+
 const MinigameOne = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const a_team = useSelector(state => state.user.a_team);
   const b_team = useSelector(state => state.user.b_team);
+  const _is_admin = useSelector(state => state.user.isadmin);
+  const [gamestarttimer, setGameStartTimer] = useState(0);
+  const [currentSeconds, setCurrentSeconds] = useState(0);
+  const gameCanStart = useRef(false);
+  const [isgameend, setIsGameEnd] = useState(false);
+  const [isgamereallyend, setIsGameReallyEnd] = useState(false);
+  const [gamestartcount, setGameStartCount] = useState(20);
+  const [gameEndtimer, setGameEndtimer] = useState(0);
+  const _a_score1 = useSelector(state => state.user.a_team);
+  const _b_score1 = useSelector(state => state.user.b_team);
+  const _loginUser = useSelector(state => state.user.loginUser);
 
   dispatch(getAllUser());
+  const { count, start, stop, reset } = useCounter(0, 1000);
 
+  if (isgamereallyend) {
+    setCheerScore(0, 0);
+    if (_is_admin) {
+      console.log('admin');
+      history.replace('/admin/main');
+    } else {
+      console.log('not admin');
+      history.replace('/main');
+    }
+  }
+
+  const timer = () => {
+    const seconds = count;
+    // console.log(count);
+    if (gameCanStart.current) {
+      if (seconds == 10) {
+        stop();
+        socket.emit('minigame-true-end-snd', {
+          name: _loginUser['userName'],
+        });
+        setIsGameEnd(true);
+        setGameEndtimer(gameEndtimer => gameEndtimer + 1);
+        setTimeout(() => {
+          setGameEndtimer(gameEndtimer => gameEndtimer - 1);
+          gameCanStart.current = false;
+          setIsGameReallyEnd(is => true);
+        }, 6000);
+      }
+    } else {
+      if (seconds % 1 == 0) {
+        // console.log(seconds);
+        setGameStartCount(gamestartcount => gamestartcount - 1);
+      }
+      if (seconds == 20) {
+        reset();
+        stop();
+        socket.emit('minigame-true-start-snd', {
+          name: _loginUser['userName'],
+        });
+        gameCanStart.current = true;
+        setGameStartTimer(gameStarttimer => gameStarttimer - 1);
+        start();
+      }
+    }
+  };
+  useEffect(timer, [count]);
   useEffect(() => {
+    console.log('isadmin : ' + _is_admin);
     socket.on('kickout-rcv', item => {
       history.push('/');
     });
@@ -44,6 +134,8 @@ const MinigameOne = () => {
         dispatch(setCheerScore(item.a_score1, item.b_score1));
       }
     });
+    setGameStartTimer(gamestarttimer => gamestarttimer + 1);
+    start();
   }, []);
 
   return (
@@ -82,6 +174,32 @@ const MinigameOne = () => {
         </Table>
       </TableContainer>
       <MinigameCharacter game={1} />
+      {gamestarttimer > 0 ? (
+        <NoticeBox>
+          {
+            <>
+              <br />
+              When the game starts, PUSH SPACE BAR as fast as you can!
+              <br />
+              Game will be start in {gamestartcount}
+            </>
+          }
+        </NoticeBox>
+      ) : null}
+      {gameEndtimer > 0 ? (
+        <NoticeBox>
+          {
+            <>
+              <br />
+              {a_team > b_team
+                ? 'The winner is team A!'
+                : a_team > b_team
+                ? 'The winner is team B!'
+                : 'The game is ended in tie!'}
+            </>
+          }
+        </NoticeBox>
+      ) : null}
       <CommunicationContent>
         <Emoticon />
         <Chat />

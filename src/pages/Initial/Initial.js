@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { InitialContainer, Logo, JoinButton, InputPasscode } from './styled';
 import CheersLogo from '@/images/logos/Cheers_logo.svg';
+import { useDispatch } from 'react-redux';
+import { setAdmin } from '@/actions/actions';
 
 const Initial = () => {
   const [adminAccess, setAdminAccess] = useState(false);
   const [passcode, setPasscode] = useState('');
+  const dispatch = useDispatch();
 
   const history = useHistory();
   const join = () => history.push('/game');
@@ -15,8 +18,10 @@ const Initial = () => {
     if (e.key === 'Enter') access();
   };
   const access = () => {
-    if (passcode === 'hello') history.push('/admin/game');
-    else {
+    if (passcode === 'hello') {
+      dispatch(setAdmin(true));
+      history.push('/admin/game');
+    } else {
       alert('Passcode is incorrect!');
       setAdminAccess(false);
     }

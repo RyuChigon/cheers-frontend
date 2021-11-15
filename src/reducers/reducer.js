@@ -9,6 +9,9 @@ const initialstate = {
   b_team2: 0,
   minigame2_barposition: 0,
   viewpoints: [],
+  isadmin: false,
+  num_a: 0,
+  num_b: 0,
 };
 
 export default function (state = initialstate, action) {
@@ -78,6 +81,17 @@ export default function (state = initialstate, action) {
       return {
         ...state,
         viewpoints: action.payload,
+      };
+    case types.IS_ADMIN:
+      return {
+        ...state,
+        isadmin: action.payload,
+      };
+    case types.GET_NUM_OF_EACH_TEAM:
+      return {
+        ...state,
+        num_a: action.payload1,
+        num_b: action.payload2,
       };
     default:
       return state;
