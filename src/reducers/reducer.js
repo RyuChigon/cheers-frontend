@@ -70,8 +70,6 @@ export default function (state = initialstate, action) {
         a_team2: action.payload[0],
         b_team2: action.payload[1],
       };
-    case types.CHEERING:
-      return state;
     case types.SET_BAR_POSITION:
       return {
         ...state,
@@ -92,6 +90,11 @@ export default function (state = initialstate, action) {
         ...state,
         num_a: action.payload1,
         num_b: action.payload2,
+      };
+    case types.INIT_VIEWPOINT:
+      return {
+        ...state,
+        viewpoints: [],
       };
     default:
       return state;

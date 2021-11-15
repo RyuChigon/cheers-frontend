@@ -9,6 +9,7 @@ const types = {
   GET_VIEWPOINTS: 'GET_VIEWPOINTS',
   IS_ADMIN: 'IS_ADMIN',
   GET_NUM_OF_EACH_TEAM: 'GET_NUM_OF_EACH_TEAM',
+  INIT_VIEWPOINT: 'INIT_VIEWPOINT',
 };
 
 export default types;
