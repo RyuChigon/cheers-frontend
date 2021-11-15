@@ -21,8 +21,8 @@ import socket from '@/utils/socket';
 import UpperContainer from '@/components/UpperContainer';
 
 import MinigameCharacter from '@/components/MinigameCharacter';
-import { NoticeBox } from '../Main/styled';
-import { CodeSharp } from '@material-ui/icons';
+import { NoticeBox } from '../MinigameOne/styled';
+import { io } from 'socket.io-client';
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
@@ -63,19 +63,20 @@ const MiniGame2 = () => {
   const [gameEndtimer, setGameEndtimer] = useState(0);
   const [gameStarttimer, setGameStarttimer] = useState(0);
   const gameCanStart = useRef(false);
-  const _a_score1 = useSelector(state => state.user.a_team);
-  const _b_score1 = useSelector(state => state.user.b_team);
+  const a_team2 = useSelector(state => state.user.a_team2);
+  const b_team2 = useSelector(state => state.user.b_team2);
   const _is_admin = useSelector(state => state.user.isadmin);
   const [isgamereallyend, setIsGameReallyEnd] = useState(false);
   const [isgameend, setIsGameEnd] = useState(false);
+  const _loginUser = useSelector(state => state.user.loginUser);
 
   dispatch(getAllUser());
   const { count, start, stop, reset } = useCounter(0, 50);
   const [currentSeconds, setCurrentSeconds] = useState(0);
 
   if (isgameend) {
-    console.log('a_score: ' + _a_score1);
-    console.log('b_score: ' + _b_score1);
+    console.log('a_score: ' + a_team2);
+    console.log('b_score: ' + b_team2);
   }
 
   if (isgamereallyend) {
@@ -99,15 +100,10 @@ const MiniGame2 = () => {
       }
       if (oneTurn.current == 2) {
         stop();
-        // setWinner(winner => {
-        //   if (_a_score1 > _b_score1) {
-        //     return 'The winner is team A!';
-        //   } else if (_a_score1 < _b_score1) {
-        //     return 'The winner is team B';
-        //   } else {
-        //     return 'The game ended in a tie';
-        //   }
-        // });
+        socket.emit('minigame-true-end-snd', {
+          name: _loginUser['userName'],
+        });
+        oneTurn.current = 0;
         setIsGameEnd(true);
         setGameEndtimer(gameEndtimer => gameEndtimer + 1);
         setTimeout(() => {
@@ -127,6 +123,9 @@ const MiniGame2 = () => {
         console.log('399s');
         reset();
         stop();
+        socket.emit('minigame-true-start-snd', {
+          name: _loginUser['userName'],
+        });
         gameCanStart.current = true;
         setGameStarttimer(gameStarttimer => gameStarttimer - 1);
         start();
@@ -137,8 +136,8 @@ const MiniGame2 = () => {
   useEffect(timer, [count]);
   useEffect(() => {
     console.log('isadmin? : ' + _is_admin);
-    console.log('a_team : ' + _a_score1);
-    console.log('b_team : ' + _b_score1);
+    console.log('a_team : ' + a_team2);
+    console.log('b_team : ' + b_team2);
     dispatch(setBarposition(0));
     socket.on('kickout-rcv', item => {
       history.push('/');
@@ -165,7 +164,9 @@ const MiniGame2 = () => {
           {
             <>
               <br />
-              Game rull explain, timer is {secondState} sec
+              Push the space bar when you&apos;re on the red bar!
+              <br />
+              Game will be start in {secondState} sec
             </>
           }
         </NoticeBox>
@@ -175,9 +176,11 @@ const MiniGame2 = () => {
           {
             <>
               <br />
-              {_a_score1 > _b_score1
+              {a_team2 > b_team2
                 ? 'The winner is team A!'
-                : 'The winner is team B!'}
+                : a_team > b_team
+                ? 'The winner is team B!'
+                : 'The game is ended in tie!'}
             </>
           }
         </NoticeBox>

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import types from './types';
 import { request } from '../utils/axios';
 
@@ -106,5 +107,30 @@ export function setAdmin(tf) {
   return {
     type: types.IS_ADMIN,
     payload: tf,
+  };
+}
+
+export async function getNumOfEachTeam() {
+  const data = await request('get', USER_URL + '/users', null);
+  var num_a = 0;
+  var num_b = 0;
+  var i;
+  if (data === undefined) {
+    return {
+      type: types.GET_ALL_USERS,
+      payload: null,
+    };
+  }
+  for (i = 0; i < data.length; i++) {
+    if (Object.values(data[i].team) == 'b') {
+      num_b += 1;
+    } else if (Object.values(data[i].team) == 'a') {
+      num_a += 1;
+    }
+  }
+  return {
+    type: types.GET_NUM_OF_EACH_TEAM,
+    payload1: num_a,
+    payload2: num_b,
   };
 }

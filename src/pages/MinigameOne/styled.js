@@ -72,7 +72,7 @@ export const NoticeBox = styled.div`
   align-items: center;
   background: #000000;
   opacity: 0.7;
-  font-size: 2rem;
+  font-size: 3rem;
   color: #9f9f9f;
 
   z-index: 11;
