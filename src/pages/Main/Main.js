@@ -13,7 +13,12 @@ import {
 } from './styled';
 import { cheer_guide } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser, setCheerScore, setCheerScore2 } from '@/actions/actions';
+import {
+  getAllUser,
+  initViewpoint,
+  setCheerScore,
+  setCheerScore2,
+} from '@/actions/actions';
 import { useHistory } from 'react-router';
 import socket from '@/utils/socket';
 
@@ -31,6 +36,7 @@ const Main = () => {
   useEffect(() => {
     dispatch(setCheerScore(0, 0));
     dispatch(setCheerScore2(0, 0));
+    dispatch(initViewpoint());
     console.log('is admin? :' + _is_admin);
     socket.on('kickout-rcv', item => {
       history.push('/');
