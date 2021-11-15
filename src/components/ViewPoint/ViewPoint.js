@@ -30,8 +30,8 @@ const ViewPoint = () => {
       </ViewPointButton>
       {expand && (
         <ViewContainer>
-          {_viewpoints.map((path, index) => (
-            <View path={path} key={index} />
+          {_viewpoints.map((num, index) => (
+            <View num={num} key={index} />
           ))}
         </ViewContainer>
       )}
@@ -41,21 +41,23 @@ const ViewPoint = () => {
 
 export default ViewPoint;
 
-const View = ({ path }) => {
+const View = ({ num }) => {
   const [mode, setMode] = useState(false);
+  const thumbnailPath = `./archive/thumbnail${num}_1.jpg`;
+  const videoPath = `./archive/archived${num}.mp4`;
   const Click = () => setMode(!mode);
 
   return (
     <>
       <ViewContent onClick={Click}>
-        <ViewImage />
+        <ViewImage src={require(`${thumbnailPath}`).default} />
         View Point!
       </ViewContent>
       {mode && (
         <ViewMode>
           <ClickAwayListener onClickAway={Click}>
             <ViewWindow>
-              <ViewVideo src={require(`${path}`).default} controls />
+              <ViewVideo src={require(`${videoPath}`).default} controls />
             </ViewWindow>
           </ClickAwayListener>
         </ViewMode>
