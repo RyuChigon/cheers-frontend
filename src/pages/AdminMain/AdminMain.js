@@ -14,8 +14,11 @@ import {
   GameContainer,
   SubUserListGameLeft,
 } from './styled';
+import { Button } from '@material-ui/core';
 
 const Main = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <MainContainer tableIndex="0">
       <Header />
