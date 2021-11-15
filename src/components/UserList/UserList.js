@@ -12,7 +12,7 @@ import UserBox from './UserBox';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import socket from '@/utils/socket';
-import { FormatAlignJustify } from '@material-ui/icons';
+import NoticePopup from '@/components/NoticePopup';
 
 socket.emit('init', { name: 'huikyeong' });
 
@@ -20,6 +20,16 @@ const UserList = () => {
   const _userList = useSelector(state => state.user.userList);
   const dispatch = useDispatch();
   const [badUserList, setBadUserList] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   const addBadUser = badUserName => {
     setBadUserList(badUserList.concat(badUserName));
   };
@@ -30,6 +40,7 @@ const UserList = () => {
   };
 
   const kickOut = () => {
+    openModal();
     socket.emit('kickout-snd', { badUserList });
   };
 
@@ -39,6 +50,16 @@ const UserList = () => {
   }, []);
   return (
     <UserListContainer>
+      {modalVisible && (
+        <NoticePopup
+          visible={modalVisible}
+          closable={true}
+          maskClosable={true}
+          onClose={closeModal}
+        >
+          Are you planning to kick out the following users?
+        </NoticePopup>
+      )}
       <UserListHeader>
         <Text>UserList</Text>
         <TrashCan src={trashcan} onClick={kickOut} />

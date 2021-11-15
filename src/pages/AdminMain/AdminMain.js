@@ -16,8 +16,10 @@ import {
 } from './styled';
 import { setCheerScore, setCheerScore2 } from '@/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 const Main = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   const isadmin = useSelector(state => state.user.isadmin);
   const dispatch = useDispatch();
 
@@ -27,6 +29,7 @@ const Main = () => {
   });
 
   console.log('isadmin? : ' + isadmin);
+
   return (
     <MainContainer tableIndex="0">
       <Header />
