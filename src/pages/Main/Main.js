@@ -15,7 +15,6 @@ import { cheer_guide } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import { useHistory } from 'react-router';
-
 import socket from '@/utils/socket';
 
 const Main = () => {
