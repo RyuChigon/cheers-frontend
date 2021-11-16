@@ -20,7 +20,6 @@ const ViewPoint = () => {
   const handleButton = () => {
     dispatch(getViewpoints());
     setExpand(!expand);
-    console.log(_viewpoints);
   };
 
   return (
@@ -29,11 +28,13 @@ const ViewPoint = () => {
         View Point
       </ViewPointButton>
       {expand && (
-        <ViewContainer>
-          {_viewpoints.map((num, index) => (
-            <View num={num} key={index} />
-          ))}
-        </ViewContainer>
+        <ClickAwayListener onClickAway={handleButton}>
+          <ViewContainer>
+            {_viewpoints.map((point, index) => (
+              <View point={point} key={index} />
+            ))}
+          </ViewContainer>
+        </ClickAwayListener>
       )}
     </>
   );
@@ -41,17 +42,18 @@ const ViewPoint = () => {
 
 export default ViewPoint;
 
-const View = ({ num }) => {
+const View = ({ point }) => {
   const [mode, setMode] = useState(false);
-  const thumbnailPath = `./archive/thumbnail${num}_1.jpg`;
-  const videoPath = `./archive/archived${num}.mp4`;
+  const thumbnailPath = `./archive/thumbnail${point.num}_1.jpg`;
+  const videoPath = `./archive/archived${point.num}.mp4`;
+  const time = `${point.hour}:${point.min}:${point.sec}`;
   const Click = () => setMode(!mode);
 
   return (
     <>
       <ViewContent onClick={Click}>
         <ViewImage src={require(`${thumbnailPath}`).default} />
-        View Point!
+        {time}
       </ViewContent>
       {mode && (
         <ViewMode>
