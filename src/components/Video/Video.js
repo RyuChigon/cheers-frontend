@@ -1,13 +1,13 @@
 import React from 'react';
 import { VideoContainer } from './styled';
 import { ReactFlvPlayer } from 'react-flv-player';
+import path from '@/utils/path';
 
 const Video = () => {
   return (
     <VideoContainer>
       <ReactFlvPlayer
-        //url="http://192.249.28.102:8000/live/cheers.flv"
-        url="http://localhost:8000/live/cheers.flv"
+        url={path.video}
         // width="800px"
         // height="500px"
         width="460px"

@@ -1,7 +1,7 @@
 import axios from 'axios';
+import path from './path';
 
-// const DOMAIN = 'http://192.249.28.102:9000';
-const DOMAIN = 'http://localhost:9000';
+const DOMAIN = path.backend;
 axios.defaults.withCredentials = true; // 쿠키 데이터를 전송받기 위해
 
 export const request = (method, url, data) => {
