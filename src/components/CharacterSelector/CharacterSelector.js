@@ -101,6 +101,10 @@ const CharacterSelector = () => {
   };
 
   const writeName = e => setName(e.target.value);
+  const enterPress = e => {
+    if (e.key === 'Enter') join();
+  };
+
   const join = () => {
     let body = {
       userName: name,
@@ -149,6 +153,7 @@ const CharacterSelector = () => {
         <InputNickname
           placeholder="write your nickname..."
           onChange={writeName}
+          onKeyPress={enterPress}
         />
         <Enter src={enter} onClick={join} />
       </InputContent>
