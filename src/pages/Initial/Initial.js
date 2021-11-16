@@ -4,6 +4,7 @@ import { InitialContainer, Logo, JoinButton, InputPasscode } from './styled';
 import CheersLogo from '@/images/logos/Cheers_logo.svg';
 import { useDispatch } from 'react-redux';
 import { setAdmin } from '@/actions/actions';
+import { request } from '@/utils/axios';
 
 const Initial = () => {
   const [adminAccess, setAdminAccess] = useState(false);
@@ -17,8 +18,11 @@ const Initial = () => {
   const keyPress = e => {
     if (e.key === 'Enter') access();
   };
-  const access = () => {
-    if (passcode === 'hello') {
+
+  const access = async () => {
+    const body = { passcode: passcode };
+    const res = await request('post', '/api/admin/access', body);
+    if (res.access === 'success') {
       dispatch(setAdmin(true));
       history.push('/admin/game');
     } else {
