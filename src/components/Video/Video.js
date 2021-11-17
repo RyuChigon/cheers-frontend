@@ -4,8 +4,8 @@ import { ReactFlvPlayer } from 'react-flv-player';
 import path from '@/utils/path';
 
 const Video = ({ size }) => {
-  const width = size === 'small' ? '460px' : '700px';
-  const height = size === 'small' ? '310px' : '450px';
+  const width = size === 'small' ? '420px' : '700px';
+  const height = size === 'small' ? '270px' : '450px';
   return (
     <VideoContainer>
       <ReactFlvPlayer

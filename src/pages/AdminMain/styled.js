@@ -30,7 +30,7 @@ export const SubContainerLeft = styled.div`
 
 export const SubUserListGameLeft = styled.div`
   width: 100%;
-  height: 100%;
+  height: 50%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -47,7 +47,7 @@ export const SubContainerRight = styled.div`
 
 export const UserListContainer = styled.div`
   width: 60%;
-  height: 90%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +55,7 @@ export const UserListContainer = styled.div`
 
 export const GameContainer = styled.div`
   width: 60%;
-  height: 100%;
+  height: 115%;
   display: flex;
   flex-direction: column;
   align-items: top;
