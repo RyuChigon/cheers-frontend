@@ -12,6 +12,22 @@ import {
   c_samsung_upper,
   d_hanwha_upper,
   d_samsung,
+  chigon_upper_h,
+  chigon_upper_cheer_h,
+  chigon_upper_s,
+  chigon_upper_cheer_s,
+  b_upper_h,
+  b_upper_cheer_h,
+  b_upper_s,
+  b_upper_cheer_s,
+  dain_upper_h,
+  dain_upper_cheer_h,
+  dain_upper_s,
+  dain_upper_cheer_s,
+  subin_upper_h,
+  subin_upper_cheer_h,
+  subin_upper_s,
+  subin_upper_cheer_s,
 } from '@/images/characters';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -100,19 +116,37 @@ const Character = ({
       case 'a':
         return team === 'a'
           ? _cheer
-            ? a_hanwha_upper_cheer
-            : a_hanwha_upper
+            ? chigon_upper_cheer_h
+            : chigon_upper_h
           : _cheer
-          ? a_samsung_upper_cheer
-          : a_samsung_upper;
+          ? chigon_upper_cheer_s
+          : chigon_upper_s;
       case 'b':
-        return team === 'a' ? b_hanwha_upper : b_samsung_upper;
+        return team === 'a'
+          ? _cheer
+            ? b_upper_cheer_h
+            : b_upper_h
+          : _cheer
+          ? b_upper_cheer_s
+          : b_upper_s;
       case 'c':
-        return team === 'a' ? c_hanwha_upper : c_samsung_upper;
+        return team === 'a'
+          ? _cheer
+            ? dain_upper_cheer_h
+            : dain_upper_h
+          : _cheer
+          ? dain_upper_cheer_s
+          : dain_upper_s;
       case 'd':
-        return team === 'a' ? d_hanwha_upper : d_samsung;
+        return team === 'a'
+          ? _cheer
+            ? subin_upper_cheer_h
+            : subin_upper_h
+          : _cheer
+          ? subin_upper_cheer_s
+          : subin_upper_s;
       default:
-        return a_hanwha;
+        return chiogn_upper_h;
     }
   };
 

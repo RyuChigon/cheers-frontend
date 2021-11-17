@@ -7,14 +7,14 @@ import {
   CharacterGrid,
 } from './styled';
 import {
-  a_hanwha,
-  a_samsung,
-  b_hanwha,
-  b_samsung,
-  c_hanwha,
-  c_samsung,
-  d_hanwha,
-  d_samsung,
+  chigon_default_h,
+  chigon_default_s,
+  b_default_h,
+  b_default_s,
+  dain_default_h,
+  dain_default_s,
+  subin_default_h,
+  subin_default_s,
 } from '@/images/characters';
 import { exclamation } from '@/images/emoticons';
 import { useSelector } from 'react-redux';
@@ -36,15 +36,15 @@ const UserBox = ({ userName, character, team, add, del, report }) => {
   const characterImage = () => {
     switch (character) {
       case 'a':
-        return team === 'a' ? a_hanwha : a_samsung;
+        return team === 'a' ? chigon_default_h : chigon_default_s;
       case 'b':
-        return team === 'a' ? b_hanwha : b_samsung;
+        return team === 'a' ? b_default_h : b_default_s;
       case 'c':
-        return team === 'a' ? c_hanwha : c_samsung;
+        return team === 'a' ? dain_default_h : dain_default_s;
       case 'd':
-        return team === 'a' ? d_hanwha : d_samsung;
+        return team === 'a' ? subin_default_h : subin_default_s;
       default:
-        return a_hanwha;
+        return chigon_default_h;
     }
   };
 

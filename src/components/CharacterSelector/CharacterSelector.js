@@ -13,14 +13,14 @@ import {
   Enter,
 } from './styled';
 import {
-  a_hanwha,
-  a_samsung,
-  b_hanwha,
-  b_samsung,
-  c_hanwha,
-  c_samsung,
-  d_hanwha,
-  d_samsung,
+  chigon_default_h,
+  chigon_default_s,
+  b_default_h,
+  b_default_s,
+  dain_default_h,
+  dain_default_s,
+  subin_default_h,
+  subin_default_s,
 } from '@/images/characters';
 import { arrow_left, arrow_right, enter } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
@@ -80,23 +80,23 @@ const CharacterSelector = () => {
   const viewCharacter = () => {
     switch (character) {
       case 'a': {
-        if (team === 'a') return a_hanwha;
-        return a_samsung;
+        if (team === 'a') return chigon_default_h;
+        return chigon_default_s;
       }
       case 'b': {
-        if (team === 'a') return b_hanwha;
-        return b_samsung;
+        if (team === 'a') return b_default_h;
+        return b_default_s;
       }
       case 'c': {
-        if (team === 'a') return c_hanwha;
-        return c_samsung;
+        if (team === 'a') return dain_default_h;
+        return dain_default_s;
       }
       case 'd': {
-        if (team === 'a') return d_hanwha;
-        return d_samsung;
+        if (team === 'a') return subin_default_h;
+        return subin_default_s;
       }
       default:
-        return a_hanwha;
+        return chigon_default_h;
     }
   };
 
