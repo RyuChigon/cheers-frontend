@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { VideoContainer } from './styled';
 import { ReactFlvPlayer } from 'react-flv-player';
 import path from '@/utils/path';
 
 const Video = () => {
-  const [_width, setWidth] = useState(0);
-  const [_height, setHeight] = useState(0);
   return (
     <VideoContainer>
       <ReactFlvPlayer
