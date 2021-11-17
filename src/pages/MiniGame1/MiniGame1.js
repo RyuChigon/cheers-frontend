@@ -21,6 +21,7 @@ import { Table, TableCell, TableContainer, TableRow } from '@material-ui/core';
 import { LowerContainer } from '../MiniGame2/styled';
 import { setCheerScore } from '@/actions/actions';
 import socket from '@/utils/socket';
+import { RemainTurnTimer } from '../MiniGame2/styled';
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
@@ -63,10 +64,12 @@ const MiniGame1 = () => {
   const gameCanStart = useRef(false);
   const [isgameend, setIsGameEnd] = useState(false);
   const [isgamereallyend, setIsGameReallyEnd] = useState(false);
-  const startcountdown = 10;
+  const startcountdown = 5;
+  const gameplaytime = 5;
   const [gamestartcount, setGameStartCount] = useState(startcountdown);
   const [gameEndtimer, setGameEndtimer] = useState(0);
   const _loginUser = useSelector(state => state.user.loginUser);
+  const [remainTime, setRemainTime] = useState(gameplaytime);
 
   dispatch(getAllUser());
   const { count, start, stop, reset } = useCounter(0, 1000);
@@ -85,6 +88,9 @@ const MiniGame1 = () => {
   const timer = () => {
     const seconds = count;
     if (gameCanStart.current) {
+      if (seconds != 0 && seconds % 1 == 0) {
+        setRemainTime(remainTime - 1);
+      }
       if (seconds == 10) {
         stop();
         socket.emit('minigame-true-end-snd', {
@@ -197,6 +203,7 @@ const MiniGame1 = () => {
         <Emoticon />
         <Chat />
       </CommunicationContent>
+      <RemainTurnTimer>Remain time: {remainTime}s</RemainTurnTimer>
     </MainContainer>
   );
 };

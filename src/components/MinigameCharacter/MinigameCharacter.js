@@ -128,7 +128,6 @@ const MinigameCharacter = ({
             style={{ width: 400, borderBottom: 'none' }}
           />
           <TableCell style={{ borderBottom: 'none' }}>
-            {/* <SpaceBar src={spacebar_push} /> */}
             <SpaceBarContainer>
               <SpaceBar
                 src={GameNumber == 1 ? spacebar_push : spacebar_plain}

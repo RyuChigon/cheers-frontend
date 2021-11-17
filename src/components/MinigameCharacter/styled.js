@@ -37,6 +37,7 @@ export const SpaceBar = styled.img`
 export const SpaceBarContainer = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
+  // display: flex;
   justify-content: center;
+  bottom: 0px;
 `;
