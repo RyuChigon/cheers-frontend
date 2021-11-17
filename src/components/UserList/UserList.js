@@ -41,7 +41,6 @@ const UserList = () => {
 
   const kickOut = () => {
     openModal();
-    socket.emit('kickout-snd', { badUserList });
   };
 
   useEffect(() => {
@@ -56,8 +55,14 @@ const UserList = () => {
           closable={true}
           maskClosable={true}
           onClose={closeModal}
+          badUserList={badUserList}
         >
-          Are you planning to kick out the following users?
+          <div>Are you planning to kick out the following users?</div>
+          <div>
+            {badUserList.map(name => {
+              <div>name</div>;
+            })}
+          </div>
         </NoticePopup>
       )}
       <UserListHeader>
