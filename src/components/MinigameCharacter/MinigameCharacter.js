@@ -9,8 +9,8 @@ import {
   ImageList,
   ImageListItem,
 } from '@material-ui/core';
-import { spacebar_push } from '@/images/games';
-import { SpaceBar } from './styled';
+import { spacebar_push, spacebar_plain } from '@/images/games';
+import { SpaceBar, SpaceBarContainer } from './styled';
 import CharacterUpper from '@/components/CharacterUpper';
 import { getAllUser } from '@/actions/actions';
 import socket from '@/utils/socket';
@@ -128,7 +128,12 @@ const MinigameCharacter = ({
             style={{ width: 400, borderBottom: 'none' }}
           />
           <TableCell style={{ borderBottom: 'none' }}>
-            <SpaceBar src={spacebar_push} />
+            {/* <SpaceBar src={spacebar_push} /> */}
+            <SpaceBarContainer>
+              <SpaceBar
+                src={GameNumber == 1 ? spacebar_push : spacebar_plain}
+              />
+            </SpaceBarContainer>
           </TableCell>
           <TableCell
             align="right"
