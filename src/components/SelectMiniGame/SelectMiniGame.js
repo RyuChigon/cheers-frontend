@@ -7,7 +7,7 @@ const SelectMiniGame = () => {
   const history = useHistory();
   const game1Start = () => {
     socket.emit('minigame1-start-snd', {});
-    history.push('/minigameone/');
+    history.push('/minigame1/');
   };
   const game2Start = () => {
     socket.emit('minigame2-start-snd', {});

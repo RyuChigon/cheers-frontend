@@ -5,7 +5,7 @@ import {
   ChooseGame,
   ChooseCharacter,
   Main,
-  MinigameOne,
+  MiniGame1,
   AdminMain,
   MiniGame2,
 } from '@/pages';
@@ -25,8 +25,8 @@ function App() {
       <Route exact path="/main">
         <Main />
       </Route>
-      <Route exact path="/minigameone">
-        <MinigameOne />
+      <Route exact path="/minigame1">
+        <MiniGame1 />
       </Route>
       <Route exact path="/admin/main">
         <AdminMain />

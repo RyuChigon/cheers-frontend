@@ -52,7 +52,7 @@ const useCounter = (initialValue, ms) => {
   return { count, start, stop, reset };
 };
 
-const MinigameOne = () => {
+const MiniGame1 = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const a_team = useSelector(state => state.user.a_team);
@@ -201,4 +201,4 @@ const MinigameOne = () => {
   );
 };
 
-export default MinigameOne;
+export default MiniGame1;

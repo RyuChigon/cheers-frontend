@@ -54,7 +54,7 @@ const Main = () => {
       }, 4000);
     });
     socket.on('minigame1-start-rcv', item => {
-      history.push('/minigameone');
+      history.push('/minigame1');
     });
     socket.on('minigame2-start-rcv', item => {
       history.push('/minigame2');
