@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import MiniGame2Video from '@/components/MiniGame2Video';
+import Video from '@/components/Video';
 import {
   HalfContainer,
   U1Container,
@@ -26,7 +26,7 @@ const UpperContainer = () => {
           <ScoreFont>{_a_team2}</ScoreFont>
         </ScoreContainer>
       </U1Container>
-      <MiniGame2Video />
+      <Video size={'small'} />
       <U1Container>
         <LogoContainer>
           <Logo2 src={Hanwha_logo} />

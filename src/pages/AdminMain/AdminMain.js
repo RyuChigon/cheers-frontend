@@ -35,7 +35,7 @@ const Main = () => {
       <Header />
       <SubContainer>
         <SubContainerLeft>
-          <Video />
+          <Video size={'small'} />
           <SubUserListGameLeft>
             <UserListContainer>
               <UserList />
