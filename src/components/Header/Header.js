@@ -46,15 +46,11 @@ const Header = () => {
         </NoticePopupHeader>
       )}
       <Logo src={CheersLogo} />
-      <HeaderMember>
-        <ReturnButton onClick={returnToHome}>Return to home</ReturnButton>
-        {!_isAdmin && (
-          <UserInfo>
-            <UserIcon src={user_icon} />
-            {_loginUser['userName']}
-          </UserInfo>
-        )}
-      </HeaderMember>
+      <ReturnButton onClick={returnToHome}>Return to home</ReturnButton>
+      <UserInfo>
+        <UserIcon src={user_icon} />
+        {_isAdmin == false ? _loginUser['userName'] : 'admin'}
+      </UserInfo>
     </HeaderContainer>
   );
 };

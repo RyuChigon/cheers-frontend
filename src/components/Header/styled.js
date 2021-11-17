@@ -25,7 +25,7 @@ export const ReturnButton = styled.button`
   font-size: 1.1rem;
   margin-right: 29px;
   cursor: pointer;
-  flex: 1;
+  // flex: 1;
   &:hover {
     background: #aaaaaa;
   }
