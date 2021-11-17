@@ -12,6 +12,7 @@ export const Balloon_me = styled.div`
   background: #333333;
   border-radius: 10px;
   color: #ffffff;
+  justify-content: flex-end;
 
   z-index: 20;
 `;
@@ -23,6 +24,7 @@ export const Balloon_a = styled.div`
   background: orangered;
   border-radius: 10px;
   color: #ffffff;
+  justify-content: flex-start;
 
   z-index: 20;
 `;
@@ -34,15 +36,39 @@ export const Balloon_b = styled.div`
   background: blue;
   border-radius: 10px;
   color: #ffffff;
+  justify-content: flex-start;
 
   z-index: 20;
 `;
 
 export const Report_ = styled.img`
-  margin: 5px 1px 1px 0px;
+  margin: 5px 1px 1px 2px;
   bottom: 0px;
   left: 0px;
   height: 20px;
   width: 20px;
-  justify-content: flex-end;
+  // justify-content: flex-end;
+  flex: 1;
+`;
+
+export const ReportLetter = styled.div`
+  margin: 5px 1px 1px 2px;
+  bottom: 0px;
+  left: 0px;
+  height: 20px;
+  width: 20px;
+  // justify-content: flex-end;
+  flex: 1;
+  font-weight: bold;
+  color: #ff0000;
+`;
+
+export const ReportContainer = styled.div`
+  // margin: 5px 1px 1px 2px;
+  bottom: 0px;
+  left: 0px;
+  height: 20px;
+  width: 20px;
+  // justify-content: flex-end;
+  display: flex;
 `;

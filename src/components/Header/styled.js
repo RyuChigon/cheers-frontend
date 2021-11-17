@@ -17,7 +17,7 @@ export const Logo = styled.img`
 `;
 
 export const ReturnButton = styled.button`
-  width: 300px;
+  width: 200px;
   height: 36px;
   background: #c4c4c4;
   border: transparent;
@@ -25,10 +25,15 @@ export const ReturnButton = styled.button`
   font-size: 1.1rem;
   margin-right: 29px;
   cursor: pointer;
-
+  flex: 1;
   &:hover {
     background: #aaaaaa;
   }
+`;
+
+export const HeaderMember = styled.div`
+  justify-content: flex-end;
+  display: flex;
 `;
 
 export const UserInfo = styled.div`

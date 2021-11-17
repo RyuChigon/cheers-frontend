@@ -6,13 +6,25 @@ import {
   Balloon_a,
   Balloon_b,
   Report_,
+  ReportLetter,
+  ReportContainer,
 } from './styled';
 import { report } from '@/images/etc';
+import NoticePopupReport from '@/components/NoticePopupReport';
 import socket from '@/utils/socket';
 
 const Chatballoon = ({ team, userName, message, isuser }) => {
   const _loginUser = useSelector(state => state.user.loginUser);
   const [pageOn, setPageOn] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   useEffect(() => {
     socket.on('report-user-rcv', item => {
@@ -30,41 +42,105 @@ const Chatballoon = ({ team, userName, message, isuser }) => {
   };
 
   const handleReport = () => {
-    const msg = 'reported ' + userName;
-    alert(msg);
-    socket.emit('report-user-snd', {
-      name: userName,
-    });
-    if (pageOn) {
-      setPageOn(false);
-    }
+    openModal();
+    // const msg = 'reported ' + userName;
+    // alert(msg);
+    // socket.emit('report-user-snd', {
+    //   name: userName,
+    // });
+    // if (pageOn) {
+    //   setPageOn(false);
+    // }
   };
 
   if (userName == _loginUser['userName'] && isuser) {
     return (
       <Balloon_general>
+        {modalVisible && (
+          <NoticePopupReport
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+            userName={userName}
+          >
+            <div>Are you planning to report the following user?</div>
+            <div>{userName}</div>
+          </NoticePopupReport>
+        )}
         <Balloon_me onClick={handleChatClick}>
           <div>{userName + ': ' + message}</div>
         </Balloon_me>
-        <div>{pageOn && <Report_ src={report} onClick={handleReport} />}</div>
+        <div>
+          {pageOn && (
+            <ReportContainer>
+              <div>
+                <Report_ src={report} onClick={handleReport} />
+              </div>
+              <ReportLetter onClick={handleReport}>report!!</ReportLetter>
+            </ReportContainer>
+          )}
+        </div>
       </Balloon_general>
     );
   } else if (team == 'a') {
     return (
       <Balloon_general>
+        {modalVisible && (
+          <NoticePopupReport
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+            userName={userName}
+          >
+            <div>Are you planning to report the following user?</div>
+            <div>{userName}</div>
+          </NoticePopupReport>
+        )}
         <Balloon_a onClick={handleChatClick}>
           <div>{userName + ': ' + message}</div>
         </Balloon_a>
-        <div>{pageOn && <Report_ src={report} onClick={handleReport} />}</div>
+        <div>
+          {pageOn && (
+            <ReportContainer>
+              <div>
+                <Report_ src={report} onClick={handleReport} />
+              </div>
+              <ReportLetter onClick={handleReport}>report!!</ReportLetter>
+            </ReportContainer>
+          )}
+        </div>
       </Balloon_general>
     );
   } else if (team == 'b') {
     return (
       <Balloon_general>
+        {modalVisible && (
+          <NoticePopupReport
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+            userName={userName}
+          >
+            <div>Are you planning to report the following user?</div>
+            <div>{userName}</div>
+          </NoticePopupReport>
+        )}
         <Balloon_b onClick={handleChatClick}>
           <div>{userName + ': ' + message}</div>
         </Balloon_b>
-        <div>{pageOn && <Report_ src={report} onClick={handleReport} />}</div>
+        <div>
+          {pageOn && (
+            <ReportContainer>
+              <div>
+                <Report_ src={report} onClick={handleReport} />
+              </div>
+              <ReportLetter onClick={handleReport}>report!!</ReportLetter>
+            </ReportContainer>
+          )}
+        </div>
       </Balloon_general>
     );
   }
