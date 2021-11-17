@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core';
+import { setAdmin } from '@/actions/actions';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import socket from '@/utils/socket';
 
 function Modal({
@@ -13,6 +16,8 @@ function Modal({
   children,
   badUserList,
 }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const onMaskClick = e => {
     if (e.target === e.currentTarget) {
       onClose(e);
@@ -26,9 +31,9 @@ function Modal({
   };
 
   const onClickYes = () => {
-    socket.emit('kickout-snd', { badUserList });
     close();
-    alert('user has been kicked out! refresh your page');
+    dispatch(setAdmin(false));
+    history.replace('/');
   };
   return (
     <>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -11,18 +11,40 @@ import {
 import CheersLogo from '@/images/logos/Cheers_logo.svg';
 import { user_icon } from '@/images/etc';
 import { setAdmin } from '@/actions/actions';
+import NoticePopupHeader from '@/components/NoticePopupHeader';
 
 const Header = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   const history = useHistory();
   const dispatch = useDispatch();
   const returnToHome = () => {
-    dispatch(setAdmin(false));
-    history.replace('/');
+    // dispatch(setAdmin(false));
+    // history.replace('/');
+    openModal();
   };
   const _loginUser = useSelector(state => state.user.loginUser);
 
   return (
     <HeaderContainer>
+      {modalVisible && (
+        <NoticePopupHeader
+          visible={modalVisible}
+          closable={true}
+          maskClosable={true}
+          onClose={closeModal}
+        >
+          <div>Do you want to logout?</div>
+        </NoticePopupHeader>
+      )}
       <Logo src={CheersLogo} />
       <ReturnButton onClick={returnToHome}>Return to home</ReturnButton>
       <UserInfo>
