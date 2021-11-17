@@ -17,14 +17,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUser } from '@/actions/actions';
 import { useHistory } from 'react-router';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  TableColumn,
-} from '@material-ui/core';
+import { Table, TableCell, TableContainer, TableRow } from '@material-ui/core';
 import { LowerContainer } from '../MiniGame2/styled';
 import { setCheerScore } from '@/actions/actions';
 import socket from '@/utils/socket';
@@ -73,8 +66,6 @@ const MinigameOne = () => {
   const [isgamereallyend, setIsGameReallyEnd] = useState(false);
   const [gamestartcount, setGameStartCount] = useState(20);
   const [gameEndtimer, setGameEndtimer] = useState(0);
-  const _a_score1 = useSelector(state => state.user.a_team);
-  const _b_score1 = useSelector(state => state.user.b_team);
   const _loginUser = useSelector(state => state.user.loginUser);
 
   dispatch(getAllUser());
@@ -93,7 +84,6 @@ const MinigameOne = () => {
 
   const timer = () => {
     const seconds = count;
-    // console.log(count);
     if (gameCanStart.current) {
       if (seconds == 10) {
         stop();
@@ -110,7 +100,6 @@ const MinigameOne = () => {
       }
     } else {
       if (seconds % 1 == 0) {
-        // console.log(seconds);
         setGameStartCount(gamestartcount => gamestartcount - 1);
       }
       if (seconds == 20) {

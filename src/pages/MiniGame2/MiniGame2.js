@@ -8,7 +8,7 @@ import {
   LowerContainer,
   C1,
 } from './styled';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllUser,
   setCheerScore2,
@@ -22,7 +22,6 @@ import UpperContainer from '@/components/UpperContainer';
 
 import MinigameCharacter from '@/components/MinigameCharacter';
 import { NoticeBox } from '../MinigameOne/styled';
-import { io } from 'socket.io-client';
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
@@ -59,7 +58,7 @@ const MiniGame2 = () => {
   const history = useHistory();
   const [_position, setPosition] = useState(0);
   const oneTurn = useRef(0);
-  const [secondState, setSecondState] = useState(20);
+  const [secondState, setSecondState] = useState(15);
   const [gameEndtimer, setGameEndtimer] = useState(0);
   const [gameStarttimer, setGameStarttimer] = useState(0);
   const gameCanStart = useRef(false);
@@ -98,7 +97,7 @@ const MiniGame2 = () => {
         console.log('oneturn: ' + oneTurn.current);
         reset();
       }
-      if (oneTurn.current == 2) {
+      if (oneTurn.current == 4) {
         stop();
         socket.emit('minigame-true-end-snd', {
           name: _loginUser['userName'],
@@ -119,8 +118,7 @@ const MiniGame2 = () => {
       if (seconds % 20 == 0) {
         setSecondState(secondState => secondState - 1);
       }
-      if (seconds == 399) {
-        console.log('399s');
+      if (seconds == 300) {
         reset();
         stop();
         socket.emit('minigame-true-start-snd', {
