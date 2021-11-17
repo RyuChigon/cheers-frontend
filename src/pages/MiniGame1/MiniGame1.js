@@ -91,7 +91,7 @@ const MiniGame1 = () => {
       if (seconds != 0 && seconds % 1 == 0) {
         setRemainTime(remainTime - 1);
       }
-      if (seconds == 10) {
+      if (seconds == startcountdown) {
         stop();
         socket.emit('minigame-true-end-snd', {
           name: _loginUser['userName'],
