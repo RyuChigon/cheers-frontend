@@ -43,3 +43,11 @@ export const CommunicationContent = styled.div`
   bottom: 20px;
   right: 20px;
 `;
+
+export const RemainTurnTimer = styled.div`
+  font-size: 2rem;
+  // display: flex;
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+`;
