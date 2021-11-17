@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   CharacterContainer,
   CharacterImage,
@@ -138,7 +138,7 @@ const Character = ({
     });
   }, []);
 
-  const characterImage = () => {
+  const characterImage = useCallback(() => {
     switch (character) {
       case 'a':
         if (team === 'a') {
@@ -263,9 +263,9 @@ const Character = ({
       default:
         return chigon_default_h;
     }
-  };
+  });
 
-  const moveCharacter = e => {
+  const moveCharacter = useCallback(e => {
     switch (e.key) {
       case 'ArrowLeft': {
         if (_position[1] - movedistance > -80) {
@@ -328,7 +328,7 @@ const Character = ({
       default:
         break;
     }
-  };
+  });
 
   const keyUp = () => {
     setCheer(false);
