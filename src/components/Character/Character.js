@@ -7,16 +7,46 @@ import {
   MyCharacter,
 } from './styled';
 import {
-  a_hanwha,
-  a_hanwha_cheer,
-  a_samsung,
-  a_samsung_cheer,
-  b_hanwha,
-  b_samsung,
-  c_hanwha,
-  c_samsung,
-  d_hanwha,
-  d_samsung,
+  chigon_back_h,
+  chigon_cheer_h,
+  chigon_default_h,
+  chigon_left_h,
+  chigon_right_h,
+  chigon_back_s,
+  chigon_cheer_s,
+  chigon_default_s,
+  chigon_left_s,
+  chigon_right_s,
+  b_back_h,
+  b_cheer_h,
+  b_default_h,
+  b_left_h,
+  b_right_h,
+  b_back_s,
+  b_cheer_s,
+  b_default_s,
+  b_left_s,
+  b_right_s,
+  dain_back_h,
+  dain_cheer_h,
+  dain_default_h,
+  dain_left_h,
+  dain_right_h,
+  dain_back_s,
+  dain_cheer_s,
+  dain_default_s,
+  dain_left_s,
+  dain_right_s,
+  subin_back_h,
+  subin_cheer_h,
+  subin_default_h,
+  subin_left_h,
+  subin_right_h,
+  subin_back_s,
+  subin_cheer_s,
+  subin_default_s,
+  subin_left_s,
+  subin_right_s,
 } from '@/images/characters';
 import { useSelector } from 'react-redux';
 import {
@@ -43,6 +73,7 @@ const Character = ({
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
   const movedistance = 10;
+  const [_action, setAction] = useState(0);
   let emoTimer;
 
   const size = {
@@ -64,6 +95,10 @@ const Character = ({
       socket.on('emogee-rcv', item => {
         if (item.name === userName) {
           setEmo(item.emogee);
+          clearTimeout(emoTimer);
+          emoTimer = setTimeout(() => {
+            setEmo('none');
+          }, 5000);
         }
       });
       socket.on('cheer-rcv', item => {
@@ -103,19 +138,37 @@ const Character = ({
       case 'a':
         return team === 'a'
           ? _cheer
-            ? a_hanwha_cheer
-            : a_hanwha
+            ? chigon_cheer_h
+            : chigon_default_h
           : _cheer
-          ? a_samsung_cheer
-          : a_samsung;
+          ? chigon_cheer_s
+          : chigon_default_s;
       case 'b':
-        return team === 'a' ? b_hanwha : b_samsung;
+        return team === 'a'
+          ? _cheer
+            ? b_cheer_h
+            : b_default_h
+          : _cheer
+          ? b_cheer_s
+          : b_default_s;
       case 'c':
-        return team === 'a' ? c_hanwha : c_samsung;
+        return team === 'a'
+          ? _cheer
+            ? dain_cheer_h
+            : dain_default_h
+          : _cheer
+          ? dain_cheer_s
+          : dain_default_s;
       case 'd':
-        return team === 'a' ? d_hanwha : d_samsung;
+        return team === 'a'
+          ? _cheer
+            ? subin_cheer_h
+            : subin_default_h
+          : _cheer
+          ? subin_cheer_s
+          : subin_default_s;
       default:
-        return a_hanwha;
+        return chigon_default_h;
     }
   };
 
