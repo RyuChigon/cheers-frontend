@@ -20,7 +20,7 @@ const UpperContainer = () => {
     <HalfContainer>
       <U1Container>
         <LogoContainer>
-          <Logo1 src={Samsung_logo} />
+          <Logo1 src={Hanwha_logo} />
         </LogoContainer>
         <ScoreContainer>
           <ScoreFont>{_a_team2}</ScoreFont>
@@ -29,7 +29,7 @@ const UpperContainer = () => {
       <Video size={'small'} />
       <U1Container>
         <LogoContainer>
-          <Logo2 src={Hanwha_logo} />
+          <Logo2 src={Samsung_logo} />
         </LogoContainer>
         <ScoreContainer>
           <ScoreFont>{_b_team2}</ScoreFont>
