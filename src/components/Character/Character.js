@@ -43,8 +43,9 @@ const Character = ({
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
   const movedistance = 10;
+  let emoTimer;
 
-  var size = {
+  const size = {
     width: window.innerWidth || document.body.clientWidth,
     height: window.innerHeight || document.body.clientHeight,
   };
@@ -79,12 +80,20 @@ const Character = ({
       socket.on('emogee-rcv', item => {
         if (item.name === userName) {
           setEmo(item.emogee);
+          clearTimeout(emoTimer);
+          emoTimer = setTimeout(() => {
+            setEmo('none');
+          }, 5000);
         }
       });
     }
     socket.on('msg-rcv', item => {
       if (item.name == userName) {
         setEmo('balloon');
+        clearTimeout(emoTimer);
+        emoTimer = setTimeout(() => {
+          setEmo('none');
+        }, 5000);
       }
     });
   }, []);
