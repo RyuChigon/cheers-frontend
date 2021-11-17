@@ -21,7 +21,7 @@ import socket from '@/utils/socket';
 import UpperContainer from '@/components/UpperContainer';
 
 import MinigameCharacter from '@/components/MinigameCharacter';
-import { NoticeBox } from '../MinigameOne/styled';
+import { NoticeBox } from '../MiniGame1/styled';
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
