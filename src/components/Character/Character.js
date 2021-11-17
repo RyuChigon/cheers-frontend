@@ -42,8 +42,16 @@ const Character = ({
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
+  const movedistance = 10;
+
+  var size = {
+    width: window.innerWidth || document.body.clientWidth,
+    height: window.innerHeight || document.body.clientHeight,
+  };
 
   useEffect(() => {
+    console.log('size : ' + size.width);
+    console.log('size : ' + size.height);
     if (!loggin) {
       setPosition(position);
       setEmo(emoticon);
@@ -105,35 +113,43 @@ const Character = ({
   const moveCharacter = e => {
     switch (e.key) {
       case 'ArrowLeft': {
-        setPosition([_position[0], _position[1] - 5]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
+        if (_position[1] - movedistance > -80) {
+          setPosition([_position[0], _position[1] - movedistance]);
+          socket.emit('move-snd', {
+            name: _loginUser['userName'],
+            movement: _position,
+          });
+        }
         break;
       }
       case 'ArrowRight': {
-        setPosition([_position[0], _position[1] + 5]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
+        if (_position[1] + movedistance < size.width - 10) {
+          setPosition([_position[0], _position[1] + movedistance]);
+          socket.emit('move-snd', {
+            name: _loginUser['userName'],
+            movement: _position,
+          });
+        }
         break;
       }
       case 'ArrowUp': {
-        setPosition([_position[0] - 5, _position[1]]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
+        if (_position[0] - movedistance > -80) {
+          setPosition([_position[0] - movedistance, _position[1]]);
+          socket.emit('move-snd', {
+            name: _loginUser['userName'],
+            movement: _position,
+          });
+        }
         break;
       }
       case 'ArrowDown': {
-        setPosition([_position[0] + 5, _position[1]]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
+        if (_position[0] + movedistance < size.height - 280) {
+          setPosition([_position[0] + movedistance, _position[1]]);
+          socket.emit('move-snd', {
+            name: _loginUser['userName'],
+            movement: _position,
+          });
+        }
         break;
       }
       case ' ': {
