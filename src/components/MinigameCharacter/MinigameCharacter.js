@@ -56,7 +56,7 @@ const MinigameCharacter = ({
               style={{ width: 1000, borderBottom: 'none' }}
             >
               <ImageList
-                rowHeight={160}
+                rowHeight={110}
                 cols={col}
                 gap={1}
                 className={'imagelist'}
@@ -92,7 +92,7 @@ const MinigameCharacter = ({
               style={{ width: 1000, borderBottom: 'none' }}
             >
               <ImageList
-                rowHeight={100}
+                rowHeight={110}
                 cols={col}
                 gap={1}
                 className={'imagelist'}
@@ -128,7 +128,6 @@ const MinigameCharacter = ({
             style={{ width: 400, borderBottom: 'none' }}
           />
           <TableCell style={{ borderBottom: 'none' }}>
-            {/* <SpaceBar src={spacebar_push} /> */}
             <SpaceBarContainer>
               <SpaceBar
                 src={GameNumber == 1 ? spacebar_push : spacebar_plain}
