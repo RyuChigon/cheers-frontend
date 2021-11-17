@@ -61,12 +61,9 @@ const Main = () => {
     });
   }, []);
 
-  // const noticeRemove = () => setNotice(false);
-
   return (
     <MainContainer tableIndex="0">
       <Header />
-      <Video />
       <div>
         {_userList.map(
           (char, index) =>
@@ -98,9 +95,9 @@ const Main = () => {
         )}
       </div>
       <ViewPoint />
+      <Video />
       <CheerGuide src={cheer_guide} />
       {timer > 0 ? (
-        // <NoticeBox onClick={noticeRemove}>
         <NoticeBox>
           {
             <>
