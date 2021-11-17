@@ -27,8 +27,6 @@ const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const returnToHome = () => {
-    // dispatch(setAdmin(false));
-    // history.replace('/');
     openModal();
   };
   const _loginUser = useSelector(state => state.user.loginUser);

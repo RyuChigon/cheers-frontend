@@ -56,7 +56,7 @@ const MinigameCharacter = ({
               style={{ width: 1000, borderBottom: 'none' }}
             >
               <ImageList
-                rowHeight={110}
+                rowHeight={160}
                 cols={col}
                 gap={1}
                 className={'imagelist'}
@@ -92,7 +92,7 @@ const MinigameCharacter = ({
               style={{ width: 1000, borderBottom: 'none' }}
             >
               <ImageList
-                rowHeight={110}
+                rowHeight={160}
                 cols={col}
                 gap={1}
                 className={'imagelist'}

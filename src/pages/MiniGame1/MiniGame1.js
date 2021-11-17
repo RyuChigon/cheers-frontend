@@ -64,8 +64,8 @@ const MiniGame1 = () => {
   const gameCanStart = useRef(false);
   const [isgameend, setIsGameEnd] = useState(false);
   const [isgamereallyend, setIsGameReallyEnd] = useState(false);
-  const startcountdown = 10;
-  const gameplaytime = 10;
+  const startcountdown = 5;
+  const gameplaytime = 5;
   const [gamestartcount, setGameStartCount] = useState(startcountdown);
   const [gameEndtimer, setGameEndtimer] = useState(0);
   const _loginUser = useSelector(state => state.user.loginUser);
