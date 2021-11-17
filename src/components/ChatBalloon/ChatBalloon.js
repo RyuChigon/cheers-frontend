@@ -44,7 +44,7 @@ const Chatballoon = ({ team, userName, message, isuser }) => {
     return (
       <Balloon_general>
         <Balloon_me onClick={handleChatClick}>
-          <div>{_loginUser['userName'] + ': ' + message}</div>
+          <div>{userName + ': ' + message}</div>
         </Balloon_me>
         <div>{pageOn && <Report_ src={report} onClick={handleReport} />}</div>
       </Balloon_general>
@@ -53,7 +53,7 @@ const Chatballoon = ({ team, userName, message, isuser }) => {
     return (
       <Balloon_general>
         <Balloon_a onClick={handleChatClick}>
-          <div>{_loginUser['userName'] + ': ' + message}</div>
+          <div>{userName + ': ' + message}</div>
         </Balloon_a>
         <div>{pageOn && <Report_ src={report} onClick={handleReport} />}</div>
       </Balloon_general>
@@ -62,7 +62,7 @@ const Chatballoon = ({ team, userName, message, isuser }) => {
     return (
       <Balloon_general>
         <Balloon_b onClick={handleChatClick}>
-          <div>{_loginUser['userName'] + ': ' + message}</div>
+          <div>{userName + ': ' + message}</div>
         </Balloon_b>
         <div>{pageOn && <Report_ src={report} onClick={handleReport} />}</div>
       </Balloon_general>
