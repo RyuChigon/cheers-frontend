@@ -6,11 +6,9 @@ import {
   ChooseCharacter,
   Main,
   MinigameOne,
+  AdminMain,
+  MiniGame2,
 } from '@/pages';
-
-import AdminChooseGame from './AdminChooseGame/AdminChooseGame';
-import AdminMain from './AdminMain/AdminMain';
-import MiniGame2 from './MiniGame2/MiniGame2';
 
 function App() {
   return (
@@ -29,9 +27,6 @@ function App() {
       </Route>
       <Route exact path="/minigameone">
         <MinigameOne />
-      </Route>
-      <Route exact path="/admin/game">
-        <AdminChooseGame />
       </Route>
       <Route exact path="/admin/main">
         <AdminMain />

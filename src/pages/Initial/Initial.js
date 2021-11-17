@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { InitialContainer, Logo, JoinButton, InputPasscode } from './styled';
 import CheersLogo from '@/images/logos/Cheers_logo.svg';
@@ -24,12 +24,16 @@ const Initial = () => {
     const res = await request('post', '/api/admin/access', body);
     if (res.access === 'success') {
       dispatch(setAdmin(true));
-      history.push('/admin/game');
+      history.push('/game');
     } else {
       alert('Passcode is incorrect!');
       setAdminAccess(false);
     }
   };
+
+  useEffect(() => {
+    dispatch(setAdmin(false));
+  }, []);
 
   return (
     <InitialContainer>
