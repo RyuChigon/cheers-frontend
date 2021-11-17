@@ -95,6 +95,10 @@ const Character = ({
       socket.on('emogee-rcv', item => {
         if (item.name === userName) {
           setEmo(item.emogee);
+          clearTimeout(emoTimer);
+          emoTimer = setTimeout(() => {
+            setEmo('none');
+          }, 5000);
         }
       });
       socket.on('cheer-rcv', item => {
