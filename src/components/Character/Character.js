@@ -73,6 +73,7 @@ const Character = ({
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
   const movedistance = 10;
+  const [_action, setAction] = useState(0);
   let emoTimer;
 
   const size = {

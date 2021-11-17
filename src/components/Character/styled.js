@@ -18,7 +18,7 @@ export const Emoticon = styled.img`
   content: '';
   border: 0px;
   position: relative;
-  top: 15px;
+  top: 30px;
   left: 20px;
 `;
 
