@@ -7,8 +7,7 @@ import {
 } from './styled';
 import { emoticon_btn } from '@/images/etc';
 import { angry, exclamation, heart, smile } from '@/images/emoticons';
-import { useDispatch, useSelector } from 'react-redux';
-import { chooseEmogee } from '@/actions/actions';
+import { useSelector } from 'react-redux';
 import socket from '@/utils/socket';
 
 const Emoticon = () => {
@@ -16,44 +15,13 @@ const Emoticon = () => {
   const _loginUser = useSelector(state => state.user.loginUser);
 
   const onClickExpand = () => {
-    if (!expand) {
-      dispatch(chooseEmogee(''));
-      socket.emit('emogee-snd', {
-        name: _loginUser['userName'],
-        emogee: '',
-      });
-    }
     setExpand(!expand);
   };
 
-  const dispatch = useDispatch();
-
-  const chooseAngry = () => {
-    dispatch(chooseEmogee('angry'));
+  const chooseEmoticon = emo => {
     socket.emit('emogee-snd', {
       name: _loginUser['userName'],
-      emogee: 'angry',
-    });
-  };
-  const chooseExclamation = () => {
-    dispatch(chooseEmogee('exclamation'));
-    socket.emit('emogee-snd', {
-      name: _loginUser['userName'],
-      emogee: 'exclamation',
-    });
-  };
-  const chooseSmile = () => {
-    dispatch(chooseEmogee('smile'));
-    socket.emit('emogee-snd', {
-      name: _loginUser['userName'],
-      emogee: 'smile',
-    });
-  };
-  const chooseHeart = () => {
-    dispatch(chooseEmogee('heart'));
-    socket.emit('emogee-snd', {
-      name: _loginUser['userName'],
-      emogee: 'heart',
+      emogee: emo,
     });
   };
 
@@ -61,10 +29,13 @@ const Emoticon = () => {
     <EmoticonContainer>
       {expand ? (
         <ExpandField>
-          <EmoticonIcon src={angry} onClick={chooseAngry} />
-          <EmoticonIcon src={exclamation} onClick={chooseExclamation} />
-          <EmoticonIcon src={smile} onClick={chooseSmile} />
-          <EmoticonIcon src={heart} onClick={chooseHeart} />
+          <EmoticonIcon src={angry} onClick={() => chooseEmoticon('angry')} />
+          <EmoticonIcon
+            src={exclamation}
+            onClick={() => chooseEmoticon('exclamation')}
+          />
+          <EmoticonIcon src={smile} onClick={() => chooseEmoticon('smile')} />
+          <EmoticonIcon src={heart} onClick={() => chooseEmoticon('heart')} />
         </ExpandField>
       ) : null}
       <EmoticonButton src={emoticon_btn} onClick={onClickExpand} />

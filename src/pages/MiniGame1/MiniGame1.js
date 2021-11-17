@@ -1,27 +1,26 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import Header from '@/components/Header';
+import Video from '@/components/Video';
+import { samsung_logo, hanwha_logo } from '@/images/logos';
 import Emoticon from '@/components/Emoticon';
 import Chat from '@/components/Chat';
+import MinigameCharacter from '@/components/MinigameCharacter';
 import {
   MainContainer,
   CommunicationContent,
-  LowerContainer,
-  C1,
+  ScoreFont_left,
+  ScoreFont_right,
+  Logo_left,
+  Logo_right,
+  NoticeBox,
 } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getAllUser,
-  setCheerScore2,
-  setBarposition,
-  setCheerScore,
-} from '@/actions/actions';
+import { getAllUser } from '@/actions/actions';
 import { useHistory } from 'react-router';
+import { Table, TableCell, TableContainer, TableRow } from '@material-ui/core';
+import { LowerContainer } from '../MiniGame2/styled';
+import { setCheerScore } from '@/actions/actions';
 import socket from '@/utils/socket';
-
-import UpperContainer from '@/components/UpperContainer';
-
-import MinigameCharacter from '@/components/MinigameCharacter';
-import { NoticeBox } from '../MiniGame1/styled';
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
@@ -53,30 +52,24 @@ const useCounter = (initialValue, ms) => {
   return { count, start, stop, reset };
 };
 
-const MiniGame2 = () => {
+const MiniGame1 = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [_position, setPosition] = useState(0);
-  const oneTurn = useRef(0);
-  const [secondState, setSecondState] = useState(15);
-  const [gameEndtimer, setGameEndtimer] = useState(0);
-  const [gameStarttimer, setGameStarttimer] = useState(0);
-  const gameCanStart = useRef(false);
-  const a_team2 = useSelector(state => state.user.a_team2);
-  const b_team2 = useSelector(state => state.user.b_team2);
+  const a_team = useSelector(state => state.user.a_team);
+  const b_team = useSelector(state => state.user.b_team);
   const _is_admin = useSelector(state => state.user.isadmin);
-  const [isgamereallyend, setIsGameReallyEnd] = useState(false);
+  const [gamestarttimer, setGameStartTimer] = useState(0);
+  const [currentSeconds, setCurrentSeconds] = useState(0);
+  const gameCanStart = useRef(false);
   const [isgameend, setIsGameEnd] = useState(false);
+  const [isgamereallyend, setIsGameReallyEnd] = useState(false);
+  const startcountdown = 10;
+  const [gamestartcount, setGameStartCount] = useState(startcountdown);
+  const [gameEndtimer, setGameEndtimer] = useState(0);
   const _loginUser = useSelector(state => state.user.loginUser);
 
   dispatch(getAllUser());
-  const { count, start, stop, reset } = useCounter(0, 50);
-  const [currentSeconds, setCurrentSeconds] = useState(0);
-
-  if (isgameend) {
-    console.log('a_score: ' + a_team2);
-    console.log('b_score: ' + b_team2);
-  }
+  const { count, start, stop, reset } = useCounter(0, 1000);
 
   if (isgamereallyend) {
     setCheerScore(0, 0);
@@ -92,17 +85,11 @@ const MiniGame2 = () => {
   const timer = () => {
     const seconds = count;
     if (gameCanStart.current) {
-      if (seconds == 91) {
-        oneTurn.current += 1;
-        console.log('oneturn: ' + oneTurn.current);
-        reset();
-      }
-      if (oneTurn.current == 4) {
+      if (seconds == 10) {
         stop();
         socket.emit('minigame-true-end-snd', {
           name: _loginUser['userName'],
         });
-        oneTurn.current = 0;
         setIsGameEnd(true);
         setGameEndtimer(gameEndtimer => gameEndtimer + 1);
         setTimeout(() => {
@@ -111,60 +98,83 @@ const MiniGame2 = () => {
           setIsGameReallyEnd(is => true);
         }, 6000);
       }
-      setCurrentSeconds(seconds);
-      setPosition(seconds);
-      dispatch(setBarposition(seconds));
     } else {
-      if (seconds % 20 == 0) {
-        setSecondState(secondState => secondState - 1);
+      if (seconds % 1 == 0) {
+        setGameStartCount(gamestartcount => gamestartcount - 1);
       }
-      if (seconds == 300) {
+      if (seconds == startcountdown) {
         reset();
         stop();
         socket.emit('minigame-true-start-snd', {
           name: _loginUser['userName'],
         });
         gameCanStart.current = true;
-        setGameStarttimer(gameStarttimer => gameStarttimer - 1);
+        setGameStartTimer(gameStarttimer => gameStarttimer - 1);
         start();
       }
     }
   };
-
   useEffect(timer, [count]);
   useEffect(() => {
-    console.log('isadmin? : ' + _is_admin);
-    console.log('a_team : ' + a_team2);
-    console.log('b_team : ' + b_team2);
-    dispatch(setBarposition(0));
+    console.log('isadmin : ' + _is_admin);
     socket.on('kickout-rcv', item => {
       history.push('/');
     });
     socket.on('minigame-cheer-rcv', item => {
       if (item.cheer === '1') {
-        dispatch(setCheerScore2(item.a_score2, item.b_score2));
+        dispatch(setCheerScore(item.a_score1, item.b_score1));
       }
     });
-    setGameStarttimer(gameStarttimer => gameStarttimer + 1);
+    setGameStartTimer(gamestarttimer => gamestarttimer + 1);
     start();
   }, []);
 
   return (
     <MainContainer tableIndex="0">
       <Header />
-      <UpperContainer />
+      <TableContainer style={{ outline: 'none', borderBottom: 'none' }}>
+        <Table
+          sx={{ minWidth: 650, outline: 'none', borderBottom: 'none' }}
+          aria-label="user table"
+        >
+          <TableRow
+            key={'--'}
+            style={{ outline: 'none', borderBottom: 'none' }}
+          >
+            <TableCell
+              align="center"
+              style={{ outline: 'none', borderBottom: 'none' }}
+            >
+              <Logo_left src={hanwha_logo} />
+              <ScoreFont_left>{a_team}</ScoreFont_left>
+            </TableCell>
+            <TableCell
+              align="center"
+              style={{ outline: 'none', borderBottom: 'none' }}
+            >
+              <Video size={'small'} />
+            </TableCell>
+            <TableCell
+              align="center"
+              style={{ outline: 'none', borderBottom: 'none' }}
+            >
+              <Logo_right src={samsung_logo} />
+              <ScoreFont_right>{b_team}</ScoreFont_right>
+            </TableCell>
+          </TableRow>
+        </Table>
+      </TableContainer>
       <LowerContainer>
-        <MinigameCharacter game={2} />
-        <C1 position={_position} />
+        <MinigameCharacter game={1} />
       </LowerContainer>
-      {gameStarttimer > 0 ? (
+      {gamestarttimer > 0 ? (
         <NoticeBox>
           {
             <>
               <br />
-              Push the space bar when you&apos;re on the red bar!
+              When the game starts, PUSH SPACE BAR as fast as you can!
               <br />
-              Game will be start in {secondState} sec
+              Game will be start in {gamestartcount}
             </>
           }
         </NoticeBox>
@@ -174,9 +184,9 @@ const MiniGame2 = () => {
           {
             <>
               <br />
-              {a_team2 > b_team2
+              {a_team > b_team
                 ? 'The winner is team A!'
-                : a_team2 < b_team2
+                : a_team < b_team
                 ? 'The winner is team B!'
                 : 'The game is ended in tie!'}
             </>
@@ -191,4 +201,4 @@ const MiniGame2 = () => {
   );
 };
 
-export default MiniGame2;
+export default MiniGame1;

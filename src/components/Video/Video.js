@@ -1,17 +1,17 @@
 import React from 'react';
 import { VideoContainer } from './styled';
 import { ReactFlvPlayer } from 'react-flv-player';
+import path from '@/utils/path';
 
-const Video = () => {
+const Video = ({ size }) => {
+  const width = size === 'small' ? '460px' : '700px';
+  const height = size === 'small' ? '310px' : '450px';
   return (
     <VideoContainer>
       <ReactFlvPlayer
-        //url="http://192.249.28.102:8000/live/cheers.flv"
-        url="http://localhost:8000/live/cheers.flv"
-        // width="800px"
-        // height="500px"
-        width="460px"
-        height="310px"
+        url={path.video}
+        width={width}
+        height={height}
         handleError={err => {
           switch (err) {
             case 'NetworkError':

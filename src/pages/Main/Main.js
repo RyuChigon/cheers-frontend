@@ -13,9 +13,13 @@ import {
 } from './styled';
 import { cheer_guide } from '@/images/etc';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser } from '@/actions/actions';
+import {
+  getAllUser,
+  initViewpoint,
+  setCheerScore,
+  setCheerScore2,
+} from '@/actions/actions';
 import { useHistory } from 'react-router';
-
 import socket from '@/utils/socket';
 
 const Main = () => {
@@ -23,12 +27,17 @@ const Main = () => {
   const _loginUser = useSelector(state => state.user.loginUser);
   const dispatch = useDispatch();
   const history = useHistory();
+  const _is_admin = useSelector(state => state.user.isadmin);
   const [adminchatArr, setAdminChatArr] = useState([]);
   const [timer, settimer] = useState(0);
 
   dispatch(getAllUser());
 
   useEffect(() => {
+    dispatch(setCheerScore(0, 0));
+    dispatch(setCheerScore2(0, 0));
+    dispatch(initViewpoint());
+    console.log('is admin? :' + _is_admin);
     socket.on('kickout-rcv', item => {
       history.push('/');
     });
@@ -44,14 +53,17 @@ const Main = () => {
         console.log('timer decrease to ' + timer);
       }, 4000);
     });
+    socket.on('minigame1-start-rcv', item => {
+      history.push('/minigame1');
+    });
+    socket.on('minigame2-start-rcv', item => {
+      history.push('/minigame2');
+    });
   }, []);
-
-  const noticeRemove = () => setNotice(false);
 
   return (
     <MainContainer tableIndex="0">
       <Header />
-      <Video />
       <div>
         {_userList.map(
           (char, index) =>
@@ -83,9 +95,10 @@ const Main = () => {
         )}
       </div>
       <ViewPoint />
+      <Video />
       <CheerGuide src={cheer_guide} />
       {timer > 0 ? (
-        <NoticeBox onClick={noticeRemove}>
+        <NoticeBox>
           {
             <>
               <br />

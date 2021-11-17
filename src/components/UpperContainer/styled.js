@@ -10,31 +10,40 @@ export const HalfContainer = styled.div`
 `;
 
 export const U1Container = styled.div`
-  width: 34%;
+  width: 50%;
   height: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: column;
 `;
 
-export const U3Container = styled.div`
-  width: 34%;
-  height: 100%;
+export const ScoreFont = styled.div`
+  font-size: 100px;
+  position: center;
+`;
+
+export const LogoContainer = styled.div`
+  width: 100%;
+  height: 30%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ScoreContainer = styled.div`
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Logo1 = styled.img`
   width: 110px;
   height: 100px;
-  top: 0px;
-  left: 0px;
+  display: flex;
 `;
 
 export const Logo2 = styled.img`
   width: 150px;
   height: 100px;
-  top: 0px;
-  left: 0px;
+  display: flex;
 `;

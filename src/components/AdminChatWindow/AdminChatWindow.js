@@ -3,8 +3,6 @@ import { WindowContainer, Text, ChatList } from './styled';
 import ChatBalloon from '../ChatBalloon';
 import socket from '@/utils/socket';
 
-socket.emit('init_chat', { name: 'chat' });
-
 const AdminChatWindow = () => {
   const [chatArr, setChatArr] = useState([]);
 

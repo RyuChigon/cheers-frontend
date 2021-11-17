@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { CharacterContainer, CharacterImage, Emoticon } from './styled';
+import {
+  CharacterContainer,
+  CharacterImage,
+  Emoticon,
+  CharacterName,
+  MyCharacter,
+} from './styled';
 import {
   a_hanwha,
   a_hanwha_cheer,
@@ -12,8 +18,7 @@ import {
   d_hanwha,
   d_samsung,
 } from '@/images/characters';
-import { useSelector, useDispatch } from 'react-redux';
-import { cheering } from '@/actions/actions';
+import { useSelector } from 'react-redux';
 import {
   angry,
   exclamation,
@@ -23,6 +28,7 @@ import {
   balloon,
 } from '@/images/emoticons';
 import socket from '@/utils/socket';
+import { request } from '@/utils/axios';
 
 const Character = ({
   character,
@@ -36,9 +42,17 @@ const Character = ({
   const [_cheer, setCheer] = useState(false);
   const [_emoticon, setEmo] = useState('');
   const _loginUser = useSelector(state => state.user.loginUser);
-  const dispatch = useDispatch();
+  const movedistance = 10;
+  let emoTimer;
+
+  const size = {
+    width: window.innerWidth || document.body.clientWidth,
+    height: window.innerHeight || document.body.clientHeight,
+  };
 
   useEffect(() => {
+    console.log('size : ' + size.width);
+    console.log('size : ' + size.height);
     if (!loggin) {
       setPosition(position);
       setEmo(emoticon);
@@ -66,12 +80,20 @@ const Character = ({
       socket.on('emogee-rcv', item => {
         if (item.name === userName) {
           setEmo(item.emogee);
+          clearTimeout(emoTimer);
+          emoTimer = setTimeout(() => {
+            setEmo('none');
+          }, 5000);
         }
       });
     }
     socket.on('msg-rcv', item => {
       if (item.name == userName) {
         setEmo('balloon');
+        clearTimeout(emoTimer);
+        emoTimer = setTimeout(() => {
+          setEmo('none');
+        }, 5000);
       }
     });
   }, []);
@@ -100,48 +122,53 @@ const Character = ({
   const moveCharacter = e => {
     switch (e.key) {
       case 'ArrowLeft': {
-        setPosition([_position[0], _position[1] - 5]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
+        if (_position[1] - movedistance > -80) {
+          setPosition([_position[0], _position[1] - movedistance]);
+          socket.emit('move-snd', {
+            name: _loginUser['userName'],
+            movement: _position,
+          });
+        }
         break;
       }
       case 'ArrowRight': {
-        setPosition([_position[0], _position[1] + 5]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
+        if (_position[1] + movedistance < size.width - 10) {
+          setPosition([_position[0], _position[1] + movedistance]);
+          socket.emit('move-snd', {
+            name: _loginUser['userName'],
+            movement: _position,
+          });
+        }
         break;
       }
       case 'ArrowUp': {
-        setPosition([_position[0] - 5, _position[1]]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
+        if (_position[0] - movedistance > -80) {
+          setPosition([_position[0] - movedistance, _position[1]]);
+          socket.emit('move-snd', {
+            name: _loginUser['userName'],
+            movement: _position,
+          });
+        }
         break;
       }
       case 'ArrowDown': {
-        setPosition([_position[0] + 5, _position[1]]);
-        socket.emit('move-snd', {
-          name: _loginUser['userName'],
-          movement: _position,
-        });
+        if (_position[0] + movedistance < size.height - 280) {
+          setPosition([_position[0] + movedistance, _position[1]]);
+          socket.emit('move-snd', {
+            name: _loginUser['userName'],
+            movement: _position,
+          });
+        }
         break;
       }
       case ' ': {
-        dispatch(cheering);
+        request('get', '/api/user/cheering', null);
         setCheer(true);
         socket.emit('cheer-snd', {
           name: _loginUser['userName'],
           cheer: '1',
         });
         break;
-      }
-      case 'Enter': {
-        // showOthers();
       }
       default:
         break;
@@ -182,8 +209,10 @@ const Character = ({
         tabIndex="0"
       >
         <Emoticon src={setEmoticon(_emoticon)} />
-        <CharacterImage src={characterImage()} />
-        <p>{userName}</p>
+        <MyCharacter>
+          <CharacterImage src={characterImage()} />
+          <CharacterName>{userName}</CharacterName>
+        </MyCharacter>
       </CharacterContainer>
     );
   } else {
@@ -191,7 +220,7 @@ const Character = ({
       <CharacterContainer position={_position}>
         <Emoticon src={setEmoticon(_emoticon)} />
         <CharacterImage src={characterImage()} />
-        <p>{userName}</p>
+        <CharacterName>{userName}</CharacterName>
       </CharacterContainer>
     );
   }

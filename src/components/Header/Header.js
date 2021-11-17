@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   HeaderContainer,
   Logo,
@@ -10,18 +10,20 @@ import {
 } from './styled';
 import CheersLogo from '@/images/logos/Cheers_logo.svg';
 import { user_icon } from '@/images/etc';
+import { setAdmin } from '@/actions/actions';
 
 const Header = () => {
   const history = useHistory();
-  const returnToHome = () => history.replace('/');
-  const minigameone = () => history.push('/minigameone');
-  const minigametwo = () => history.push('/minigame2');
+  const dispatch = useDispatch();
+  const returnToHome = () => {
+    dispatch(setAdmin(false));
+    history.replace('/');
+  };
   const _loginUser = useSelector(state => state.user.loginUser);
 
   return (
     <HeaderContainer>
-      <Logo src={CheersLogo} onClick={minigameone} />
-      <ReturnButton onClick={minigametwo}>minigame2</ReturnButton>
+      <Logo src={CheersLogo} />
       <ReturnButton onClick={returnToHome}>Return to home</ReturnButton>
       <UserInfo>
         <UserIcon src={user_icon} />

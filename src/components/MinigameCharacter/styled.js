@@ -33,3 +33,10 @@ export const SpaceBar = styled.img`
   bottom: 0px;
   left: 0px;
 `;
+
+export const SpaceBarContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+`;

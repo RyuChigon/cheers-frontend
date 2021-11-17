@@ -19,8 +19,6 @@ import { getAllUser } from '@/actions/actions';
 import ChatBalloon from '@/components/ChatBalloon';
 import socket from '@/utils/socket';
 
-socket.emit('init_chat', { name: 'chat' });
-
 const Chat = () => {
   const [expand, setExpand] = useState(false);
   const onClickExpand = () => setExpand(!expand);
@@ -44,7 +42,7 @@ const Chat = () => {
   });
 
   const onClickSend = () => {
-    if (document.getElementById('input').value == null) {
+    if (document.getElementById('input').value == '') {
       console.log('empty message box');
     } else {
       socket.emit('msg-snd', {
