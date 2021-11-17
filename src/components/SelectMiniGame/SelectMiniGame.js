@@ -10,10 +10,12 @@ const SelectMiniGame = () => {
   const _userList = useSelector(state => state.user.userList);
   const dispatch = useDispatch();
   dispatch(getAllUser());
-  const team_1 = _userList.filter(user => user['team'] == 'a');
-  const team_2 = _userList.filter(user => user['team'] == 'b');
+  const team_1 = _userList.filter(user => user['7'] == 'a');
+  const team_2 = _userList.filter(user => user['7'] == 'b');
 
   const game1Start = () => {
+    console.log(_userList);
+    console.log(team_1);
     if (team_1.length < 3 || team_2.length < 3) {
       alert('number of members in each team is too small!');
       return;
