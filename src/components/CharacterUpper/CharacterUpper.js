@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CharacterContainer, CharacterImage, Emoticon } from './styled';
+import { MyCharacter } from '@/components/Character/styled';
 import {
   a_hanwha_upper,
   a_hanwha_upper_cheer,
@@ -292,8 +293,10 @@ const Character = ({
         tabIndex="0"
       >
         <Emoticon src={setEmoticon(_loginUser['emogee'])} />
-        <CharacterImage src={characterImage()} />
-        <p>{userName}</p>
+        <MyCharacter>
+          <CharacterImage src={characterImage()} />
+          <p>{userName}</p>
+        </MyCharacter>
       </CharacterContainer>
     );
   } else {

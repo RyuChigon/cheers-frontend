@@ -36,7 +36,8 @@ export const MyCharacter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(252, 231, 42, 0.4);
+  // background: rgba(252, 231, 42, 0.4);
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   padding: 5px;
 `;
