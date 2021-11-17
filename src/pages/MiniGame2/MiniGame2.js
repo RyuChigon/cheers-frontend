@@ -7,6 +7,7 @@ import {
   CommunicationContent,
   LowerContainer,
   C1,
+  RemainTurnTimer,
 } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -68,6 +69,7 @@ const MiniGame2 = () => {
   const [isgamereallyend, setIsGameReallyEnd] = useState(false);
   const [isgameend, setIsGameEnd] = useState(false);
   const _loginUser = useSelector(state => state.user.loginUser);
+  const [remainTurn, setRemainTurn] = useState(4);
 
   dispatch(getAllUser());
   const { count, start, stop, reset } = useCounter(0, 50);
@@ -94,6 +96,7 @@ const MiniGame2 = () => {
     if (gameCanStart.current) {
       if (seconds == 91) {
         oneTurn.current += 1;
+        setRemainTurn(remainTurn - 1);
         console.log('oneturn: ' + oneTurn.current);
         reset();
       }
@@ -187,6 +190,7 @@ const MiniGame2 = () => {
         <Emoticon />
         <Chat />
       </CommunicationContent>
+      <RemainTurnTimer>Remain turn: {remainTurn}</RemainTurnTimer>
     </MainContainer>
   );
 };
