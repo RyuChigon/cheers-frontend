@@ -91,8 +91,8 @@ const Character = ({
       setEmo(emoticon);
       socket.on('move-rcv', item => {
         if (item.name === userName) {
+          if (item.direction != _direction) setDirection(item.direction);
           setPosition(item.movement);
-          setDirection(item.direction);
         }
       });
       socket.on('emogee-rcv', item => {
@@ -263,7 +263,7 @@ const Character = ({
       default:
         return chigon_default_h;
     }
-  });
+  }, [_cheer, _direction]);
 
   const moveCharacter = useCallback(e => {
     switch (e.key) {
