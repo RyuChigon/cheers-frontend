@@ -59,7 +59,6 @@ const MiniGame2 = () => {
   const history = useHistory();
   const [_position, setPosition] = useState(0);
   const oneTurn = useRef(0);
-  const [secondState, setSecondState] = useState(startcountdown);
   const [gameEndtimer, setGameEndtimer] = useState(0);
   const [gameStarttimer, setGameStarttimer] = useState(0);
   const gameCanStart = useRef(false);
@@ -70,7 +69,9 @@ const MiniGame2 = () => {
   const [isgameend, setIsGameEnd] = useState(false);
   const _loginUser = useSelector(state => state.user.loginUser);
   const startcountdown = 6;
-  const [remainTurn, setRemainTurn] = useState(2);
+  const total_turn = 2;
+  const [secondState, setSecondState] = useState(startcountdown);
+  const [remainTurn, setRemainTurn] = useState(total_turn);
 
   dispatch(getAllUser());
   const { count, start, stop, reset } = useCounter(0, 50);
@@ -101,7 +102,7 @@ const MiniGame2 = () => {
         console.log('oneturn: ' + oneTurn.current);
         reset();
       }
-      if (oneTurn.current == 4) {
+      if (oneTurn.current == total_turn) {
         stop();
         socket.emit('minigame-true-end-snd', {
           name: _loginUser['userName'],
