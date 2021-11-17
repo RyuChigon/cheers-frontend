@@ -186,7 +186,7 @@ const MinigameOne = () => {
               <br />
               {a_team > b_team
                 ? 'The winner is team A!'
-                : a_team > b_team
+                : a_team < b_team
                 ? 'The winner is team B!'
                 : 'The game is ended in tie!'}
             </>
