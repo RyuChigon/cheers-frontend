@@ -19,7 +19,6 @@ function Modal({
   const history = useHistory();
   const _loginUser = useSelector(state => state.user.loginUser);
   const loginuser_name = _loginUser['userName'];
-  const [badUserList, setBadUserList] = useState([loginuser_name]);
   const onMaskClick = e => {
     if (e.target === e.currentTarget) {
       onClose(e);
@@ -35,9 +34,6 @@ function Modal({
   const onClickYes = () => {
     close();
     console.log(loginuser_name);
-    setBadUserList([...badUserList, loginuser_name]);
-    console.log(badUserList);
-    socket.emit('kickout-snd', { badUserList });
     dispatch(setAdmin(false));
     history.replace('/');
   };
