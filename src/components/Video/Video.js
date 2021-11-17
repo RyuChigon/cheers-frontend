@@ -8,10 +8,8 @@ const Video = () => {
     <VideoContainer>
       <ReactFlvPlayer
         url={path.video}
-        // width="800px"
-        // height="500px"
-        width="460px"
-        height="310px"
+        width="700px"
+        height="450px"
         handleError={err => {
           switch (err) {
             case 'NetworkError':

@@ -25,8 +25,10 @@ import {
   TableRow,
   TableColumn,
 } from '@material-ui/core';
+import { LowerContainer } from '../MiniGame2/styled';
 import { setCheerScore } from '@/actions/actions';
 import socket from '@/utils/socket';
+import MiniGame2Video from '@/components/MiniGame2Video';
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
@@ -161,7 +163,7 @@ const MinigameOne = () => {
               align="center"
               style={{ outline: 'none', borderBottom: 'none' }}
             >
-              <Video />
+              <MiniGame2Video />
             </TableCell>
             <TableCell
               align="center"
@@ -173,7 +175,9 @@ const MinigameOne = () => {
           </TableRow>
         </Table>
       </TableContainer>
-      <MinigameCharacter game={1} />
+      <LowerContainer>
+        <MinigameCharacter game={1} />
+      </LowerContainer>
       {gamestarttimer > 0 ? (
         <NoticeBox>
           {

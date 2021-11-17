@@ -19,14 +19,11 @@ const Header = () => {
     dispatch(setAdmin(false));
     history.replace('/');
   };
-  const minigameone = () => history.push('/minigameone');
-  const minigametwo = () => history.push('/minigame2');
   const _loginUser = useSelector(state => state.user.loginUser);
 
   return (
     <HeaderContainer>
-      <Logo src={CheersLogo} onClick={minigameone} />
-      <ReturnButton onClick={minigametwo}>minigame2</ReturnButton>
+      <Logo src={CheersLogo} />
       <ReturnButton onClick={returnToHome}>Return to home</ReturnButton>
       <UserInfo>
         <UserIcon src={user_icon} />
