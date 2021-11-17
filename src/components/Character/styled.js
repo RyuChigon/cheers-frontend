@@ -27,3 +27,16 @@ export const CharacterImage = styled.img`
   outline: 0;
   border: 0;
 `;
+
+export const CharacterName = styled.p`
+  margin: 0;
+`;
+
+export const MyCharacter = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(252, 231, 42, 0.4);
+  border-radius: 10px;
+  padding: 5px;
+`;

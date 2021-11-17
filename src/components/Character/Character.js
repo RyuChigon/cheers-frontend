@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { CharacterContainer, CharacterImage, Emoticon } from './styled';
+import {
+  CharacterContainer,
+  CharacterImage,
+  Emoticon,
+  CharacterName,
+  MyCharacter,
+} from './styled';
 import {
   a_hanwha,
   a_hanwha_cheer,
@@ -178,8 +184,10 @@ const Character = ({
         tabIndex="0"
       >
         <Emoticon src={setEmoticon(_emoticon)} />
-        <CharacterImage src={characterImage()} />
-        <p>{userName}</p>
+        <MyCharacter>
+          <CharacterImage src={characterImage()} />
+          <CharacterName>{userName}</CharacterName>
+        </MyCharacter>
       </CharacterContainer>
     );
   } else {
@@ -187,7 +195,7 @@ const Character = ({
       <CharacterContainer position={_position}>
         <Emoticon src={setEmoticon(_emoticon)} />
         <CharacterImage src={characterImage()} />
-        <p>{userName}</p>
+        <CharacterName>{userName}</CharacterName>
       </CharacterContainer>
     );
   }
