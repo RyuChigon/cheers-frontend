@@ -51,13 +51,6 @@ export function modifyUser(dataToSubmit) {
   };
 }
 
-export function chooseEmogee(Emogee) {
-  return {
-    type: types.CHOOSE_EMOGEE,
-    payload: Emogee,
-  };
-}
-
 export function setCheerScore(a_team, b_team) {
   console.log('setcheerscore: ' + a_team + ' ' + b_team);
   return {

@@ -25,11 +25,6 @@ export default function (state = initialstate, action) {
       return { ...state, loginUser: action.payload };
     case types.MODIFY_USER: //처음에 join 버튼 누를 때
       return { ...state, loginUser: action.payload };
-    case types.CHOOSE_EMOGEE: //emogee 버튼
-      return {
-        ...state,
-        loginUser: { ...state['loginUser'], emogee: action.payload },
-      };
     case types.CHEER_SCORE:
       if (action.payload[0] == null) {
         return {
