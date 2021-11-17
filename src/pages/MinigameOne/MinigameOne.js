@@ -63,7 +63,8 @@ const MinigameOne = () => {
   const gameCanStart = useRef(false);
   const [isgameend, setIsGameEnd] = useState(false);
   const [isgamereallyend, setIsGameReallyEnd] = useState(false);
-  const [gamestartcount, setGameStartCount] = useState(20);
+  const startcountdown = 10;
+  const [gamestartcount, setGameStartCount] = useState(startcountdown);
   const [gameEndtimer, setGameEndtimer] = useState(0);
   const _loginUser = useSelector(state => state.user.loginUser);
 
@@ -101,7 +102,7 @@ const MinigameOne = () => {
       if (seconds % 1 == 0) {
         setGameStartCount(gamestartcount => gamestartcount - 1);
       }
-      if (seconds == 20) {
+      if (seconds == startcountdown) {
         reset();
         stop();
         socket.emit('minigame-true-start-snd', {
@@ -185,7 +186,7 @@ const MinigameOne = () => {
               <br />
               {a_team > b_team
                 ? 'The winner is team A!'
-                : a_team > b_team
+                : a_team < b_team
                 ? 'The winner is team B!'
                 : 'The game is ended in tie!'}
             </>
