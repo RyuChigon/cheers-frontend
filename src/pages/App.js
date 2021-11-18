@@ -8,6 +8,7 @@ import {
   MiniGame1,
   AdminMain,
   MiniGame2,
+  MainPrior,
 } from '@/pages';
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
       </Route>
       <Route exact path="/main">
         <Main />
+      </Route>
+      <Route exact path="/mainprior">
+        <MainPrior />
       </Route>
       <Route exact path="/minigame1">
         <MiniGame1 />

@@ -5,3 +5,4 @@ export { default as Main } from './Main';
 export { default as MiniGame1 } from './MiniGame1';
 export { default as MiniGame2 } from './MiniGame2';
 export { default as AdminMain } from './AdminMain';
+export { default as MainPrior } from './MainPrior';
