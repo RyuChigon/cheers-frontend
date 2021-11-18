@@ -7,6 +7,7 @@ import {
   ReturnButton,
   UserInfo,
   UserIcon,
+  HeaderMember,
 } from './styled';
 import CheersLogo from '@/images/logos/Cheers_logo.svg';
 import { user_icon } from '@/images/etc';
@@ -30,6 +31,7 @@ const Header = () => {
     openModal();
   };
   const _loginUser = useSelector(state => state.user.loginUser);
+  const _isAdmin = useSelector(state => state.user.isadmin);
 
   return (
     <HeaderContainer>
@@ -47,7 +49,7 @@ const Header = () => {
       <ReturnButton onClick={returnToHome}>Return to home</ReturnButton>
       <UserInfo>
         <UserIcon src={user_icon} />
-        {_loginUser['userName']}
+        {_isAdmin == false ? _loginUser['userName'] : 'admin'}
       </UserInfo>
     </HeaderContainer>
   );

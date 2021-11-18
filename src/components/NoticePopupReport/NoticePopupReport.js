@@ -14,12 +14,13 @@ function Modal({
   closable,
   visible,
   children,
+  userName,
 }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const _loginUser = useSelector(state => state.user.loginUser);
   const loginuser_name = _loginUser['userName'];
-  var badUserList = [];
+  const [badUserList, setBadUserList] = useState([loginuser_name]);
   const onMaskClick = e => {
     if (e.target === e.currentTarget) {
       onClose(e);
@@ -34,12 +35,11 @@ function Modal({
 
   const onClickYes = () => {
     close();
-    console.log(loginuser_name);
-    dispatch(setAdmin(false));
-    badUserList.push(loginuser_name);
-    console.log(badUserList);
-    socket.emit('kickout-snd', { badUserList });
-    history.replace('/');
+    const msg = 'reported ' + userName;
+    alert(msg);
+    socket.emit('report-user-snd', {
+      name: userName,
+    });
   };
   return (
     <>

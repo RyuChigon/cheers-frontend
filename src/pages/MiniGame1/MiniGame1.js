@@ -21,7 +21,7 @@ import { Table, TableCell, TableContainer, TableRow } from '@material-ui/core';
 import { LowerContainer } from '../MiniGame2/styled';
 import { setCheerScore } from '@/actions/actions';
 import socket from '@/utils/socket';
-import { RemainTurnTimer } from '../MiniGame2/styled';
+import { RemainTurnTimer, Announce } from '../MiniGame2/styled';
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
@@ -91,7 +91,7 @@ const MiniGame1 = () => {
       if (seconds != 0 && seconds % 1 == 0) {
         setRemainTime(remainTime - 1);
       }
-      if (seconds == 10) {
+      if (seconds == startcountdown) {
         stop();
         socket.emit('minigame-true-end-snd', {
           name: _loginUser['userName'],
@@ -178,9 +178,9 @@ const MiniGame1 = () => {
           {
             <>
               <br />
-              When the game starts, PUSH SPACE BAR as fast as you can!
+              When the game starts, PUSH the SPACE BAR as fast as you can!
               <br />
-              Game will be start in {gamestartcount}
+              <Announce>Game will start in {gamestartcount}</Announce>
             </>
           }
         </NoticeBox>
@@ -194,7 +194,7 @@ const MiniGame1 = () => {
                 ? 'The winner is team A!'
                 : a_team < b_team
                 ? 'The winner is team B!'
-                : 'The game is ended in tie!'}
+                : 'The game ended in a tie!'}
             </>
           }
         </NoticeBox>

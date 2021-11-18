@@ -8,6 +8,7 @@ import {
   LowerContainer,
   C1,
   RemainTurnTimer,
+  Announce,
 } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -58,8 +59,8 @@ const MiniGame2 = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [_position, setPosition] = useState(0);
+  const [_color, setColor] = useState('#ff5722');
   const oneTurn = useRef(0);
-  const [secondState, setSecondState] = useState(startcountdown);
   const [gameEndtimer, setGameEndtimer] = useState(0);
   const [gameStarttimer, setGameStarttimer] = useState(0);
   const gameCanStart = useRef(false);
@@ -70,7 +71,9 @@ const MiniGame2 = () => {
   const [isgameend, setIsGameEnd] = useState(false);
   const _loginUser = useSelector(state => state.user.loginUser);
   const startcountdown = 6;
-  const [remainTurn, setRemainTurn] = useState(2);
+  const total_turn = 2;
+  const [secondState, setSecondState] = useState(startcountdown);
+  const [remainTurn, setRemainTurn] = useState(total_turn);
 
   dispatch(getAllUser());
   const { count, start, stop, reset } = useCounter(0, 50);
@@ -101,7 +104,7 @@ const MiniGame2 = () => {
         console.log('oneturn: ' + oneTurn.current);
         reset();
       }
-      if (oneTurn.current == 4) {
+      if (oneTurn.current == total_turn) {
         stop();
         socket.emit('minigame-true-end-snd', {
           name: _loginUser['userName'],
@@ -153,6 +156,8 @@ const MiniGame2 = () => {
     start();
   }, []);
 
+  console.log(_position);
+
   return (
     <MainContainer tableIndex="0">
       <Header />
@@ -168,7 +173,7 @@ const MiniGame2 = () => {
               <br />
               Push the space bar when you&apos;re on the red bar!
               <br />
-              Game will be start in {secondState} sec
+              <Announce>Game will start in {secondState} sec</Announce>
             </>
           }
         </NoticeBox>
@@ -182,7 +187,7 @@ const MiniGame2 = () => {
                 ? 'The winner is team A!'
                 : a_team2 < b_team2
                 ? 'The winner is team B!'
-                : 'The game is ended in tie!'}
+                : 'The game ended in a tie!'}
             </>
           }
         </NoticeBox>
