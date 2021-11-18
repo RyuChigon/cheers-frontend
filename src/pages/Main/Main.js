@@ -18,6 +18,7 @@ import {
   initViewpoint,
   setCheerScore,
   setCheerScore2,
+  setAdmin,
 } from '@/actions/actions';
 import { useHistory } from 'react-router';
 import socket from '@/utils/socket';
@@ -25,14 +26,22 @@ import socket from '@/utils/socket';
 const Main = () => {
   const _userList = useSelector(state => state.user.userList);
   const _loginUser = useSelector(state => state.user.loginUser);
+  const loginuser_name = _loginUser['userName'];
   const dispatch = useDispatch();
   const history = useHistory();
   const _is_admin = useSelector(state => state.user.isadmin);
   const [adminchatArr, setAdminChatArr] = useState([]);
   const [timer, settimer] = useState(0);
   const [minigametimer, setMinigameTimer] = useState(5);
+  var badUserList = [];
 
   dispatch(getAllUser());
+
+  window.addEventListener('unload', function (e) {
+    dispatch(setAdmin(false));
+    badUserList.push(loginuser_name);
+    socket.emit('kickout-snd', { badUserList });
+  });
 
   useEffect(() => {
     dispatch(setCheerScore(0, 0));
@@ -113,7 +122,7 @@ const Main = () => {
         )}
       </div>
       <ViewPoint />
-      <Video />
+      {/* <Video /> */}
       <CheerGuide src={cheer_guide} />
       {timer > 0 ? (
         <NoticeBox>

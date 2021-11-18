@@ -4,10 +4,10 @@ import {
   Initial,
   ChooseGame,
   ChooseCharacter,
-  Main,
   MiniGame1,
   AdminMain,
   MiniGame2,
+  MainPrior,
 } from '@/pages';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
         <ChooseCharacter />
       </Route>
       <Route exact path="/main">
-        <Main />
+        <MainPrior />
       </Route>
       <Route exact path="/minigame1">
         <MiniGame1 />
