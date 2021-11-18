@@ -4,16 +4,21 @@ export const KingContainer = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-content: center;
-  align-items: center;
+  // align-content: center;
+  // align-items: center;
+  z-index: 0;
 `;
 
 export const VideoContainer = styled.div`
-  width: 50%;
-  height: 50%;
+  width: 700px;
+  height: 450px;
   display: flex;
   background: #aaaaaa;
-  z-index: 10;
+  left: ${props => `${props.x}px`};
+  top: ${props => `${props.y}px`};
+  //position: relative;
+  position: absolute;
+  z-index: 2;
 `;
 
 export const MainContainer = styled.div`
@@ -21,4 +26,5 @@ export const MainContainer = styled.div`
   height: 100%;
   display: flex;
   background: #000fff;
+  z-index: 0;
 `;
