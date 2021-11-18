@@ -24,3 +24,26 @@ export const MainContainer = styled.div`
   display: flex;
   z-index: 0;
 `;
+
+export const HeaderContainer = styled.div`
+  width: 100vw;
+  min-width: 1200px;
+  height: 50px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 20;
+`;
+
+export const CommunicationContainer = styled.div`
+  display: flex;
+  align-items: end;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 20;
+`;

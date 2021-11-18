@@ -1,7 +1,16 @@
 import React from 'react';
-import { KingContainer, VideoContainer, MainContainer } from './styled';
+import {
+  KingContainer,
+  VideoContainer,
+  MainContainer,
+  HeaderContainer,
+  CommunicationContainer,
+} from './styled';
 import Video from '@/components/Video';
 import Main from '@/pages/Main';
+import Header from '@/components/Header';
+import Emoticon from '@/components/Emoticon';
+import Chat from '@/components/Chat';
 
 const MainPrior = () => {
   const size = {
@@ -14,12 +23,21 @@ const MainPrior = () => {
   const yposition = 50;
   return (
     <KingContainer>
+      <HeaderContainer>
+        <Header />
+      </HeaderContainer>
       <VideoContainer x={xposition} y={yposition}>
         <Video />
       </VideoContainer>
       <MainContainer>
         <Main />
       </MainContainer>
+      <CommunicationContainer>
+        <CommunicationContainer>
+          <Emoticon />
+          <Chat />
+        </CommunicationContainer>
+      </CommunicationContainer>
     </KingContainer>
   );
 };
