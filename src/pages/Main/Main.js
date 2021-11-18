@@ -40,8 +40,10 @@ const Main = () => {
     dispatch(initViewpoint());
     console.log('is admin? :' + _is_admin);
     socket.on('kickout-rcv', item => {
-      alert('administrator kicked you out!');
-      history.push('/');
+      if (_loginUser['userName'] in item.badUserList) {
+        history.push('/');
+        alert('administrator kicked you out!');
+      }
     });
   }, []);
 
