@@ -14,14 +14,12 @@ const MainPrior = () => {
   const yposition = 65;
   return (
     <KingContainer>
-      {/* <VideoContainer>
+      <VideoContainer x={xposition} y={yposition}>
         <Video />
       </VideoContainer>
       <MainContainer>
         <Main />
-      </MainContainer> */}
-      <VideoContainer x={xposition} y={yposition} />
-      <MainContainer />
+      </MainContainer>
     </KingContainer>
   );
 };

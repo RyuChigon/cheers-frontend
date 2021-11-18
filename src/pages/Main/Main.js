@@ -122,7 +122,7 @@ const Main = () => {
         )}
       </div>
       <ViewPoint />
-      <Video />
+      {/* <Video /> */}
       <CheerGuide src={cheer_guide} />
       {timer > 0 ? (
         <NoticeBox>

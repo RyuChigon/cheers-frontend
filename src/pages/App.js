@@ -4,7 +4,6 @@ import {
   Initial,
   ChooseGame,
   ChooseCharacter,
-  Main,
   MiniGame1,
   AdminMain,
   MiniGame2,
@@ -24,9 +23,6 @@ function App() {
         <ChooseCharacter />
       </Route>
       <Route exact path="/main">
-        <Main />
-      </Route>
-      <Route exact path="/mainprior">
         <MainPrior />
       </Route>
       <Route exact path="/minigame1">
