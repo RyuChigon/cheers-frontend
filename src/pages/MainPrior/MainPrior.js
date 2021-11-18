@@ -11,7 +11,7 @@ const MainPrior = () => {
   const xposition = size.width / 2 - 350;
   console.log(size);
   console.log(xposition);
-  const yposition = 65;
+  const yposition = 50;
   return (
     <KingContainer>
       <VideoContainer x={xposition} y={yposition}>

@@ -4,8 +4,6 @@ export const KingContainer = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  // align-content: center;
-  // align-items: center;
   z-index: 0;
 `;
 
@@ -13,7 +11,6 @@ export const VideoContainer = styled.div`
   width: 700px;
   height: 450px;
   display: flex;
-  background: #aaaaaa;
   left: ${props => `${props.x}px`};
   top: ${props => `${props.y}px`};
   //position: relative;
@@ -25,6 +22,5 @@ export const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  background: #000fff;
   z-index: 0;
 `;
