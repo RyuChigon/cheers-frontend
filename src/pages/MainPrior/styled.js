@@ -47,3 +47,11 @@ export const CommunicationContainer = styled.div`
   right: 10px;
   z-index: 20;
 `;
+
+export const ViewPointContainer = styled.div`
+  display: flex;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 20;
+`;

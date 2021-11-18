@@ -5,12 +5,14 @@ import {
   MainContainer,
   HeaderContainer,
   CommunicationContainer,
+  ViewPointContainer,
 } from './styled';
 import Video from '@/components/Video';
 import Main from '@/pages/Main';
 import Header from '@/components/Header';
 import Emoticon from '@/components/Emoticon';
 import Chat from '@/components/Chat';
+import ViewPoint from '@/components/ViewPoint';
 
 const MainPrior = () => {
   const size = {
@@ -26,6 +28,9 @@ const MainPrior = () => {
       <HeaderContainer>
         <Header />
       </HeaderContainer>
+      <ViewPointContainer>
+        <ViewPoint />
+      </ViewPointContainer>
       <VideoContainer x={xposition} y={yposition}>
         <Video />
       </VideoContainer>
