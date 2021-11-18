@@ -25,14 +25,16 @@ export const LowerContainer = styled.div`
 `;
 
 export const C1 = styled.div`
+  border-radius: 30px;
   display: flex;
   width: 9%;
-  height: 70%;
+  height: 270px;
   flex-grow: 1;
-  align-items: center;
+  align-items: top;
   position: absolute;
   left: ${props => `${props.position}%`};
-  background: #aa1234;
+  background: #015daf;
+  opacity: 0.4;
   z-index: -1;
 `;
 
@@ -50,4 +52,8 @@ export const RemainTurnTimer = styled.div`
   position: absolute;
   left: 20px;
   bottom: 10px;
+`;
+
+export const Announce = styled.div`
+  text-align: center;
 `;
