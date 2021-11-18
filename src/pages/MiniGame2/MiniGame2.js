@@ -8,6 +8,7 @@ import {
   LowerContainer,
   C1,
   RemainTurnTimer,
+  Announce,
 } from './styled';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -58,6 +59,7 @@ const MiniGame2 = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [_position, setPosition] = useState(0);
+  const [_color, setColor] = useState('#ff5722');
   const oneTurn = useRef(0);
   const [gameEndtimer, setGameEndtimer] = useState(0);
   const [gameStarttimer, setGameStarttimer] = useState(0);
@@ -154,6 +156,8 @@ const MiniGame2 = () => {
     start();
   }, []);
 
+  console.log(_position);
+
   return (
     <MainContainer tableIndex="0">
       <Header />
@@ -169,7 +173,7 @@ const MiniGame2 = () => {
               <br />
               Push the space bar when you&apos;re on the red bar!
               <br />
-              Game will be start in {secondState} sec
+              <Announce>Game will start in {secondState} sec</Announce>
             </>
           }
         </NoticeBox>
@@ -183,7 +187,7 @@ const MiniGame2 = () => {
                 ? 'The winner is team A!'
                 : a_team2 < b_team2
                 ? 'The winner is team B!'
-                : 'The game is ended in tie!'}
+                : 'The game ended in a tie!'}
             </>
           }
         </NoticeBox>

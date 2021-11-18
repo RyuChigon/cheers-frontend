@@ -66,7 +66,7 @@ export const Logo_right = styled.img`
 
 export const NoticeBox = styled.div`
   width: 100%;
-  height: 400px;
+  height: 200;
   display: flex;
   flex-direction: column;
   align-items: center;

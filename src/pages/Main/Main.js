@@ -30,6 +30,7 @@ const Main = () => {
   const _is_admin = useSelector(state => state.user.isadmin);
   const [adminchatArr, setAdminChatArr] = useState([]);
   const [timer, settimer] = useState(0);
+  const [minigametimer, setMinigameTimer] = useState(5);
 
   dispatch(getAllUser());
 
@@ -39,9 +40,24 @@ const Main = () => {
     dispatch(initViewpoint());
     console.log('is admin? :' + _is_admin);
     socket.on('kickout-rcv', item => {
+      alert('administrator kicked you out!');
       history.push('/');
     });
   }, []);
+
+  const minigameStartTimer = () => {
+    socket.on('minigame1-start-rcv', item => {
+      // setMinigameTimer(5);
+      console.log('minigametimer increase to ' + minigametimer);
+      setTimeout(() => {
+        setMinigameTimer(timer => timer - 1);
+        console.log('minigametimer decrease to ' + minigametimer);
+      }, 1000);
+      if (minigametimer == 0) {
+        // history.push('/minigame1');
+      }
+    });
+  };
 
   useEffect(() => {
     socket.on('admin-msg-rcv', item => {
