@@ -29,7 +29,7 @@ export const NotExpand = styled.img`
 
 export const ExpandField = styled.div`
   width: 300px;
-  height: 200px;
+  height: 400px;
   // margin: 0;
   display: flex;
   flex-direction: column;

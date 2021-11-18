@@ -28,7 +28,7 @@ const MinigameCharacter = ({
   const _loginUser = useSelector(state => state.user.loginUser);
   const dispatch = useDispatch();
   const [GameNumber, setGameNumber] = useState(1);
-  const [col, setCol] = useState(5);
+  const [col, setCol] = useState(8);
   const a_userList = _userList.filter(user => user[7] == 'a');
   const b_userList = _userList.filter(user => user[7] == 'b');
 
@@ -56,7 +56,7 @@ const MinigameCharacter = ({
               style={{ width: 1000, borderBottom: 'none' }}
             >
               <ImageList
-                rowHeight={160}
+                rowHeight={150}
                 cols={col}
                 gap={1}
                 className={'imagelist'}
