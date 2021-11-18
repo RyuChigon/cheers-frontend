@@ -122,7 +122,6 @@ const Main = () => {
         )}
       </div>
       <ViewPoint />
-      {/* <Video /> */}
       <CheerGuide src={cheer_guide} />
       {timer > 0 ? (
         <NoticeBox>
@@ -134,10 +133,6 @@ const Main = () => {
           }
         </NoticeBox>
       ) : null}
-      <CommunicationContent>
-        <Emoticon />
-        <Chat />
-      </CommunicationContent>
     </MainContainer>
   );
 };
