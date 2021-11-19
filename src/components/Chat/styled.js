@@ -23,7 +23,7 @@ export const NotExpand = styled.img`
   height: 9;
   cursor: pointer;
   position: relative;
-  top: -220px;
+  bottom: 420px;
   z-index: 3;
 `;
 
