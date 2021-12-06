@@ -49,7 +49,7 @@ const Main = () => {
     dispatch(initViewpoint());
     console.log('is admin? :' + _is_admin);
     socket.on('kickout-rcv', item => {
-      if (_loginUser['userName'] in item.badUserList) {
+      if (item.badUserList.includes(_loginUser['userName'])) {
         history.push('/');
         alert('administrator kicked you out!');
       }
@@ -89,7 +89,7 @@ const Main = () => {
   }, []);
 
   return (
-    <MainContainer tableIndex="0">
+    <MainContainer>
       <Header />
       <div>
         {_userList.map(
