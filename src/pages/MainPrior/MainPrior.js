@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   KingContainer,
   VideoContainer,
@@ -24,6 +24,7 @@ const MainPrior = () => {
   console.log(size);
   console.log(xposition);
   const yposition = 50;
+
   return (
     <KingContainer>
       <ViewPointContainer>

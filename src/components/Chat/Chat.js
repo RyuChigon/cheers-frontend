@@ -60,6 +60,15 @@ const Chat = () => {
     }
   };
 
+  useEffect(() => {
+    if (
+      window.location.href.includes('minigame1') ||
+      window.location.href.includes('minigame2')
+    ) {
+      setExpand(false);
+    }
+  }, []);
+
   return (
     <ChatContainer onKeyDown={onEnterSend}>
       {expand ? (

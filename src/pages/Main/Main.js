@@ -66,7 +66,6 @@ const Main = () => {
 
   const minigameStartTimer = () => {
     socket.on('minigame1-start-rcv', item => {
-      // setMinigameTimer(5);
       console.log('minigametimer increase to ' + minigametimer);
       setTimeout(() => {
         setMinigameTimer(timer => timer - 1);
