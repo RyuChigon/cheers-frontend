@@ -26,7 +26,10 @@ function Modal({
   };
 
   const onClickYes = () => {
-    socket.emit('kickout-snd', { badUserList });
+    socket.emit('kickout-snd', {
+      badUserList: badUserList,
+      returntohome: false,
+    });
     close();
     alert('user has been kicked out! refresh your page');
   };

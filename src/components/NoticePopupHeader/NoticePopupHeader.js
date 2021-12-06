@@ -38,7 +38,9 @@ function Modal({
     dispatch(setAdmin(false));
     badUserList.push(loginuser_name);
     console.log(badUserList);
-    socket.emit('kickout-snd', { badUserList });
+    socket.emit('logout-snd', {
+      name: _loginUser['userName'],
+    });
     history.replace('/');
   };
   return (
