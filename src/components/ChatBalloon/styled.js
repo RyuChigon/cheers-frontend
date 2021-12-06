@@ -14,6 +14,7 @@ export const Balloon_me = styled.div`
   border-radius: 10px;
   color: #ffffff;
   justify-content: flex-end;
+  word-break: break-all;
 
   z-index: 20;
 `;
@@ -26,6 +27,7 @@ export const Balloon_a = styled.div`
   border-radius: 10px;
   color: #ffffff;
   justify-content: flex-start;
+  word-break: break-all;
 
   z-index: 20;
 `;
@@ -38,6 +40,7 @@ export const Balloon_b = styled.div`
   border-radius: 10px;
   color: #ffffff;
   justify-content: flex-start;
+  word-break: break-all;
 
   z-index: 20;
 `;
