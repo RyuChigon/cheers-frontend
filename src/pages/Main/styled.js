@@ -5,7 +5,20 @@ export const MainContainer = styled.div`
   height: 100vh;
   min-width: 1200px;
   min-height: 700px;
+  // background: #9ac167;
+  background: linear-gradient(90deg, #feb643 50%, #66bcfe 50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const MainContainer2 = styled.div`
+  width: 95vw;
+  height: 90vh;
+  min-width: 1200px;
+  min-height: 700px;
   background: #9ac167;
+  // background: linear-gradient(90deg, #feb643 50%, #66bcfe 50%);
   display: flex;
   flex-direction: column;
   align-items: center;

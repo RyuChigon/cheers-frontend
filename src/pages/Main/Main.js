@@ -7,6 +7,7 @@ import ViewPoint from '@/components/ViewPoint';
 import Character from '@/components/Character';
 import {
   MainContainer,
+  MainContainer2,
   CheerGuide,
   CommunicationContent,
   NoticeBox,
@@ -89,37 +90,39 @@ const Main = () => {
   return (
     <MainContainer>
       <Header />
-      <div>
-        {_userList.map(
-          (char, index) =>
-            char[1] != _loginUser['userName'] && (
-              <span key={index}>
-                <Character
-                  character={char[3]}
-                  team={char[7]}
-                  userName={char[1]}
-                  loggin={false}
-                  position={[char[5], char[6]]}
-                  emoticon={char[4]}
-                />
-              </span>
-            )
-        )}
-        {_userList.map(
-          (char, index) =>
-            char[1] === _loginUser['userName'] && (
-              <span key={index}>
-                <Character
-                  character={char[3]}
-                  team={char[7]}
-                  userName={char[1]}
-                  loggin={true}
-                />
-              </span>
-            )
-        )}
-      </div>
-      <CheerGuide src={cheer_guide} />
+      <MainContainer2>
+        <div>
+          {_userList.map(
+            (char, index) =>
+              char[1] != _loginUser['userName'] && (
+                <span key={index}>
+                  <Character
+                    character={char[3]}
+                    team={char[7]}
+                    userName={char[1]}
+                    loggin={false}
+                    position={[char[5], char[6]]}
+                    emoticon={char[4]}
+                  />
+                </span>
+              )
+          )}
+          {_userList.map(
+            (char, index) =>
+              char[1] === _loginUser['userName'] && (
+                <span key={index}>
+                  <Character
+                    character={char[3]}
+                    team={char[7]}
+                    userName={char[1]}
+                    loggin={true}
+                  />
+                </span>
+              )
+          )}
+        </div>
+        <CheerGuide src={cheer_guide} />
+      </MainContainer2>
     </MainContainer>
   );
 };
