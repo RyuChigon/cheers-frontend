@@ -5,8 +5,7 @@ export const MainContainer = styled.div`
   height: 100vh;
   min-width: 1200px;
   min-height: 700px;
-  // background: #9ac167;
-  background: linear-gradient(90deg, #feb643 50%, #66bcfe 50%);
+  background: linear-gradient(90deg, #fb5d23 50%, #0f6ab0 50%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,10 +14,9 @@ export const MainContainer = styled.div`
 export const MainContainer2 = styled.div`
   width: 95vw;
   height: 90vh;
-  min-width: 1200px;
-  min-height: 700px;
+  min-width: 1140px;
+  min-height: 630px;
   background: #9ac167;
-  // background: linear-gradient(90deg, #feb643 50%, #66bcfe 50%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,4 +58,18 @@ export const NoticeBox = styled.div`
   bottom: 100px;
 
   z-index: 11;
+`;
+
+export const HanhwaLogo = styled.img`
+  position: absolute;
+  top: 70px;
+  left: 100px;
+  opacity: 0.7;
+`;
+
+export const SamsungLogo = styled.img`
+  position: absolute;
+  top: 70px;
+  right: 100px;
+  opacity: 0.7;
 `;

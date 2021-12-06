@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
-import Video from '@/components/Video';
-import Emoticon from '@/components/Emoticon';
-import Chat from '@/components/Chat';
-import ViewPoint from '@/components/ViewPoint';
 import Character from '@/components/Character';
 import {
   MainContainer,
   MainContainer2,
   CheerGuide,
-  CommunicationContent,
-  NoticeBox,
+  HanhwaLogo,
+  SamsungLogo,
 } from './styled';
 import { cheer_guide } from '@/images/etc';
+import { hanwha_logo, samsung_logo } from '@/images/logos';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllUser,
@@ -91,6 +88,8 @@ const Main = () => {
     <MainContainer>
       <Header />
       <MainContainer2>
+        <HanhwaLogo src={hanwha_logo} />
+        <SamsungLogo src={samsung_logo} />
         <div>
           {_userList.map(
             (char, index) =>
