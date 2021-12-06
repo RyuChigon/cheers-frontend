@@ -43,14 +43,6 @@ const Chatballoon = ({ team, userName, message, isuser }) => {
 
   const handleReport = () => {
     openModal();
-    // const msg = 'reported ' + userName;
-    // alert(msg);
-    // socket.emit('report-user-snd', {
-    //   name: userName,
-    // });
-    // if (pageOn) {
-    //   setPageOn(false);
-    // }
   };
 
   if (userName == _loginUser['userName'] && isuser) {

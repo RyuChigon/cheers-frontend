@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   KingContainer,
   VideoContainer,
@@ -13,6 +13,7 @@ import Header from '@/components/Header';
 import Emoticon from '@/components/Emoticon';
 import Chat from '@/components/Chat';
 import ViewPoint from '@/components/ViewPoint';
+import socket from '@/utils/socket';
 
 const MainPrior = () => {
   const size = {
@@ -23,6 +24,7 @@ const MainPrior = () => {
   console.log(size);
   console.log(xposition);
   const yposition = 50;
+
   return (
     <KingContainer>
       <HeaderContainer>

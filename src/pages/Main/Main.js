@@ -49,7 +49,7 @@ const Main = () => {
     dispatch(initViewpoint());
     console.log('is admin? :' + _is_admin);
     socket.on('kickout-rcv', item => {
-      if (_loginUser['userName'] in item.badUserList) {
+      if (item.badUserList.includes(_loginUser['userName'])) {
         history.push('/');
         alert('administrator kicked you out!');
       }
@@ -58,7 +58,6 @@ const Main = () => {
 
   const minigameStartTimer = () => {
     socket.on('minigame1-start-rcv', item => {
-      // setMinigameTimer(5);
       console.log('minigametimer increase to ' + minigametimer);
       setTimeout(() => {
         setMinigameTimer(timer => timer - 1);
