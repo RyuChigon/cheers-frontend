@@ -48,18 +48,6 @@ const Chatballoon = ({ team, userName, message, isuser }) => {
   if (userName == _loginUser['userName'] && isuser) {
     return (
       <Balloon_general>
-        {modalVisible && (
-          <NoticePopupReport
-            visible={modalVisible}
-            closable={true}
-            maskClosable={true}
-            onClose={closeModal}
-            userName={userName}
-          >
-            <div>Are you planning to report the following user?</div>
-            <div>{userName}</div>
-          </NoticePopupReport>
-        )}
         <Balloon_me onClick={handleChatClick}>
           <div>{userName + ': ' + message}</div>
         </Balloon_me>
@@ -73,6 +61,18 @@ const Chatballoon = ({ team, userName, message, isuser }) => {
             </ReportContainer>
           )}
         </div>
+        {modalVisible && (
+          <NoticePopupReport
+            visible={modalVisible}
+            closable={true}
+            maskClosable={true}
+            onClose={closeModal}
+            userName={userName}
+          >
+            <div>Are you planning to report the following user?</div>
+            <div>{userName}</div>
+          </NoticePopupReport>
+        )}
       </Balloon_general>
     );
   } else if (team == 'a') {

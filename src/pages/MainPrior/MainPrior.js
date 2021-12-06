@@ -34,10 +34,8 @@ const MainPrior = () => {
         <Video />
       </VideoContainer>
       <CommunicationContainer>
-        <CommunicationContainer>
-          <Emoticon />
-          <Chat />
-        </CommunicationContainer>
+        <Emoticon />
+        <Chat />
       </CommunicationContainer>
       <MainContainer>
         <Main />

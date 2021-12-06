@@ -10,7 +10,7 @@ export const Balloon_me = styled.div`
   position: relative;
   margin: 5px 10px 5px 10px;
   padding: 5px;
-  background: #333333;
+  background: #67794f;
   border-radius: 10px;
   color: #ffffff;
   justify-content: flex-end;
@@ -22,7 +22,7 @@ export const Balloon_a = styled.div`
   position: relative;
   margin: 5px 10px 5px 10px;
   padding: 5px;
-  background: orangered;
+  background: #cc8345;
   border-radius: 10px;
   color: #ffffff;
   justify-content: flex-start;
@@ -34,7 +34,7 @@ export const Balloon_b = styled.div`
   position: relative;
   margin: 5px 10px 5px 10px;
   padding: 5px;
-  background: blue;
+  background: #5372b4;
   border-radius: 10px;
   color: #ffffff;
   justify-content: flex-start;
