@@ -152,15 +152,31 @@ const Character = ({
 
   const moveCharacter = e => {
     console.log('isgameongoing? : ' + isGameOngoing);
+    if (isGameOngoing && (e.key == ' ' || e.key == 'Enter')) {
+      setCheer(true);
+      socket.emit('minigame-cheer-snd', {
+        name: _loginUser['userName'],
+        cheer: '1',
+        team: 'none',
+        a_score1: _a_team,
+        b_score1: _b_team,
+        a_score2: _a_team2,
+        b_score2: _b_team2,
+      });
+    }
+  };
+
+  const keyUp = e => {
     if (isGameOngoing) {
+      setCheer(false);
+      console.log('keyup');
       if (gamenumber === 1) {
         switch (e.key) {
           case ' ': {
-            setCheer(true);
             if (_loginUser['team'] == 'a') {
               socket.emit('minigame-cheer-snd', {
                 name: _loginUser['userName'],
-                cheer: '1',
+                cheer: '0',
                 team: _loginUser['team'],
                 a_score1: _a_team + _num_b,
                 b_score1: _b_team,
@@ -171,7 +187,7 @@ const Character = ({
             } else {
               socket.emit('minigame-cheer-snd', {
                 name: _loginUser['userName'],
-                cheer: '1',
+                cheer: '0',
                 team: _loginUser['team'],
                 a_score1: _a_team,
                 b_score1: _b_team + _num_a,
@@ -183,11 +199,10 @@ const Character = ({
             break;
           }
           case 'Enter':
-            setCheer(true);
             if (_loginUser['team'] == 'a') {
               socket.emit('minigame-cheer-snd', {
                 name: _loginUser['userName'],
-                cheer: '1',
+                cheer: '0',
                 team: _loginUser['team'],
                 a_score1: _a_team - _num_b,
                 b_score1: _b_team,
@@ -198,7 +213,7 @@ const Character = ({
             } else {
               socket.emit('minigame-cheer-snd', {
                 name: _loginUser['userName'],
-                cheer: '1',
+                cheer: '0',
                 team: _loginUser['team'],
                 a_score1: _a_team,
                 b_score1: _b_team - _num_a,
@@ -214,7 +229,6 @@ const Character = ({
       } else if (gamenumber === 2) {
         switch (e.key) {
           case ' ': {
-            setCheer(true);
             console.log(_cheer);
             if (userName === _loginUser['userName']) {
               const condition =
@@ -224,7 +238,7 @@ const Character = ({
                 if (_loginUser['team'] == 'a') {
                   socket.emit('minigame-cheer-snd', {
                     name: _loginUser['userName'],
-                    cheer: '1',
+                    cheer: '0',
                     team: _loginUser['team'],
                     a_score1: _a_team,
                     b_score1: _b_team,
@@ -235,7 +249,7 @@ const Character = ({
                 } else {
                   socket.emit('minigame-cheer-snd', {
                     name: _loginUser['userName'],
-                    cheer: '1',
+                    cheer: '0',
                     team: _loginUser['team'],
                     a_score1: _a_team,
                     b_score1: _b_team,
@@ -249,7 +263,6 @@ const Character = ({
             }
           }
           case 'Enter':
-            setCheer(true);
             if (userName === _loginUser['userName']) {
               const condition =
                 _barposition - xposition(index) < 3 &&
@@ -258,7 +271,7 @@ const Character = ({
                 if (_loginUser['team'] == 'a') {
                   socket.emit('minigame-cheer-snd', {
                     name: _loginUser['userName'],
-                    cheer: '1',
+                    cheer: '0',
                     team: _loginUser['team'],
                     a_score1: _a_team,
                     b_score1: _b_team,
@@ -269,7 +282,7 @@ const Character = ({
                 } else {
                   socket.emit('minigame-cheer-snd', {
                     name: _loginUser['userName'],
-                    cheer: '1',
+                    cheer: '0',
                     team: _loginUser['team'],
                     a_score1: _a_team,
                     b_score1: _b_team,
@@ -285,22 +298,6 @@ const Character = ({
             break;
         }
       }
-    }
-  };
-
-  const keyUp = () => {
-    if (isGameOngoing) {
-      setCheer(false);
-      console.log('keyup');
-      socket.emit('minigame-cheer-snd', {
-        name: _loginUser['userName'],
-        cheer: '0',
-        team: 'none',
-        a_score1: _a_team,
-        b_score1: _b_team,
-        a_score2: _a_team2,
-        b_score2: _b_team2,
-      });
     }
   };
 
