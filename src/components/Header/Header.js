@@ -45,7 +45,7 @@ const Header = () => {
           <div>Do you want to logout?</div>
         </NoticePopupHeader>
       )}
-      <Logo src={CheersLogo} />
+      <Logo src={CheersLogo} onClick={returnToHome} />
       <ReturnButton onClick={returnToHome}>Return to home</ReturnButton>
       <UserInfo>
         <UserIcon src={user_icon} />
