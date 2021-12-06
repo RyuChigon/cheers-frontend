@@ -40,20 +40,30 @@ const Main = () => {
   window.addEventListener('unload', function (e) {
     dispatch(setAdmin(false));
     badUserList.push(loginuser_name);
-    socket.emit('kickout-snd', { badUserList });
+    socket.emit('logout-snd', {
+      name: _loginUser['userName'],
+    });
   });
 
   useEffect(() => {
     dispatch(setCheerScore(0, 0));
     dispatch(setCheerScore2(0, 0));
     dispatch(initViewpoint());
-    console.log('is admin? :' + _is_admin);
     socket.on('kickout-rcv', item => {
       if (item.badUserList.includes(_loginUser['userName'])) {
-        history.push('/');
-        alert('administrator kicked you out!');
+        if (item.returntohome == false) {
+          history.push('/');
+          alert('administrator kicked you out!');
+        } else {
+          history.push('/');
+        }
       }
     });
+    // socket.on('logout-rcv', item => {
+    //   if (item.name == _loginUser['userName']) {
+    //     history.push('/');
+    //   }
+    // });
   }, []);
 
   const minigameStartTimer = () => {
