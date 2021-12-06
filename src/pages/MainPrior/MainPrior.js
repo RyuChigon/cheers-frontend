@@ -13,7 +13,7 @@ import Header from '@/components/Header';
 import Emoticon from '@/components/Emoticon';
 import Chat from '@/components/Chat';
 import ViewPoint from '@/components/ViewPoint';
-import socket from '@/utils/socket';
+import Notice from '@/components/Notice';
 
 const MainPrior = () => {
   const size = {
@@ -27,24 +27,25 @@ const MainPrior = () => {
 
   return (
     <KingContainer>
-      <HeaderContainer>
-        <Header />
-      </HeaderContainer>
       <ViewPointContainer>
         <ViewPoint />
       </ViewPointContainer>
       <VideoContainer x={xposition} y={yposition}>
         <Video />
       </VideoContainer>
-      <MainContainer>
-        <Main />
-      </MainContainer>
       <CommunicationContainer>
         <CommunicationContainer>
           <Emoticon />
           <Chat />
         </CommunicationContainer>
       </CommunicationContainer>
+      <MainContainer>
+        <Main />
+      </MainContainer>
+      <Notice />
+      <HeaderContainer>
+        <Header />
+      </HeaderContainer>
     </KingContainer>
   );
 };

@@ -20,7 +20,7 @@ import ChatBalloon from '@/components/ChatBalloon';
 import socket from '@/utils/socket';
 
 const Chat = () => {
-  const [expand, setExpand] = useState(false);
+  const [expand, setExpand] = useState(true);
   const onClickExpand = () => setExpand(!expand);
   const [chatArr, setChatArr] = useState([]);
   const _loginUser = useSelector(state => state.user.loginUser);
@@ -59,6 +59,15 @@ const Chat = () => {
       onClickSend();
     }
   };
+
+  useEffect(() => {
+    if (
+      window.location.href.includes('minigame1') ||
+      window.location.href.includes('minigame2')
+    ) {
+      setExpand(false);
+    }
+  }, []);
 
   return (
     <ChatContainer onKeyDown={onEnterSend}>

@@ -182,7 +182,7 @@ const Character = ({
         break;
       }
       case 'ArrowRight': {
-        if (_position[1] + movedistance < size.width - 10) {
+        if (_position[1] + movedistance < size.width - 180) {
           setPosition([_position[0], _position[1] + movedistance]);
           socket.emit('move-snd', {
             name: _loginUser['userName'],

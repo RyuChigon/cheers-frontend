@@ -17,31 +17,23 @@ Huikyeong An
 ## How to run
 `npm install`
 
-You don't have to install each modules. Just `npm install` ! Then, if there is no module you want, npm install that 
 
 `npm start`
 
 <br />
 
-## Tips
+## Main File
+```
+src
+├── actions          : redux actions
+├── components      : contents of component
+├── images        : All images
+├── pages        : page file
+├── reducer        : reducer function
+├── utils     : include axios, path and socket
+└── index.js     : ReactDom.render
+```
 
-- You can use absolute path like '@/images/logos/Cheers_logo.svg'
-
-  - '@' points "src"
-
-- Use 'styled-components' ('styled-components' is already installed)
-
-- Try to match EsLint and Prettier
-
-  - `npx eslint . --fix` : Formatting all files by EsLint and Prettier.
-
-  - If you don't follow formatting, don't worry. When you commit some files, they would be formatted automatically by husky.
-
-- Don't change version of existing modules.
-
-  - It is to prevent conflicts between different versions.
-
-<br />
 
 ## File Form
 ```

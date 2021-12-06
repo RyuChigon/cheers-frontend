@@ -34,7 +34,7 @@ export const CommunicationContent = styled.div`
 `;
 
 export const NoticeBox = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 130px;
   display: flex;
   flex-direction: column;
@@ -43,6 +43,8 @@ export const NoticeBox = styled.div`
   opacity: 0.7;
   font-size: 2rem;
   color: #9f9f9f;
+  position: absolute;
+  bottom: 100px;
 
   z-index: 11;
 `;

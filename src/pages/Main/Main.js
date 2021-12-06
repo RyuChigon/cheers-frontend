@@ -30,8 +30,6 @@ const Main = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const _is_admin = useSelector(state => state.user.isadmin);
-  const [adminchatArr, setAdminChatArr] = useState([]);
-  const [timer, settimer] = useState(0);
   const [minigametimer, setMinigameTimer] = useState(5);
   var badUserList = [];
 
@@ -40,20 +38,30 @@ const Main = () => {
   window.addEventListener('unload', function (e) {
     dispatch(setAdmin(false));
     badUserList.push(loginuser_name);
-    socket.emit('kickout-snd', { badUserList });
+    socket.emit('logout-snd', {
+      name: _loginUser['userName'],
+    });
   });
 
   useEffect(() => {
     dispatch(setCheerScore(0, 0));
     dispatch(setCheerScore2(0, 0));
     dispatch(initViewpoint());
-    console.log('is admin? :' + _is_admin);
     socket.on('kickout-rcv', item => {
       if (item.badUserList.includes(_loginUser['userName'])) {
-        history.push('/');
-        alert('administrator kicked you out!');
+        if (item.returntohome == false) {
+          history.push('/');
+          alert('administrator kicked you out!');
+        } else {
+          history.push('/');
+        }
       }
     });
+    // socket.on('logout-rcv', item => {
+    //   if (item.name == _loginUser['userName']) {
+    //     history.push('/');
+    //   }
+    // });
   }, []);
 
   const minigameStartTimer = () => {
@@ -70,15 +78,6 @@ const Main = () => {
   };
 
   useEffect(() => {
-    socket.on('admin-msg-rcv', item => {
-      setAdminChatArr(item.message);
-      settimer(timer => timer + 1);
-      console.log('timer increase to ' + timer);
-      setTimeout(() => {
-        settimer(timer => timer - 1);
-        console.log('timer decrease to ' + timer);
-      }, 4000);
-    });
     socket.on('minigame1-start-rcv', item => {
       history.push('/minigame1');
     });
@@ -88,7 +87,7 @@ const Main = () => {
   }, []);
 
   return (
-    <MainContainer tableIndex="0">
+    <MainContainer>
       <Header />
       <div>
         {_userList.map(
@@ -120,18 +119,7 @@ const Main = () => {
             )
         )}
       </div>
-      {/* <ViewPoint /> */}
       <CheerGuide src={cheer_guide} />
-      {timer > 0 ? (
-        <NoticeBox>
-          {
-            <>
-              <br />
-              {adminchatArr}
-            </>
-          }
-        </NoticeBox>
-      ) : null}
     </MainContainer>
   );
 };

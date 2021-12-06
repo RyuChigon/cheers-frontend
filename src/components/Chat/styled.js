@@ -23,13 +23,13 @@ export const NotExpand = styled.img`
   height: 9;
   cursor: pointer;
   position: relative;
-  top: -220px;
+  bottom: 420px;
   z-index: 3;
 `;
 
 export const ExpandField = styled.div`
   width: 300px;
-  height: 200px;
+  height: 400px;
   // margin: 0;
   display: flex;
   flex-direction: column;
