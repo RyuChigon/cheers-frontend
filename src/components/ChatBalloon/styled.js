@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Balloon_general = styled.div`
   position: relative;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Balloon_me = styled.div`
@@ -42,7 +43,7 @@ export const Balloon_b = styled.div`
 `;
 
 export const Report_ = styled.img`
-  margin: 5px 1px 1px 2px;
+  margin: 3px 1px 2px 15px;
   bottom: 0px;
   left: 0px;
   height: 20px;
@@ -52,7 +53,7 @@ export const Report_ = styled.img`
 `;
 
 export const ReportLetter = styled.div`
-  margin: 5px 1px 1px 2px;
+  margin: 0px 1px 0px 3px;
   bottom: 0px;
   left: 0px;
   height: 20px;
@@ -65,10 +66,10 @@ export const ReportLetter = styled.div`
 
 export const ReportContainer = styled.div`
   // margin: 5px 1px 1px 2px;
-  bottom: 0px;
-  left: 0px;
-  height: 20px;
-  width: 20px;
+  // bottom: 0px;
+  // left: 0px;
+  // height: 20px;
+  // width: 20px;
   // justify-content: flex-end;
   display: flex;
 `;
