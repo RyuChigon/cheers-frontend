@@ -30,8 +30,6 @@ const Main = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const _is_admin = useSelector(state => state.user.isadmin);
-  const [adminchatArr, setAdminChatArr] = useState([]);
-  const [timer, settimer] = useState(0);
   const [minigametimer, setMinigameTimer] = useState(5);
   var badUserList = [];
 
@@ -81,15 +79,6 @@ const Main = () => {
   };
 
   useEffect(() => {
-    socket.on('admin-msg-rcv', item => {
-      setAdminChatArr(item.message);
-      settimer(timer => timer + 1);
-      console.log('timer increase to ' + timer);
-      setTimeout(() => {
-        settimer(timer => timer - 1);
-        console.log('timer decrease to ' + timer);
-      }, 4000);
-    });
     socket.on('minigame1-start-rcv', item => {
       history.push('/minigame1');
     });
@@ -131,18 +120,7 @@ const Main = () => {
             )
         )}
       </div>
-      {/* <ViewPoint /> */}
       <CheerGuide src={cheer_guide} />
-      {timer > 0 ? (
-        <NoticeBox>
-          {
-            <>
-              <br />
-              {adminchatArr}
-            </>
-          }
-        </NoticeBox>
-      ) : null}
     </MainContainer>
   );
 };
