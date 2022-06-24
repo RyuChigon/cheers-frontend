@@ -58,7 +58,7 @@ import {
   balloon,
 } from '@/images/emoticons';
 import socket from '@/utils/socket';
-import { request } from '@/utils/axios';
+import { request, requestArchive } from '@/utils/axios';
 
 const Character = ({
   character,
@@ -212,7 +212,7 @@ const Character = ({
         break;
       }
       case ' ': {
-        request('get', '/api/user/cheering', null);
+        requestArchive('get', '/api/archive/cheering', null);
         setCheer(true);
         socket.emit('cheer-snd', {
           name: _loginUser['userName'],

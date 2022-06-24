@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import types from './types';
-import { request } from '../utils/axios';
+import { request, requestArchive } from '../utils/axios';
 
 const USER_URL = '/api/user';
+const ARCHIVE_URL = '/api/archive';
 
 export async function getAllUser() {
   const data = await request('get', USER_URL + '/users', null);
@@ -75,7 +76,7 @@ export function setBarposition(position) {
 }
 
 export async function getViewpoints() {
-  const data = await request('get', USER_URL + '/viewpoints', null);
+  const data = await requestArchive('get', '/api/archive/viewpoints', null);
   if (data === undefined) {
     return {
       type: types.GET_VIEWPOINTS,

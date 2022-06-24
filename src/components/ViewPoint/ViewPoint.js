@@ -30,9 +30,10 @@ const ViewPoint = () => {
       {expand && (
         <ClickAwayListener onClickAway={handleButton}>
           <ViewContainer>
-            {_viewpoints.map((point, index) => (
-              <View point={point} key={index} />
-            ))}
+            {_viewpoints &&
+              _viewpoints.map((point, index) => (
+                <View point={point} key={index} />
+              ))}
           </ViewContainer>
         </ClickAwayListener>
       )}
